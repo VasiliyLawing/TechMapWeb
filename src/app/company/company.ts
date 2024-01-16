@@ -1,6 +1,7 @@
 import {Circle, Marker} from "leaflet";
 
 export interface Company {
+  id: number,
   name: string,
   latitude: number,
   longitude: number,

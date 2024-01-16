@@ -1,34 +1,51 @@
 <h2 class="table-title">Companies</h2>
 <div class="table-responsive">
-  <form [formGroup]="addCompany">
 
+  <table class="table table-dark table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Latitude</th>
+      <th scope="col">Longitude</th>
+      <th scope="col">Type</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let company of companies">
+      <td>{{company.name}}</td>
+      <td>{{company.latitude}}</td>
+      <td>{{company.longitude}}</td>
+      <td>{{company.field}}</td>
+      <td>
+        <button class="btn btn-sm btn-danger" (click)="deleteCompany(company.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h5>Add New Company</h5>
+  <form #addForm="ngForm" (ngSubmit)="addNewCompany(addForm)">
     <table class="table table-dark table-striped">
       <thead>
       <tr>
         <th scope="col">Name</th>
-        <th scope="col">Longitude</th>
         <th scope="col">Latitude</th>
+        <th scope="col">Longitude</th>
         <th scope="col">Type</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let company of companies">
-        <td>{{company.name}}</td>
-        <td>{{company.longitude}}</td>
-        <td>{{company.latitude}}</td>
-        <td>{{company.field}}</td>
-      </tr>
-      </tbody>
-      <tbody>
       <tr>
-        <td><input type="text" formControlName="name"></td>
-        <td><input type="text" formControlName="longitude"></td>
-        <td><input type="text" formControlName="latitude"></td>
-        <td><input type="text" formControlName="field"></td>
+        <td><input type="text" ngModel name="name"></td>
+        <td><input type="text" ngModel name="latitude"></td>
+        <td><input type="text" ngModel name="longitude"></td>
+        <td><input type="text" ngModel name="field"></td>
       </tr>
       </tbody>
     </table>
-    <button (click)="addNewCompany()" class="btn btn-dark">Update</button>
 
+    <button type="submit" class="btn btn-dark">Add Company</button>
   </form>
+
 </div>

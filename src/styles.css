@@ -1,9 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
 @import "leaflet/dist/leaflet.css";
 body {
-  background-color: #383838; /* Lighter shade of dark gray for the body background */
+  background-color: #383838;
   color: #ffffff;
-  margin: 0; /* Remove default margin */
+  margin: 0;
 }
 
 #sidebar {
@@ -11,7 +10,7 @@ body {
   color: #ffffff;
   padding: 20px;
   height: 100vh;
-  margin-left: -15px; /* Adjust margin to cover whitespace */
+  margin-left: -15px;
 }
 
 #map {
@@ -23,10 +22,9 @@ body {
   margin-top: 20px;
 }
 
-/* Custom styles for dark-themed pop-up */
 .leaflet-popup-content-wrapper {
-  background-color: #343a40; /* Dark background color */
-  color: #ffffff; /* Text color */
+  background-color: #343a40;
+  color: #ffffff;
 }
 
 .leaflet-popup-content {
@@ -34,23 +32,26 @@ body {
 }
 
 .leaflet-popup-tip {
-  background-color: #343a40; /* Dark background color for the tip */
+  background-color: #343a40;
 }
 
-/* search-bar.component.css */
 .search-bar {
   display: flex;
   align-items: center;
-  margin-bottom: 20px; /* Adjust spacing based on your design */
+  margin-bottom: 20px;
 }
 
 .input-group {
-  width: 300px; /* Set a fixed width for the search input */
-  margin-right: 10px; /* Adjust spacing between input and button */
+  width: 300px;
+  margin-right: 10px;
 }
 
 .btn {
-  white-space: nowrap; /* Prevent button text from wrapping */
+  white-space: nowrap;
+}
+
+body {
+  overflow: hidden;
 }
 
 .table-title {

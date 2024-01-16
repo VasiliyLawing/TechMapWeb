@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CompanyService} from "../company.service";
 import {Company} from "../company";
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-companies',
@@ -14,6 +14,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 export class EditCompaniesComponent implements OnInit{
 
   public companies: Company[] = []
+  public newCompany: Company | undefined
+
 
   addCompany = new FormGroup({
     name: new FormControl(''),
@@ -21,24 +23,37 @@ export class EditCompaniesComponent implements OnInit{
     latitude: new FormControl('')
   });
 
-  addNewCompany() {
+  addNewCompany(addForm: NgForm) {
 
 
     console.log(this.addCompany.value.name)
+    this.companyService.addCompany(addForm.value).subscribe(
+      (company: Company) => {
 
-    this.companyService.addCompany(Company())
+        this.getCompanies()
 
-
+      }, error => {
+        console.log(error);
+      })
+  }
+  public getCompanies() {
+    this.companyService.findAll().subscribe(data => {
+      this.companies = data;
+    });
   }
 
+  public deleteCompany(id: number) {
+    this.companyService.deleteCompany(id).subscribe(
+      () => {
+        this.getCompanies()
+      }
+    )
+  }
   constructor(private companyService: CompanyService) {
   }
 
   ngOnInit(): void {
-    this.companyService.findAll().subscribe(data => {
-      this.companies = data;
-    });
-
+    this.getCompanies()
 
   }
 

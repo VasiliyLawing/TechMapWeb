@@ -18,15 +18,20 @@ export class CompanyService {
   }
 
   public addCompany(company: Company): Observable<Company> {
-    return this.http.post<Company>(`${this.urlApi}/api/companies/add`, company);
+    return this.http.post<Company>(`${this.urlApi}/api/companies/add/`, company);
   }
 
   public updateCompany(company: Company): Observable<Company> {
-    return this.http.put<Company>(`${this.urlApi}/api/companies/update`, company)
+    return this.http.put<Company>(`${this.urlApi}/api/companies/update/`, company)
   }
   search(term: string): Observable<any> {
     const url = `${this.urlApi}/search?term=${term}`;
     return this.http.get(url);
   }
+  deleteCompany(id: number): Observable<any> {
+    const url = `${this.urlApi}/api/companies/${id}/`;
+    return this.http.delete(url);
+  }
+
 }
 

@@ -36,13 +36,6 @@ export class MapComponent implements AfterViewInit {
       maxZoom: 19,
       attribution: '&copy; OSM Mapnik <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(this.map!);
-    // L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png', {
-    //   attribution: '© OpenStreetMap contributors, © CartoDB'
-    // }).addTo(map);
-
-    // L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    //   attribution: '© OpenStreetMap contributors'
-    // }).addTo(this.map!);
 
     this.mapManager.initMap(this.map)
   }

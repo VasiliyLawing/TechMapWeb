@@ -74,7 +74,6 @@ export class ManageMap {
       } else {
         ManageMap.careerMarkers.get(company.field)?.push(marker);
       }
-
       company.marker = marker;
     });
   }
