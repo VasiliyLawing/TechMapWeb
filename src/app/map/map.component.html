@@ -1,47 +1,10 @@
+<div id="map">
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3">
-      <!-- Sidebar/Navigation -->
-      <div id="sidebar">
-        <h2>Sidebar</h2>
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-9">
-      <!-- Main Content Area -->
-      <div id="map"></div>
-
-      <!-- Table Section -->
-      <div class="table-responsive">
-        <table class="table table-dark table-striped">
-          <thead>
-          <tr>
-            <th scope="col">Column 1</th>
-            <th scope="col">Column 2</th>
-            <th scope="col">Column 3</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>Data 1</td>
-            <td>Data 2</td>
-            <td>Data 3</td>
-          </tr>
-          <!-- Add more rows as needed -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
 </div>
+
+<app-panel [potentialStudents]="mapManager.returnEligibleStudents(companies, students)"></app-panel>
+<!-- search-bar.component.html -->
+
+
+
+

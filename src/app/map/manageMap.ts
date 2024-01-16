@@ -1,47 +1,61 @@
 import {Injectable} from '@angular/core';
 import * as L from 'leaflet';
-import {Circle, LatLng, LayerGroup, Marker} from 'leaflet';
+import {Circle, latLng, LatLng, LayerGroup, Marker} from 'leaflet';
 import {Student} from '../student/student';
 import {Company} from '../company/company';
+import {mark} from "@angular/compiler-cli/src/ngtsc/perf/src/clock";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ManageMap {
 
+  private static careerMarkers: Map<string, Array<Marker>> = new Map();
+  public radius: number = 8046.72;
+  public mile = 0.0144927536231884
   private companyIcon = L.icon({
-    iconUrl: 'assets/leaf-green.png',
-    shadowUrl: 'assets/leaf-shadow.png',
-    iconSize: [38, 95],
-    shadowSize: [50, 64],
-    iconAnchor: [22, 94],
-    shadowAnchor: [4, 62],
-    popupAnchor: [-3, -76]
+    iconUrl: 'assets/factory.png',
+    iconSize: [38, 38],
+    iconAnchor: [22, 37],
+    popupAnchor: [-3, -19]
   });
-
+  private studentIcon = L.icon({
+    iconUrl: 'assets/user.png',
+    iconSize: [38, 38],
+    iconAnchor: [22, 37],
+    popupAnchor: [-3, -19]
+  });
   private layerControl = L.control.layers();
   private layers: Map<string, LayerGroup> = new Map();
-  public radius: number = 8046.72;
-
-  public mile = 0.0144927536231884
-
-  private static careerMarkers: Map<string, Array<Marker>> = new Map();
   private map?: L.Map;
-
-  private createCircle(latlng: L.LatLngExpression, radius: number, popupText: string, fillColor: string = 'blue'): Circle {
-    return L.circle(latlng, {radius}).addTo(this.map!).bindPopup(`${popupText}`).openPopup().setStyle({fillColor});
-  }
 
   public initMap(map: L.Map): void {
     this.map = map;
   }
 
+  public findMarker(latLng: LatLng, companies: Company[], students: Student[]): Marker | undefined {
+    let marker: Marker | undefined;
+
+    companies.forEach(company => {
+      if (latLng.lat == company.latitude && latLng.lng == company.longitude) {
+        marker = company.marker
+      }
+    })
+    students.forEach(student => {
+      if (latLng.lat == student.latitude && latLng.lng == student.longitude) {
+        marker = student.marker
+      }
+    })
+    return marker
+  }
 
   public setStudentMarkers(students: Student[] | undefined): void {
     students?.forEach(student => {
-      const marker = L.marker([student.latitude, student.longitude]).bindPopup(
+      const marker = L.marker([student.latitude, student.longitude], {icon: this.studentIcon}).bindPopup(
         `<h1>${student.name}</h1><h4>Longitude: ${student.longitude}</h4><h4>Latitude: ${student.latitude}</h4>`
       );
+
+      student.marker = marker
 
       if (!ManageMap.careerMarkers.has(student.field)) {
         ManageMap.careerMarkers.set(student.field, [marker]);
@@ -53,7 +67,7 @@ export class ManageMap {
 
   public setCompanyMarkers(companies: Company[]): void {
     companies.forEach(company => {
-      const marker = L.marker([company.latitude, company.longitude], { icon: this.companyIcon });
+      const marker = L.marker([company.latitude, company.longitude], {icon: this.companyIcon});
 
       if (!ManageMap.careerMarkers.has(company.field)) {
         ManageMap.careerMarkers.set(company.field, [marker]);
@@ -94,13 +108,6 @@ export class ManageMap {
     });
   }
 
-
-  private calculateDistance(posOne: LatLng, posTwo: LatLng) {
-    const latDistance = Math.abs(posOne.lat) - Math.abs(posTwo.lat)
-    const lngDistance = Math.abs(posOne.lng) - Math.abs(posTwo.lng)
-    return latDistance + lngDistance
-  }
-
   public getSelectedCompanies(companies: Company[]): Company[] {
     let selectedCompanies: Company[] = []
 
@@ -132,6 +139,16 @@ export class ManageMap {
       })
     })
     return eligibleStudents
+  }
+
+  private createCircle(latlng: L.LatLngExpression, radius: number, popupText: string, fillColor: string = 'blue'): Circle {
+    return L.circle(latlng, {radius}).addTo(this.map!).bindPopup(`${popupText}`).openPopup().setStyle({fillColor});
+  }
+
+  private calculateDistance(posOne: LatLng, posTwo: LatLng) {
+    const latDistance = Math.abs(posOne.lat) - Math.abs(posTwo.lat)
+    const lngDistance = Math.abs(posOne.lng) - Math.abs(posTwo.lng)
+    return latDistance + lngDistance
   }
 
 }

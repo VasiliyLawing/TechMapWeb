@@ -1,12 +1,12 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import { StudentService } from '../student/student.service';
-import { CompanyService } from '../company/company.service';
-import { forkJoin } from 'rxjs';
-import { tap, finalize } from 'rxjs/operators';
+import {AfterViewInit, Component} from '@angular/core';
+import {StudentService} from '../student/student.service';
+import {CompanyService} from '../company/company.service';
+import {forkJoin} from 'rxjs';
+import {finalize, tap} from 'rxjs/operators';
 import * as L from 'leaflet';
-import { ManageMap } from './manageMap';
-import { Student } from '../student/student';
-import { Company } from '../company/company';
+import {ManageMap} from './manageMap';
+import {Student} from '../student/student';
+import {Company} from '../company/company';
 
 @Component({
   selector: 'app-map',
@@ -36,9 +36,17 @@ export class MapComponent implements AfterViewInit {
       maxZoom: 19,
       attribution: '&copy; OSM Mapnik <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(this.map!);
+    // L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png', {
+    //   attribution: '© OpenStreetMap contributors, © CartoDB'
+    // }).addTo(map);
+
+    // L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    //   attribution: '© OpenStreetMap contributors'
+    // }).addTo(this.map!);
 
     this.mapManager.initMap(this.map)
   }
+
 
 
   loadData() {
@@ -57,13 +65,13 @@ export class MapComponent implements AfterViewInit {
         if (this.map) {
           this.mapManager.setLayers(this.map);
           this.mapManager.manageCompanyMarkers(this.map, this.companies);
-          alert(this.mapManager.returnEligibleStudents(this.companies, this.students))
         } else {
           console.error('Map is not initialized.');
         }
       })
     ).subscribe(
-      () => {},
+      () => {
+      },
       error => {
         console.error('Error in subscriptions', error);
       }
@@ -73,5 +81,6 @@ export class MapComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.initMap();
     this.loadData();
+
   }
 }

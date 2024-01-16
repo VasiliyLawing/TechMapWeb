@@ -9,6 +9,8 @@ import { ManageDataComponent } from './manage-data/manage-data.component';
 import {CompanyComponent} from "./manage-data/tables/company/company.component";
 import {StudentComponent} from "./manage-data/tables/student/student.component";
 import {PanelComponent} from "./map/panel/panel.component";
+import { EditCompaniesComponent } from './company/edit-companies/edit-companies.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import {PanelComponent} from "./map/panel/panel.component";
     StudentComponent,
     PanelComponent,
     PanelComponent,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
