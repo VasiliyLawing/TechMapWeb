@@ -1,0 +1,25 @@
+<h2>Students</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Longitude</th>
+    <th scope="col">Latitude</th>
+    <th scope="col">Type</th>
+
+  </tr>
+  </thead>
+
+
+  <tbody>
+  <tr *ngFor="let student of students">
+    <td>{{student.name}}</td>
+    <td>{{student.latitude}}</td>
+    <td>{{student.longitude}}</td>
+    <td>{{student.field}}</td>
+  </tr>
+
+  </tbody>
+</table>
+
+

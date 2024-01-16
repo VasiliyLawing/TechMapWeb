@@ -1,0 +1,23 @@
+<h2>Companies</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Longitude</th>
+    <th scope="col">Latitude</th>
+    <th scope="col">Type</th>
+
+  </tr>
+  </thead>
+
+
+  <tbody>
+  <tr *ngFor="let company of companies">
+    <td>{{company.name}}</td>
+    <td>{{company.latitude}}</td>
+    <td>{{company.longitude}}</td>
+    <td>{{company.field}}</td>
+  </tr>
+
+  </tbody>
+</table>

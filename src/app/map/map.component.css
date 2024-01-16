@@ -1,0 +1,38 @@
+body {
+  background-color: #212529; /* Dark theme background color */
+  color: #ffffff;
+  margin: 0; /* Remove default margin */
+}
+
+#sidebar {
+  background-color: #343a40;
+  color: #ffffff;
+  padding: 20px;
+  height: 100vh;
+  margin-left: -15px; /* Adjust margin to cover whitespace */
+}
+
+#map {
+  height: 50vh;
+  margin-top: 20px;
+}
+
+.table {
+  margin-top: 20px;
+  background-color: #343a40; /* Dark background color */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  color: #ffffff;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=map.component.css.map */
