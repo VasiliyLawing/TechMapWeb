@@ -57,5 +57,4 @@ export class EditCompaniesComponent implements OnInit{
 
   }
 
-  protected readonly name = name;
 }

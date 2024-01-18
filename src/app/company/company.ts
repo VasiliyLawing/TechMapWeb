@@ -6,8 +6,7 @@ export interface Company {
   latitude: number,
   longitude: number,
   field: string,
-  marker: Marker | undefined
+  marker?: Marker,
   selected: Boolean,
   circles: Circle[]
-
 }

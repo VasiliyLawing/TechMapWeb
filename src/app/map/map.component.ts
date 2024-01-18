@@ -41,7 +41,6 @@ export class MapComponent implements AfterViewInit {
   }
 
 
-
   loadData() {
     forkJoin([
       this.studentService.findAll(),
@@ -74,6 +73,5 @@ export class MapComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.initMap();
     this.loadData();
-
   }
 }
