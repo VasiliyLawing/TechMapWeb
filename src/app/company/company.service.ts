@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class CompanyService {
 
-  private urlApi = 'http://localhost:8080'
+  private urlApi = 'https://techmapback.onrender.com'
 
   constructor(private http: HttpClient) {
   }
