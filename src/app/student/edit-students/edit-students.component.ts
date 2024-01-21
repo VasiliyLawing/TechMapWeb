@@ -26,7 +26,6 @@ export class EditStudentsComponent implements OnInit{
 
   addNewStudent(addForm: NgForm) {
 
-
     console.log(this.addStudent.value.name)
     this.studentService.addStudent(addForm.value).subscribe(
       (student: Student) => {

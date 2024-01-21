@@ -5,12 +5,16 @@ import {ManageDataComponent} from "./manage-data/manage-data.component";
 
 import {EditCompaniesComponent} from "./company/edit-companies/edit-companies.component";
 import {EditStudentsComponent} from "./student/edit-students/edit-students.component";
+import {LoginComponent} from "./login/login.component";
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
   { path: 'map',                 component: MapComponent },
   { path: 'manageData',          component: ManageDataComponent },
-  { path: 'edit-students', component: EditStudentsComponent },
-  { path: 'edit-companies',component: EditCompaniesComponent },
+  { path: 'edit-students',       component: EditStudentsComponent },
+  { path: 'edit-companies',      component: EditCompaniesComponent },
+  { path: '',                    component: HomeComponent},
+  { path: 'login',               component: LoginComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,8 @@
+<div *ngIf="authenticationService.currentUserSignal() === undefined || authenticationService.currentUserSignal() === null">
+
+<app-login></app-login>
+</div>
+
+<div *ngIf="authenticationService.currentUserSignal()">
+  {{ authenticationService.currentUserSignal()?.username }}
+</div>
