@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
-import {HttpClientModule, provideHttpClient, withInterceptors} from "@angular/common/http";
-import { ManageDataComponent } from './manage-data/manage-data.component';
-import {CompanyComponent} from "./manage-data/tables/company/company.component";
-import {StudentComponent} from "./manage-data/tables/student/student.component";
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AuthInterceptor } from './authentication/auth.interceptor';
+import {ManageDataComponent} from "./manage-data/manage-data.component";
+import {CompanyComponent} from "./company/table/company.component";
+import {StudentComponent} from "./student/table/student.component";
 import {PanelComponent} from "./map/panel/panel.component";
-import { EditCompaniesComponent } from './company/edit-companies/edit-companies.component';
-import {FormsModule} from "@angular/forms";
-import {authInterceptor} from "./authentication/auth-interceptor.interceptor";
+import {CompanyModule} from "./company/company.module";
+import {StudentModule} from "./student/student.module";
+import {PanelModule} from "./map/panel/panel.module";
 
 @NgModule({
   declarations: [
@@ -23,13 +24,18 @@ import {authInterceptor} from "./authentication/auth-interceptor.interceptor";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CompanyComponent,
-    StudentComponent,
-    PanelComponent,
-    PanelComponent,
+    CompanyModule,
+    StudentModule,
+    PanelModule,
     FormsModule,
   ],
-  providers: [provideHttpClient(withInterceptors([authInterceptor]))],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

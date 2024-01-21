@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {AuthenticationService} from "../authentication/authentication.service";
 import {LoginComponent} from "../login/login.component";
+import {UserService} from "../authentication/user.service";
+import {User, UserJson} from "../authentication/userJson";
 
 @Component({
   selector: 'app-home',
@@ -11,16 +12,15 @@ import {LoginComponent} from "../login/login.component";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(public authenticationService: AuthenticationService) {
+  user: User | undefined | null;
+
+  constructor(public userService: UserService) {
   }
 
-  ngOnInit(): void {
-    if (this.authenticationService.currentUserSignal === null) {
-      console.log("Not logged in")
-    }
+  ngOnInit() {
+    this.userService.getUser().subscribe((user) => {
+      console.log(user)
+      this.user = user
+    });
   }
-
-
-
-
 }

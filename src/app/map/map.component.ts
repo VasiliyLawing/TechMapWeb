@@ -7,6 +7,7 @@ import * as L from 'leaflet';
 import {ManageMap} from './manageMap';
 import {Student} from '../student/student';
 import {Company} from '../company/company';
+import {UserService} from "../authentication/user.service";
 
 @Component({
   selector: 'app-map',
@@ -24,6 +25,7 @@ export class MapComponent implements AfterViewInit {
   constructor(
     private studentService: StudentService,
     private companyService: CompanyService,
+    private userService: UserService,
     manageMap: ManageMap
   ) {
     this.mapManager = manageMap;
@@ -75,5 +77,8 @@ export class MapComponent implements AfterViewInit {
     this.initMap();
     this.loadData();
 
+    this.userService.getUser().subscribe((user) => {
+      console.log(user)
+    });
   }
 }
