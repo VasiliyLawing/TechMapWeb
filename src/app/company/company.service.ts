@@ -8,25 +8,25 @@ import {Observable} from "rxjs";
 })
 export class CompanyService {
 
-  private urlApi = ''
+  private urlApi = 'https://techmapback.onrender.com'
 
   constructor(private http: HttpClient) {
   }
 
   public findAll(): Observable<Company[]> {
-    return this.http.get<Company[]>(`http://localhost:8080/api/companies/`);
+    return this.http.get<Company[]>(`${this.urlApi}/api/companies/`);
   }
 
   public addCompany(company: Company): Observable<Company> {
-    return this.http.post<Company>(`http://localhost:8080/api/companies/add/`, company);
+    return this.http.post<Company>(`${this.urlApi}/api/companies/add/`, company);
   }
 
   public updateCompany(company: Company): Observable<Company> {
-    return this.http.put<Company>(`http://localhost:8080/api/companies/update/`, company)
+    return this.http.put<Company>(`${this.urlApi}/api/companies/update/`, company)
   }
 
   deleteCompany(id: number): Observable<any> {
-    const url = `http://localhost:8080/api/companies/${id}/`;
+    const url = `${this.urlApi}/api/companies/${id}/`;
     return this.http.delete(url);
   }
 

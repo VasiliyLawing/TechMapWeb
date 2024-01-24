@@ -13,6 +13,7 @@ export interface AuthRequestData {
 export class AuthService {
   private userSubject: BehaviorSubject<User|null>;
   private readonly user: Observable<User|null>;
+  private apiUrl = 'https://techmapback.onrender.com'
 
   constructor(private http: HttpClient) {
     this.userSubject = new BehaviorSubject<User|null>(null);
@@ -28,7 +29,7 @@ export class AuthService {
   }
 
   public requestAuth(requestData: AuthRequestData): Observable<User> {
-    const url = `http://localhost:8080/api/auth/login/`;
+    const url = `${this.apiUrl}/api/auth/login/`;
 
     return this.http.post<UserJson>(url, requestData).pipe(map(userJson => {
       const user = User.parseFromJson(userJson);
