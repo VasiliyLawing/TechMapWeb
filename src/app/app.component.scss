@@ -1,0 +1,98 @@
+//@import "leaflet/dist/leaflet.css";
+
+body {
+  background-color: #383838;
+  color: #ffffff;
+
+  margin: 0;
+}
+
+#sidebar {
+  background-color: #343a40;
+  color: #ffffff;
+  padding: 20px;
+  height: 100vh;
+  margin-left: -15px;
+}
+
+#map {
+  height: 50vh;
+  margin-top: 20px;
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+
+.leaflet-popup-content-wrapper {
+  background-color: #343a40;
+  color: #ffffff;
+}
+
+.leaflet-popup-content {
+  margin: 10px;
+}
+
+.leaflet-popup-tip {
+  background-color: #343a40;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  width: 300px;
+  margin-right: 10px;
+}
+
+.btn {
+  white-space: nowrap;
+}
+body {
+  overflow: hidden;
+}
+
+
+//.table-title {
+//  font-size: 1.5rem;
+//  margin-bottom: 10px;
+//  color: #ffffff; /* Text color for title */
+//}
+//
+//.table {
+//  background-color: #343a40; /* Dark background color */
+//  color: #ffffff; /* Text color */
+//}
+//
+//.table thead th {
+//  border-top: none; /* Remove top border for thead */
+//}
+//
+//.table-striped tbody tr:nth-of-type(odd) {
+//  background-color: #495057; /* Slightly lighter background for odd rows */
+//}
+//
+//.table-striped tbody tr:hover {
+//  background-color: #566b75; /* Hover background color */
+//}
+
+.navbar {
+  background-color: #495057; /* Slightly lighter navbar color */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  color: #ffffff;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}

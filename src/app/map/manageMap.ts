@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import * as L from 'leaflet';
-import {Circle, latLng, LatLng, LayerGroup, Marker} from 'leaflet';
+import {Circle, control, latLng, LatLng, LayerGroup, Marker} from 'leaflet';
 import {Student} from '../student/student';
 import {Company} from '../company/company';
 import {mark} from "@angular/compiler-cli/src/ngtsc/perf/src/clock";
+import layers = control.layers;
 
 @Injectable({
   providedIn: 'root'
@@ -80,9 +81,18 @@ export class ManageMap {
 
   public setLayers(map: L.Map): void {
     Array.from(ManageMap.careerMarkers.entries()).forEach(([name, markers]) => {
-      const layerGroup = new L.LayerGroup(markers);
-      this.layers.set(name, layerGroup);
-      this.layerControl.addOverlay(layerGroup, name);
+      let layerExists = false
+
+      this.layers.forEach((value, key) => {
+        if (name==key) {
+          layerExists = true
+        }
+      })
+      if (!layerExists) {
+        const layerGroup = new L.LayerGroup(markers);
+        this.layers.set(name, layerGroup);
+        this.layerControl.addOverlay(layerGroup, name);
+      }
     });
 
     this.layerControl.addTo(map);
