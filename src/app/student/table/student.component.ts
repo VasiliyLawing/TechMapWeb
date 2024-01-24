@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForOf} from "@angular/common";
 import {Student} from "../student";
 import {StudentService} from "../student.service";
 

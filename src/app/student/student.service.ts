@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpRequest} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Student} from "./student";
 import {Observable} from "rxjs";
 
@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class StudentService {
 
-  private urlApi = 'http://localhost:8080'
+  //private urlApi = 'http://localhost:8080'
 
   constructor(private http: HttpClient) {
   }

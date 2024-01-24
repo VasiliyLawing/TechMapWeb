@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import * as L from 'leaflet';
-import {Circle, control, latLng, LatLng, LayerGroup, Marker} from 'leaflet';
+import {Circle, LatLng, LayerGroup, Marker} from 'leaflet';
 import {Student} from '../student/student';
 import {Company} from '../company/company';
-import {mark} from "@angular/compiler-cli/src/ngtsc/perf/src/clock";
-import layers = control.layers;
+
 
 @Injectable({
   providedIn: 'root'

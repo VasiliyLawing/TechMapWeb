@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {CompanyService} from "../company.service";
 import {Company} from "../company";
-import {FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormGroup, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-companies',
@@ -26,7 +25,7 @@ export class EditCompaniesComponent implements OnInit{
 
     console.log(this.addCompany.value.name)
     this.companyService.addCompany(addForm.value).subscribe(
-      (company: Company) => {
+      () => {
 
         this.getCompanies()
 

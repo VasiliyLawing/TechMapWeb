@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import { CommonModule } from '@angular/common';
 
-import {FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormGroup, NgForm} from "@angular/forms";
 import {Student} from "../student";
 import {StudentService} from "../student.service";
 
@@ -27,7 +26,7 @@ export class EditStudentsComponent implements OnInit{
 
     console.log(this.addStudent.value.name)
     this.studentService.addStudent(addForm.value).subscribe(
-      (student: Student) => {
+      () => {
 
         this.getStudents()
 

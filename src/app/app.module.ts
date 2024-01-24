@@ -6,14 +6,10 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { ManageDataComponent } from './manage-data/manage-data.component';
-import {CompanyComponent} from "./company/table/company/company.component";
-import {StudentComponent} from "./student/table/student.component";
-import {PanelComponent} from "./map/panel/panel.component";
-import { EditCompaniesComponent } from './company/edit-companies/edit-companies.component';
 import {FormsModule} from "@angular/forms";
 import {BasicAuthInterceptor} from "./auth/httpAuthInterceptor";
 import {HttpErrorInterceptor} from "./auth/http-error.interceptor";
-import {AuthGuard} from "./auth/AuthGuard";
+import {PermissionService} from "./auth/AuthGuard";
 import {AuthService} from "./auth/auth.service";
 import {StudentService} from "./student/student.service";
 import {CompanyService} from "./company/company.service";
@@ -41,7 +37,7 @@ export const httpInterceptorProviders = [
     CompanyModule,
     FormsModule,
   ],
-  providers: [ httpInterceptorProviders, AuthGuard, AuthService, StudentService, CompanyService ],
+  providers: [ httpInterceptorProviders, PermissionService, AuthService, StudentService, CompanyService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

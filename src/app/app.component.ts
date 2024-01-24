@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {StudentComponent} from "./student/table/student.component";
-import {Router} from "@angular/router";
 import {AuthService} from "./auth/auth.service";
 
 @Component({
@@ -11,7 +9,7 @@ import {AuthService} from "./auth/auth.service";
 export class AppComponent {
   title = 'TechWebMap';
 
-  constructor(private router: Router, public authService: AuthService) {
+  constructor(public authService: AuthService) {
   }
 
   logout() {

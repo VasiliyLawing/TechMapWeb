@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForOf} from "@angular/common";
 import {CompanyService} from "../../company.service";
 import {Company} from "../../company";
 

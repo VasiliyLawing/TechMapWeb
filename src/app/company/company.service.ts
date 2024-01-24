@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpRequest} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Company} from "./company";
 import {Observable} from "rxjs";
 
@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class CompanyService {
 
-  private urlApi = ''
+  //private urlApi = ''
 
   constructor(private http: HttpClient) {
   }

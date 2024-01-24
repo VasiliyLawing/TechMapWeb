@@ -1,8 +1,7 @@
 import {Component} from "@angular/core";
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthRequestData, AuthService} from "../auth.service";
-import {AuthGuard} from "../AuthGuard";
 
 @Component({
   standalone: true,
@@ -20,8 +19,7 @@ export class LoginFormComponent {
   });
   constructor(private fb:FormBuilder,
               private authService: AuthService,
-              private router: Router,
-              private authGuard: AuthGuard) {
+              private router: Router) {
 
 
   }

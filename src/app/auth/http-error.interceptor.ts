@@ -5,7 +5,7 @@ import {
   HttpRequest,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Injectable } from "@angular/core";
 
@@ -17,7 +17,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       .pipe(
         retry(1),
         catchError((error: HttpErrorResponse) => {
-          let errorMessage = '';
+          let errorMessage: string;
 
           if (error.error instanceof ErrorEvent) {
             // client-side error
@@ -28,8 +28,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           }
 
           window.alert(errorMessage);
+          throw "Error"
 
-          return throwError(errorMessage);
         })
       );
   }
