@@ -4,14 +4,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { ManageDataComponent } from './manage-data/manage-data.component';
-import {CompanyComponent} from "./manage-data/tables/company/company.component";
-import {StudentComponent} from "./manage-data/tables/student/student.component";
+import {CompanyComponent} from "./company/table/company/company.component";
+import {StudentComponent} from "./student/table/student.component";
 import {PanelComponent} from "./map/panel/panel.component";
 import { EditCompaniesComponent } from './company/edit-companies/edit-companies.component';
 import {FormsModule} from "@angular/forms";
+import {BasicAuthInterceptor} from "./auth/httpAuthInterceptor";
+import {HttpErrorInterceptor} from "./auth/http-error.interceptor";
+import {AuthGuard} from "./auth/AuthGuard";
+import {AuthService} from "./auth/auth.service";
+import {StudentService} from "./student/student.service";
+import {CompanyService} from "./company/company.service";
+import {PanelModule} from "./map/panel/panel.module";
+import {StudentModule} from "./student/student.module";
+import {CompanyModule} from "./company/company.module";
 
+
+export const httpInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,13 +36,12 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CompanyComponent,
-    StudentComponent,
-    PanelComponent,
-    PanelComponent,
+    PanelModule,
+    StudentModule,
+    CompanyModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [ httpInterceptorProviders, AuthGuard, AuthService, StudentService, CompanyService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

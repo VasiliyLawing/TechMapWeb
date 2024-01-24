@@ -6,8 +6,6 @@ import {FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule} from "
 
 @Component({
   selector: 'app-edit-companies',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './edit-companies.component.html',
   styleUrls: ['./edit-companies.component.scss']
 })

@@ -7,8 +7,6 @@ import {StudentService} from "../student.service";
 
 @Component({
   selector: 'app-edit-students',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './edit-students.component.html',
   styleUrls: ['./edit-students.component.scss']
 })
