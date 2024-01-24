@@ -32,23 +32,6 @@ export class ManageMap {
   public initMap(map: L.Map): void {
     this.map = map;
   }
-
-  public findMarker(latLng: LatLng, companies: Company[], students: Student[]): Marker | undefined {
-    let marker: Marker | undefined;
-
-    companies.forEach(company => {
-      if (latLng.lat == company.latitude && latLng.lng == company.longitude) {
-        marker = company.marker
-      }
-    })
-    students.forEach(student => {
-      if (latLng.lat == student.latitude && latLng.lng == student.longitude) {
-        marker = student.marker
-      }
-    })
-    return marker
-  }
-
   public setStudentMarkers(students: Student[] | undefined): void {
     students?.forEach(student => {
       const marker = L.marker([student.latitude, student.longitude], {icon: this.studentIcon}).bindPopup(
@@ -82,7 +65,7 @@ export class ManageMap {
     Array.from(ManageMap.careerMarkers.entries()).forEach(([name, markers]) => {
       let layerExists = false
 
-      this.layers.forEach((value, key) => {
+      this.layers.forEach((_value, key) => {
         if (name==key) {
           layerExists = true
         }

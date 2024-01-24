@@ -10,11 +10,12 @@ import {LoginFormComponent} from "./auth/login-form/login-form.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginFormComponent},
-  {path: '', canActivate: [AuthGuard], children: [
-      { path: 'map',                 component: MapComponent },
-  { path: 'manageData',          component: ManageDataComponent },
-  { path: 'edit-students', component: EditStudentsComponent },
-  { path: 'edit-companies',component: EditCompaniesComponent },
+  {path: '', canActivate: [AuthGuard],
+    children:
+      [ { path: 'map',                 component: MapComponent },
+        { path: 'manageData',          component: ManageDataComponent },
+        { path: 'edit-students',       component: EditStudentsComponent },
+        { path: 'edit-companies',      component: EditCompaniesComponent },
       ]}
 ];
 
