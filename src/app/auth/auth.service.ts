@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   public requestAuth(requestData: AuthRequestData): Observable<User> {
-    const url = `/api/auth/login/`;
+    const url = `http://localhost:8080/api/auth/login/`;
 
     return this.http.post<UserJson>(url, requestData).pipe(map(userJson => {
       const user = User.parseFromJson(userJson);

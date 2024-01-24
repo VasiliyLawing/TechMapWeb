@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpRequest} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {Company} from "./company";
 import {Observable} from "rxjs";
 
@@ -14,18 +14,19 @@ export class CompanyService {
   }
 
   public findAll(): Observable<Company[]> {
-    return this.http.get<Company[]>(`/api/companies/`);
+    return this.http.get<Company[]>(`http://localhost:8080/api/companies/`);
   }
 
   public addCompany(company: Company): Observable<Company> {
-    return this.http.post<Company>(`/api/companies/add/`, company);
+    return this.http.post<Company>(`http://localhost:8080/api/companies/add/`, company);
   }
 
   public updateCompany(company: Company): Observable<Company> {
-    return this.http.put<Company>(`/api/companies/update/`, company)
+    return this.http.put<Company>(`http://localhost:8080/api/companies/update/`, company)
   }
+
   deleteCompany(id: number): Observable<any> {
-    const url = `/api/companies/${id}/`;
+    const url = `http://localhost:8080/api/companies/${id}/`;
     return this.http.delete(url);
   }
 
