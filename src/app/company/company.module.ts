@@ -11,6 +11,10 @@ import {HeaderModule} from "../header/header.module";
 import {InputTextModule} from "primeng/inputtext";
 import {RippleModule} from "primeng/ripple";
 import {ToastModule} from "primeng/toast";
+import {FileUploadModule} from "primeng/fileupload";
+import {ToolbarModule} from "primeng/toolbar";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {DialogModule} from "primeng/dialog";
 
 
 
@@ -29,7 +33,11 @@ import {ToastModule} from "primeng/toast";
         HeaderModule,
         InputTextModule,
         RippleModule,
-        ToastModule
+        ToastModule,
+        FileUploadModule,
+        ToolbarModule,
+        ConfirmDialogModule,
+        DialogModule
     ]
 })
 export class CompanyModule { }

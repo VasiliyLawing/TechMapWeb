@@ -13,7 +13,6 @@ import {PermissionService} from "./auth/AuthGuard";
 import {AuthService} from "./auth/auth.service";
 import {StudentService} from "./student/student.service";
 import {CompanyService} from "./company/company.service";
-import {PanelModule} from "./map/panel/panel.module";
 import {StudentModule} from "./student/student.module";
 import {CompanyModule} from "./company/company.module";
 import {HeaderComponent} from "./header/header.component";
@@ -24,6 +23,7 @@ import {StyleClassModule} from "primeng/styleclass";
 import {AvatarModule} from "primeng/avatar";
 import {HeaderModule} from "./header/header.module";
 import {SplitterModule} from "primeng/splitter";
+import {PanelModule} from "primeng/panel";
 
 
 export const httpInterceptorProviders = [
@@ -50,7 +50,8 @@ export const httpInterceptorProviders = [
         StyleClassModule,
         AvatarModule,
         HeaderModule,
-        SplitterModule
+        SplitterModule,
+        PanelModule
     ],
   providers: [ httpInterceptorProviders, PermissionService, AuthService, StudentService, CompanyService ],
   bootstrap: [AppComponent]

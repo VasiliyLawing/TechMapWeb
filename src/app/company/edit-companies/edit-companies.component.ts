@@ -11,13 +11,16 @@ import {ConfirmationService, MessageService, SelectItem} from "primeng/api";
   providers: [MessageService, ConfirmationService]
 })
 export class EditCompaniesComponent implements OnInit{
-  productDialog: boolean = false;
+  dialog: boolean = false;
 
   companies!: Company[];
 
   company!: Company;
   clonedProducts: { [s: string]: Company } = {};
 
+  openNew() {
+    this.dialog = true
+  }
 
   constructor(private companyService: CompanyService, private messageService: MessageService, private confirmationService: ConfirmationService) {}
 
@@ -56,7 +59,7 @@ export class EditCompaniesComponent implements OnInit{
 
 
 
-  deleteStudent(company: Company) {
+  deleteCompany(company: Company) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ' + company.name + '?',
       header: 'Confirm',
