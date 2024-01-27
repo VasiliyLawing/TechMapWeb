@@ -16,6 +16,14 @@ import {CompanyService} from "./company/company.service";
 import {PanelModule} from "./map/panel/panel.module";
 import {StudentModule} from "./student/student.module";
 import {CompanyModule} from "./company/company.module";
+import {HeaderComponent} from "./header/header.component";
+import {SidebarModule} from "primeng/sidebar";
+import {ButtonModule} from "primeng/button";
+import {RippleModule} from "primeng/ripple";
+import {StyleClassModule} from "primeng/styleclass";
+import {AvatarModule} from "primeng/avatar";
+import {HeaderModule} from "./header/header.module";
+import {SplitterModule} from "primeng/splitter";
 
 
 export const httpInterceptorProviders = [
@@ -28,15 +36,22 @@ export const httpInterceptorProviders = [
     MapComponent,
     ManageDataComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    PanelModule,
-    StudentModule,
-    CompanyModule,
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        PanelModule,
+        StudentModule,
+        CompanyModule,
+        FormsModule,
+        SidebarModule,
+        ButtonModule,
+        RippleModule,
+        StyleClassModule,
+        AvatarModule,
+        HeaderModule,
+        SplitterModule
+    ],
   providers: [ httpInterceptorProviders, PermissionService, AuthService, StudentService, CompanyService ],
   bootstrap: [AppComponent]
 })

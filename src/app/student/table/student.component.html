@@ -1,21 +1,28 @@
-<h2 class="table-title">Students</h2>
-<div class="table-responsive">
-  <table class="table table-dark table-striped">
-    <thead>
+
+<div class="card flex justify-content-evenly">
+
+<p-card header="Students">
+<!--  <p-card subheader="">-->
+    <p-button label="Edit Students" [routerLink]="['/edit-students']" [text]="true" severity="primary"></p-button>
+
+<!--  </p-card>-->
+<p-table [value]="students" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
     <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Longitude</th>
-      <th scope="col">Latitude</th>
-      <th scope="col">Type</th>
+      <th>Name</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Field</th>
     </tr>
-    </thead>
-    <tbody>
-          <tr *ngFor="let student of students">
-            <td>{{student.name}}</td>
-            <td>{{student.latitude}}</td>
-            <td>{{student.longitude}}</td>
-            <td>{{student.field}}</td>
-          </tr>
-    </tbody>
-  </table>
+  </ng-template>
+  <ng-template pTemplate="body" let-student>
+    <tr>
+      <td>{{ student.name }}</td>
+      <td>{{ student.latitude }}</td>
+      <td>{{ student.longitude }}</td>
+      <td>{{ student.field }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+</p-card>
 </div>

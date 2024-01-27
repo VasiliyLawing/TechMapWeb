@@ -1,51 +1,68 @@
-<h2 class="table-title">Companies</h2>
-<div class="table-responsive">
+<app-header></app-header>
 
-  <table class="table table-dark table-striped">
-    <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Latitude</th>
-      <th scope="col">Longitude</th>
-      <th scope="col">Type</th>
-      <th scope="col">Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let company of companies">
-      <td>{{company.name}}</td>
-      <td>{{company.latitude}}</td>
-      <td>{{company.longitude}}</td>
-      <td>{{company.field}}</td>
-      <td>
-        <button class="btn btn-sm btn-danger" (click)="deleteCompany(company.id)">Delete</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-
-  <h5>Add New Company</h5>
-  <form #addForm="ngForm" (ngSubmit)="addNewCompany(addForm)">
-    <table class="table table-dark table-striped">
-      <thead>
+<div class="card flex justify-content-center">
+  <p-toast></p-toast>
+  <p-table [value]="companies" dataKey="id" editMode="row" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Latitude</th>
-        <th scope="col">Longitude</th>
-        <th scope="col">Type</th>
+        <th style="width:20%">Name</th>
+        <th style="width:20%">Longitude</th>
+        <th style="width:20%">Latitude</th>
+        <th style="width:20%">Field</th>
+        <th style="width:20%"></th>
       </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td><input type="text" ngModel name="name"></td>
-        <td><input type="text" ngModel name="latitude"></td>
-        <td><input type="text" ngModel name="longitude"></td>
-        <td><input type="text" ngModel name="field"></td>
+    </ng-template>
+    <ng-template pTemplate="body" let-company let-editing="editing" let-ri="rowIndex">
+      <tr [pEditableRow]="company">
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="company.name" required>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{company.name}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="company.longitude" required>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{company.longitude}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="company.latitude" required>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{company.latitude}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="company.field" required>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{company.field}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td>
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(company)" class="p-button-rounded p-button-text"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(company)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(company, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+          </div>
+        </td>
       </tr>
-      </tbody>
-    </table>
-
-    <button type="submit" class="btn btn-dark">Add Company</button>
-  </form>
-
+    </ng-template>
+  </p-table>
 </div>

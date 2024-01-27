@@ -1,58 +1,78 @@
 import {Component, OnInit} from '@angular/core';
-import {CompanyService} from "../company.service";
+
 import {Company} from "../company";
-import {FormControl, FormGroup, NgForm} from "@angular/forms";
+import {CompanyService} from "../company.service";
+import {ConfirmationService, MessageService, SelectItem} from "primeng/api";
 
 @Component({
   selector: 'app-edit-companies',
   templateUrl: './edit-companies.component.html',
-  styleUrls: ['./edit-companies.component.scss']
+  styleUrls: ['./edit-companies.component.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class EditCompaniesComponent implements OnInit{
+  productDialog: boolean = false;
 
-  public companies: Company[] = []
-  public newCompany: Company | undefined
+  companies!: Company[];
 
-
-  addCompany = new FormGroup({
-    name: new FormControl(''),
-    longitude: new FormControl(''),
-    latitude: new FormControl('')
-  });
-
-  addNewCompany(addForm: NgForm) {
+  company!: Company;
+  clonedProducts: { [s: string]: Company } = {};
 
 
-    console.log(this.addCompany.value.name)
-    this.companyService.addCompany(addForm.value).subscribe(
-      () => {
+  constructor(private companyService: CompanyService, private messageService: MessageService, private confirmationService: ConfirmationService) {}
 
-        this.getCompanies()
 
-      }, error => {
-        console.log(error);
-      })
+  onRowEditInit(company: Company) {
+    this.clonedProducts[company.id.toString() as string] = { ...company };
   }
-  public getCompanies() {
+
+  onRowEditSave(company: Company) {
+    this.companyService.updateCompany(company).subscribe(() => {
+      this.getCompanies()
+    });
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Product is updated' });
+
+  }
+
+  onRowEditCancel(company: Company, index: number) {
+    this.companies[index] = this.clonedProducts[company.id.toString() as string];
+    delete this.clonedProducts[company.id.toString() as string];
+  }
+
+
+
+  ngOnInit() {
+    this.getCompanies()
+  }
+
+  getCompanies() {
     this.companyService.findAll().subscribe(data => {
       this.companies = data;
     });
   }
 
-  public deleteCompany(id: number) {
-    this.companyService.deleteCompany(id).subscribe(
-      () => {
-        this.getCompanies()
+
+
+
+
+
+  deleteStudent(company: Company) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + company.name + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.companyService.deleteCompany(company.id).subscribe(
+            () => {
+              this.getCompanies()
+            }
+        )
+
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
       }
-    )
-  }
-  constructor(private companyService: CompanyService) {
+    });
   }
 
-  ngOnInit(): void {
-    this.getCompanies()
 
-  }
 
-  protected readonly name = name;
 }
