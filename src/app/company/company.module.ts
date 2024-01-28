@@ -15,6 +15,9 @@ import {FileUploadModule} from "primeng/fileupload";
 import {ToolbarModule} from "primeng/toolbar";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {DialogModule} from "primeng/dialog";
+import {ListboxModule} from "primeng/listbox";
+import {DropdownModule} from "primeng/dropdown";
+import {MultiSelectModule} from "primeng/multiselect";
 
 
 
@@ -37,7 +40,10 @@ import {DialogModule} from "primeng/dialog";
         FileUploadModule,
         ToolbarModule,
         ConfirmDialogModule,
-        DialogModule
+        DialogModule,
+        ListboxModule,
+        DropdownModule,
+        MultiSelectModule
     ]
 })
 export class CompanyModule { }

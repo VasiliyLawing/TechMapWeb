@@ -25,12 +25,6 @@ export class EditStudentsComponent implements OnInit{
   fields!: Field[]
   selectedField!: Field
 
-  // addStudent = new FormGroup({
-  //   name: new FormControl(''),
-  //   longitude: new FormControl(''),
-  //   latitude: new FormControl(''),
-  //   field: new FormControl('')
-  // });
 
   closeDialog() {
     this.dialog = false
