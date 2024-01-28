@@ -7,12 +7,14 @@ import * as L from 'leaflet';
 import {ManageMap} from './manageMap';
 import {Student} from '../student/student';
 import {Company} from '../company/company';
+import {MessageService} from "primeng/api";
+import {ToastService} from "../toast.service";
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
-  providers: []
+  providers: [MessageService]
 })
 export class MapComponent implements AfterViewInit {
   public mapManager: ManageMap;
@@ -24,10 +26,13 @@ export class MapComponent implements AfterViewInit {
   constructor(
     private studentService: StudentService,
     private companyService: CompanyService,
+    private toastService: ToastService,
     manageMap: ManageMap
   ) {
     this.mapManager = manageMap;
   }
+
+
 
   initMap() {
     this.map = L.map('map').setView([42.392574068021005, -87.97722454804106], 10);
@@ -40,7 +45,9 @@ export class MapComponent implements AfterViewInit {
     this.mapManager.initMap(this.map)
   }
 
-
+  handleShowToastEvent() {
+    this.toastService.showToast('success', 'Toast Message', 'Message Content');
+  }
 
   loadData() {
     forkJoin([
@@ -56,7 +63,7 @@ export class MapComponent implements AfterViewInit {
       }),
       finalize(() => {
         if (this.map) {
-          this.mapManager.setLayers(this.map);
+          // this.mapManager.setLayers(this.map);
           this.mapManager.manageCompanyMarkers(this.map, this.companies);
         } else {
           console.error('Map is not initialized.');
@@ -75,5 +82,6 @@ export class MapComponent implements AfterViewInit {
     this.initMap();
     this.loadData();
 
-  }
+
+    }
 }

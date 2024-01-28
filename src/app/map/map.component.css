@@ -1,14 +1,27 @@
 #map {
-  height: 70%;
+  height: 60%;
 }
 
 .center {
   margin: 0;
   position: absolute;
-  top: 45%;
-  left: 35%;
+  top: 40%;
+  left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+.companyList {
+  position: absolute;
+  top: 10%;
+  left: 76%;
+}
+
+.eligibleStudentsList {
+  position: absolute;
+  top: 73%; /* Adjust as necessary */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /*# sourceMappingURL=map.component.css.map */

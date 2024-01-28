@@ -32,19 +32,34 @@ export class ManageMap {
   public initMap(map: L.Map): void {
     this.map = map;
   }
+  addCircles(company: Company) {
+    company.circles = [
+      this.createCircle(company.marker!.getLatLng(), this.radius, '5 Miles'),
+      this.createCircle(company.marker!.getLatLng(), this.radius / 2, '2.5 Miles', 'yellow'),
+      this.createCircle(company.marker!.getLatLng(), this.radius / 5, '1 Mile', 'red')
+    ];
+    company.selected = true;
+  }
+  removeCircles(company: Company) {
+    company.selected = false;
+    company.circles.forEach(circle => this.map?.removeLayer(circle));
+    company.circles = [];
+  }
+
   public setStudentMarkers(students: Student[] | undefined): void {
     students?.forEach(student => {
       const marker = L.marker([student.latitude, student.longitude], {icon: this.studentIcon}).bindPopup(
         `<h1>${student.name}</h1><h4>Longitude: ${student.longitude}</h4><h4>Latitude: ${student.latitude}</h4>`
       );
-
+      if (this.map)
+        marker.addTo(this.map)
       student.marker = marker
-
-      if (!ManageMap.careerMarkers.has(student.field)) {
-        ManageMap.careerMarkers.set(student.field, [marker]);
-      } else {
-        ManageMap.careerMarkers.get(student.field)?.push(marker);
-      }
+      //
+      // if (!ManageMap.careerMarkers.has(student.field)) {
+      //   ManageMap.careerMarkers.set(student.field, [marker]);
+      // } else {
+      //   ManageMap.careerMarkers.get(student.field)?.push(marker);
+      // }
     });
   }
 
@@ -52,11 +67,14 @@ export class ManageMap {
     companies.forEach(company => {
       const marker = L.marker([company.latitude, company.longitude], {icon: this.companyIcon});
 
-      if (!ManageMap.careerMarkers.has(company.field)) {
-        ManageMap.careerMarkers.set(company.field, [marker]);
-      } else {
-        ManageMap.careerMarkers.get(company.field)?.push(marker);
-      }
+
+      if (this.map)
+        marker.addTo(this.map)
+      // if (!ManageMap.careerMarkers.has(company.field)) {
+      //   ManageMap.careerMarkers.set(company.field, [marker]);
+      // } else {
+      //   ManageMap.careerMarkers.get(company.field)?.push(marker);
+      // }
       company.marker = marker;
     });
   }
@@ -84,20 +102,36 @@ export class ManageMap {
     companies.forEach(company => {
       company.marker?.on('click', () => {
         if (company.selected) {
-          company.selected = false;
-          company.circles.forEach(circle => map.removeLayer(circle));
-          company.circles = [];
+          this.removeCircles(company)
+          company.selected = false
         } else {
-          company.circles = [
-            this.createCircle(company.marker!.getLatLng(), this.radius, '5 Miles'),
-            this.createCircle(company.marker!.getLatLng(), this.radius / 2, '2.5 Miles', 'yellow'),
-            this.createCircle(company.marker!.getLatLng(), this.radius / 5, '1 Mile', 'red')
-          ];
-          company.selected = true;
+          this.addCircles(company)
+          company.selected = true
         }
       });
     });
   }
+
+  public selectCompany(companies: Company[], selectedCompany: number) {
+    companies.forEach(company => {
+      if (company.id == selectedCompany && !company.selected) {
+
+        company.selected = true
+
+        this.addCircles(company)
+      }
+    })
+  }
+  public unselectCompany(companies: Company[], selectedCompany: number) {
+    companies.forEach(company => {
+      if (company.id == selectedCompany) {
+        company.selected = false
+        this.removeCircles(company)
+      }
+    })
+
+  }
+
 
   public getSelectedCompanies(companies: Company[]): Company[] {
     let selectedCompanies: Company[] = []
@@ -117,7 +151,7 @@ export class ManageMap {
     this.getSelectedCompanies(companies).forEach(company => {
 
       students.forEach(student => {
-        if (company.field == student.field) {
+        if (company.field == student.field && company.selected) {
 
           let studentLocation = new LatLng(student.latitude, student.longitude)
           let companyLocation = new LatLng(company.latitude, company.longitude)
@@ -137,8 +171,8 @@ export class ManageMap {
   }
 
   private calculateDistance(posOne: LatLng, posTwo: LatLng) {
-    const latDistance = Math.abs(posOne.lat) - Math.abs(posTwo.lat)
-    const lngDistance = Math.abs(posOne.lng) - Math.abs(posTwo.lng)
+    const latDistance = Math.abs(Math.abs(posOne.lat) - Math.abs(posTwo.lat))
+    const lngDistance = Math.abs(Math.abs(posOne.lng) - Math.abs(posTwo.lng))
     return latDistance + lngDistance
   }
 
