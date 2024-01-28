@@ -151,16 +151,19 @@ export class ManageMap {
     this.getSelectedCompanies(companies).forEach(company => {
 
       students.forEach(student => {
-        if (company.fields[0].id == student.field.id && company.selected) {
+        company.fields.forEach(field => {
+          if (field.id == student.field.id && company.selected) {
 
-          let studentLocation = new LatLng(student.latitude, student.longitude)
-          let companyLocation = new LatLng(company.latitude, company.longitude)
+            let studentLocation = new LatLng(student.latitude, student.longitude)
+            let companyLocation = new LatLng(company.latitude, company.longitude)
 
-          if (this.calculateDistance(studentLocation, companyLocation) < this.mile * 5) {
-            eligibleStudents.push(student)
+            if (this.calculateDistance(studentLocation, companyLocation) < this.mile * 5) {
+              eligibleStudents.push(student)
+            }
+
           }
+        })
 
-        }
       })
     })
     return eligibleStudents

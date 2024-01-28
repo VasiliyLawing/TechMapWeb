@@ -17,6 +17,7 @@ import {FileUploadModule} from "primeng/fileupload";
 import {TooltipModule} from "primeng/tooltip";
 import {DialogModule} from "primeng/dialog";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {DropdownModule} from "primeng/dropdown";
 
 
 
@@ -45,6 +46,7 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
         TooltipModule,
         DialogModule,
         ConfirmDialogModule,
+        DropdownModule,
     ]
 })
 export class StudentModule { }
