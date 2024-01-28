@@ -1,10 +1,31 @@
-<div id="map">
+<app-header></app-header>
+
+
+
+<div id="map" class="surface-card p-4 shadow-2 border-round w-full lg:w-6 center"></div>
+
+<div class="companyList">
+<app-company-list [companies]="companies"></app-company-list>
+</div>
+
+<div class="eligibleStudentsList">
+    <app-eligible-students-list [eligibleStudents]="mapManager.returnEligibleStudents(companies, students)"></app-eligible-students-list>
+</div>
+
+<div class="key">
+    <app-key></app-key>
+</div>
+
+<div class="controls">
+    <app-controls></app-controls>
+
+<!--    <p-card>-->
+<!--        <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>-->
+<!--    </p-card>-->
+
 
 </div>
 
-<app-panel [potentialStudents]="mapManager.returnEligibleStudents(companies, students)"></app-panel>
-<!-- search-bar.component.html -->
-
-
-
-
+<div class="moreInfo" *ngIf="mapManager.getSelectedCompanies(companies).length > 0">
+    <app-more-info [company]="mapManager.getSelectedCompanies(companies)[0]"></app-more-info>
+</div>

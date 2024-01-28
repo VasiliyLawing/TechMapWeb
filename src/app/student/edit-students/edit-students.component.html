@@ -1,51 +1,126 @@
-<h2 class="table-title">Students</h2>
-<div class="table-responsive">
+<app-header></app-header>
+<p-toast></p-toast>
 
-  <table class="table table-dark table-striped">
-    <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Latitude</th>
-      <th scope="col">Longitude</th>
-      <th scope="col">Type</th>
-      <th scope="col">Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let students of students">
-      <td>{{students.name}}</td>
-      <td>{{students.latitude}}</td>
-      <td>{{students.longitude}}</td>
-      <td>{{students.field}}</td>
-      <td>
-        <button class="btn btn-sm btn-danger" (click)="deleteStudent(students.id)">Delete</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div class="surface-card p-4 shadow-2 border-round center">
 
-  <h5>Add New Student</h5>
-  <form #addForm="ngForm" (ngSubmit)="addNewStudent(addForm)">
-    <table class="table table-dark table-striped">
-      <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Latitude</th>
-        <th scope="col">Longitude</th>
-        <th scope="col">Type</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td><input type="text" ngModel name="name"></td>
-        <td><input type="text" ngModel name="latitude"></td>
-        <td><input type="text" ngModel name="longitude"></td>
-        <td><input type="text" ngModel name="field"></td>
-      </tr>
-      </tbody>
-    </table>
+    <p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+            <!--                <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>-->
+        </ng-template>
+        <ng-template pTemplate="center">
+            <h3>Edit Students</h3>
+        </ng-template>
 
-    <button type="submit" class="btn btn-dark">Add Student</button>
-  </form>
+        <ng-template pTemplate="right">
+            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+        </ng-template>
+    </p-toolbar>
 
+    <p-table #dt [value]="students" dataKey="id" editMode="row" [tableStyle]="{'min-width': '80rem'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:20%">Name</th>
+                <th style="width:20%">Longitude</th>
+                <th style="width:20%">Latitude</th>
+                <th style="width:20%">Field</th>
+                <th style="width:20%"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-student let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="student">
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="student.name" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{student.name}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="student.longitude" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{student.longitude}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="student.latitude" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{student.latitude}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="student.field" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{student.field}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+                <td>
+                    <div class="flex align-items-center justify-content-center gap-2">
+
+                        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(student)" class="p-button-rounded p-button-text"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(student)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(student, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                        <button pButton pRipple type="button" icon="pi pi-trash" (click)="deleteStudent(student)" class="p-button-rounded p-button-text"></button>
+
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>
+
+
+<p-dialog header="New Student" [(visible)]="dialog" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <form #addForm="ngForm" (ngSubmit)="addNewStudent(addForm)">
+        <div class="justify-content-evenly gap-0" >
+            <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+        <i class="pi pi-user"></i>
+    </span>
+                <input pInputText placeholder="Name" ngModel name="name" />
+            </div>
+            <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+        <i class="pi pi-map-marker"></i>
+    </span>
+                <input pInputText placeholder="Latitude" ngModel name="latitude"/>
+            </div>
+            <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+        <i class="pi pi-map-marker"></i>
+    </span>
+                <input pInputText placeholder="Longitude" ngModel name="longitude"/>
+            </div>
+            <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+        <i class="pi pi-briefcase"></i>
+    </span>
+                <input pInputText placeholder="Field" ngModel name="field"/>
+            </div>
+            <br>
+            <div>
+                <p-button type="submit" (click)="closeDialog()" label="Add" icon="pi pi-plus" iconPos="right"></p-button>
+
+            </div>
+        </div>
+    </form>
+
+</p-dialog>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

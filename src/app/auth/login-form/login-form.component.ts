@@ -1,18 +1,33 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthRequestData, AuthService} from "../auth.service";
+import {CheckboxModule} from "primeng/checkbox";
+import {ButtonModule} from "primeng/button";
+import {RippleModule} from "primeng/ripple";
+import {InputTextModule} from "primeng/inputtext";
+import {NgOptimizedImage} from "@angular/common";
+import {MessagesModule} from "primeng/messages";
+import {Message} from "primeng/api";
 
 @Component({
   standalone: true,
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CheckboxModule,
+    ButtonModule,
+    RippleModule,
+    InputTextModule,
+    NgOptimizedImage,
+    MessagesModule
   ],
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
+
+
   form = this.fb.nonNullable.group({
     username: ['',Validators.required],
     password: ['',Validators.required]

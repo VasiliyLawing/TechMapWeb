@@ -1,34 +1,10 @@
-.table-title {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #ffffff; /* Text color for title */
-}
-
-.table {
-  background-color: #343a40; /* Dark background color */
-  color: #ffffff; /* Text color */
-}
-
-.table thead th {
-  border-top: none;
-}
-
-.table-container {
-  margin-top: 20px;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #495057;
-}
-
-.table-striped tbody tr:hover {
-  background-color: #566b75;
-}
-
-input[type=text] {
-  background-color: #343a40; /* Set input background color */
-  color: #fff; /* Set input text color */
-  border: 1px solid #454d55; /* Set input border color */
+.center {
+  margin: 0;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 /*# sourceMappingURL=edit-companies.component.css.map */

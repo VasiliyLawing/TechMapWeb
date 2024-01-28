@@ -13,9 +13,25 @@ import {PermissionService} from "./auth/AuthGuard";
 import {AuthService} from "./auth/auth.service";
 import {StudentService} from "./student/student.service";
 import {CompanyService} from "./company/company.service";
-import {PanelModule} from "./map/panel/panel.module";
 import {StudentModule} from "./student/student.module";
 import {CompanyModule} from "./company/company.module";
+import {SidebarModule} from "primeng/sidebar";
+import {ButtonModule} from "primeng/button";
+import {RippleModule} from "primeng/ripple";
+import {StyleClassModule} from "primeng/styleclass";
+import {AvatarModule} from "primeng/avatar";
+import {HeaderModule} from "./header/header.module";
+import {SplitterModule} from "primeng/splitter";
+import {PanelModule} from "primeng/panel";
+import {TableModule} from "primeng/table";
+import {SkeletonModule} from "primeng/skeleton";
+import {CompanyListComponent} from "./map/company-list/company-list.component";
+import {ToastModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
+import { EligibleStudentsListComponent } from './map/eligible-students-list/eligible-students-list.component';
+import {MapModule} from "./map/map.module";
+import {ChartModule} from "primeng/chart";
+import {CardModule} from "primeng/card";
 
 
 export const httpInterceptorProviders = [
@@ -28,16 +44,29 @@ export const httpInterceptorProviders = [
     MapComponent,
     ManageDataComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    PanelModule,
-    StudentModule,
-    CompanyModule,
-    FormsModule,
-  ],
-  providers: [ httpInterceptorProviders, PermissionService, AuthService, StudentService, CompanyService ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        PanelModule,
+        StudentModule,
+        CompanyModule,
+        FormsModule,
+        SidebarModule,
+        ButtonModule,
+        RippleModule,
+        StyleClassModule,
+        AvatarModule,
+        HeaderModule,
+        SplitterModule,
+        TableModule,
+        SkeletonModule,
+        ToastModule,
+        MapModule,
+        ChartModule,
+        CardModule
+    ],
+  providers: [ httpInterceptorProviders, PermissionService, AuthService, StudentService, CompanyService, MessageService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

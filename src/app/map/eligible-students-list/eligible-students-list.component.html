@@ -1,0 +1,36 @@
+    <p-card header="Eligible Students">
+        <p-table [value]="eligibleStudents"
+                 styleClass="p-datatable-striped"
+                 [tableStyle]="{ 'min-width': '50rem' }"
+                 [paginator]="true"
+                 [rows]="5"
+                 [showCurrentPageReport]="true"
+                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                 (onPage)="pageChange($event)"
+                 [rowsPerPageOptions]="[5, 10, 15]"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Name</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Field</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-student>
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.latitude }}</td>
+                    <td>{{ student.longitude }}</td>
+                    <td>{{ student.field }}</td>
+                </tr>
+            </ng-template>
+
+<!--            <ng-template pTemplate="paginatorleft">-->
+<!--                <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>-->
+<!--            </ng-template>-->
+<!--            <ng-template pTemplate="paginatorright">-->
+<!--                <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>-->
+<!--            </ng-template>-->
+        </p-table>
+    </p-card>
