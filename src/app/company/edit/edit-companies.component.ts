@@ -6,7 +6,7 @@ import {ConfirmationService, MessageService, SelectItem} from "primeng/api";
 import {FormControl, FormGroup, NgForm} from "@angular/forms";
 
 @Component({
-  selector: 'app-edit-companies',
+  selector: 'app-edit',
   templateUrl: './edit-companies.component.html',
   styleUrls: ['./edit-companies.component.scss'],
   providers: [MessageService, ConfirmationService]

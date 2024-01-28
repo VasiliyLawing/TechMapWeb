@@ -1,7 +1,13 @@
-<p-card header="Info: {{company?.name}}">
-    <div>Longitude: {{company?.longitude}}</div>
+<p-card header="Info: {{company.name}}">
+    <div>Longitude: {{company.longitude}}</div>
     <br>
-    <div>Latitude: {{company?.latitude}}</div>
+    <div>Latitude: {{company.latitude}}</div>
     <br>
-    <div>Field: {{company?.field}}</div>
+    <div>Fields:
+        <div *ngFor="let field of company.fields">
+            {{field.name}}
+
+
+        </div>
+    </div>
 </p-card>

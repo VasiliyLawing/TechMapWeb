@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {CompanyService} from "../../company.service";
-import {Company} from "../../company";
+import {CompanyService} from "../company.service";
+import {Company} from "../company";
 
 @Component({
   selector: 'app-company',
-  templateUrl: './company.component.html',
-  styleUrls: ['./company.component.scss'],
+  templateUrl: './company-table.component.html',
+  styleUrls: ['./company-table.component.scss'],
 })
-export class CompanyComponent implements OnInit {
+export class CompanyTableComponent implements OnInit {
   public companies: Company[] = []
 
   constructor(private companyService: CompanyService) {

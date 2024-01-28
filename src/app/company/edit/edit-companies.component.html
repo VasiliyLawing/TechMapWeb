@@ -62,10 +62,10 @@
         <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="company.field" required>
+              <input pInputText type="text" [(ngModel)]="company.fields[0].name" required>
             </ng-template>
             <ng-template pTemplate="output">
-              {{company.field}}
+              {{company.fields[0].name}}
             </ng-template>
           </p-cellEditor>
         </td>

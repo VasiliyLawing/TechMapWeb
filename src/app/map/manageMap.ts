@@ -151,7 +151,7 @@ export class ManageMap {
     this.getSelectedCompanies(companies).forEach(company => {
 
       students.forEach(student => {
-        if (company.field == student.field && company.selected) {
+        if (company.fields[0].id == student.field.id && company.selected) {
 
           let studentLocation = new LatLng(student.latitude, student.longitude)
           let companyLocation = new LatLng(company.latitude, company.longitude)

@@ -32,6 +32,7 @@ import { EligibleStudentsListComponent } from './map/eligible-students-list/elig
 import {MapModule} from "./map/map.module";
 import {ChartModule} from "primeng/chart";
 import {CardModule} from "primeng/card";
+import {FieldModule} from "./field/field.module";
 
 
 export const httpInterceptorProviders = [
@@ -64,7 +65,8 @@ export const httpInterceptorProviders = [
         ToastModule,
         MapModule,
         ChartModule,
-        CardModule
+        CardModule,
+        FieldModule
     ],
   providers: [ httpInterceptorProviders, PermissionService, AuthService, StudentService, CompanyService, MessageService ],
   bootstrap: [AppComponent]
