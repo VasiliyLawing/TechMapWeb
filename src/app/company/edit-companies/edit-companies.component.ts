@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Company} from "../company";
 import {CompanyService} from "../company.service";
 import {ConfirmationService, MessageService, SelectItem} from "primeng/api";
+import {FormControl, FormGroup, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-companies',
@@ -17,6 +18,31 @@ export class EditCompaniesComponent implements OnInit{
 
   company!: Company;
   clonedProducts: { [s: string]: Company } = {};
+
+
+
+  addCompany = new FormGroup({
+    name: new FormControl(''),
+    longitude: new FormControl(''),
+    latitude: new FormControl('')
+  });
+
+  closeDialog() {
+    this.dialog = false
+  }
+
+  addNewCompany(addForm: NgForm) {
+
+    console.log(this.addCompany.value.name)
+    this.companyService.addCompany(addForm.value).subscribe(
+        () => {
+
+          this.getCompanies()
+
+        }, error => {
+          console.log(error);
+        })
+  }
 
   openNew() {
     this.dialog = true
@@ -33,7 +59,7 @@ export class EditCompaniesComponent implements OnInit{
     this.companyService.updateCompany(company).subscribe(() => {
       this.getCompanies()
     });
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Product is updated' });
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Company is updated' });
 
   }
 
@@ -71,7 +97,7 @@ export class EditCompaniesComponent implements OnInit{
             }
         )
 
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Company Deleted', life: 3000 });
       }
     });
   }

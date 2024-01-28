@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Student} from "../student";
 import {StudentService} from "../student.service";
 import {ConfirmationService, MessageService} from "primeng/api";
+import {FormControl, FormGroup, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-students',
@@ -17,6 +18,15 @@ export class EditStudentsComponent implements OnInit{
   student!: Student;
   clonedProducts: { [s: string]: Student } = {};
 
+  addStudent = new FormGroup({
+    name: new FormControl(''),
+    longitude: new FormControl(''),
+    latitude: new FormControl('')
+  });
+
+  closeDialog() {
+    this.dialog = false
+  }
 
   constructor(private studentService: StudentService, private messageService: MessageService, private confirmationService: ConfirmationService) {}
 
@@ -26,15 +36,9 @@ export class EditStudentsComponent implements OnInit{
 
   }
   openNew() {
-    // this.submitted = false;
-    // this.productDialog = true;
     this.dialog = true
   }
-  hideDialog() {
-    // this.productDialog = false;
-    // this.submitted = false;
-    this.dialog = false
-  }
+
 
   onRowEditSave(student: Student) {
     this.studentService.updateStudent(student).subscribe(() => {
@@ -64,6 +68,23 @@ export class EditStudentsComponent implements OnInit{
 
 
 
+
+  addNewStudent(addForm: NgForm) {
+
+    console.log(this.addStudent.value.name)
+    this.studentService.addStudent(addForm.value).subscribe(
+        () => {
+
+          this.getStudents()
+
+        }, error => {
+          console.log(error);
+        })
+  }
+
+
+
+
   deleteStudent(student: Student) {
     console.log("Clicked")
     this.confirmationService.confirm({
@@ -76,7 +97,6 @@ export class EditStudentsComponent implements OnInit{
               this.getStudents()
             }
         )
-
         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
       }
     });

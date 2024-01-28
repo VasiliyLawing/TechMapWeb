@@ -21,9 +21,9 @@ export class ManageMap {
   });
   private studentIcon = L.icon({
     iconUrl: 'assets/user.png',
-    iconSize: [38, 38],
-    iconAnchor: [22, 37],
-    popupAnchor: [-3, -19]
+    iconSize: [38/3, 38/3],
+    iconAnchor: [22/3, 37/3],
+    popupAnchor: [-3/3, -19/3]
   });
   private layerControl = L.control.layers();
   private layers: Map<string, LayerGroup> = new Map();

@@ -21,8 +21,24 @@
 
 .eligibleStudentsList {
   position: absolute;
-  top: 73%; /* Adjust as necessary */
+  top: 73%;
   left: 50%;
   transform: translateX(-50%);
 }
+.key {
+  position: absolute;
+  left: 5%;
+  top: 10%;
 
+}
+.controls {
+  position: absolute;
+  top: calc(40% + 30px);
+  left: 5%;
+}
+
+.moreInfo {
+  position: absolute;
+  top: calc(10% + 600px); /* Adjust as necessary */
+  left: 76%; /* Adjust as necessary */
+}

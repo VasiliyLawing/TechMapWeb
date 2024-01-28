@@ -8,6 +8,9 @@
             <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
             <!--                <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>-->
         </ng-template>
+        <ng-template pTemplate="center">
+            <h3>Edit Students</h3>
+        </ng-template>
 
         <ng-template pTemplate="right">
             <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
@@ -84,11 +87,40 @@
 </div>
 
 
-<p-dialog header="Header" [(visible)]="dialog" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
-    <p class="m-0">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-</p-dialog>
+<p-dialog header="New Student" [(visible)]="dialog" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <form #addForm="ngForm" (ngSubmit)="addNewStudent(addForm)">
+        <div class="justify-content-evenly gap-0" >
+            <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+        <i class="pi pi-user"></i>
+    </span>
+                <input pInputText placeholder="Name" ngModel name="name" />
+            </div>
+            <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+        <i class="pi pi-map-marker"></i>
+    </span>
+                <input pInputText placeholder="Latitude" ngModel name="latitude"/>
+            </div>
+            <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+        <i class="pi pi-map-marker"></i>
+    </span>
+                <input pInputText placeholder="Longitude" ngModel name="longitude"/>
+            </div>
+            <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+        <i class="pi pi-briefcase"></i>
+    </span>
+                <input pInputText placeholder="Field" ngModel name="field"/>
+            </div>
+            <br>
+            <div>
+                <p-button type="submit" (click)="closeDialog()" label="Add" icon="pi pi-plus" iconPos="right"></p-button>
 
+            </div>
+        </div>
+    </form>
+
+</p-dialog>
 <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

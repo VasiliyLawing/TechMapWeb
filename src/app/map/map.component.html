@@ -11,3 +11,21 @@
 <div class="eligibleStudentsList">
     <app-eligible-students-list [eligibleStudents]="mapManager.returnEligibleStudents(companies, students)"></app-eligible-students-list>
 </div>
+
+<div class="key">
+    <app-key></app-key>
+</div>
+
+<div class="controls">
+    <app-controls></app-controls>
+
+<!--    <p-card>-->
+<!--        <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>-->
+<!--    </p-card>-->
+
+
+</div>
+
+<div class="moreInfo" *ngIf="mapManager.getSelectedCompanies(companies).length > 0">
+    <app-more-info [company]="mapManager.getSelectedCompanies(companies)[0]"></app-more-info>
+</div>
