@@ -14,19 +14,19 @@ export class StudentService {
   }
 
   public findAll(): Observable<Student[]> {
-    return this.http.get<Student[]>(`/api/students/`);
+    return this.http.get<Student[]>(`https://techmapback.onrender.com/api/students/`);
   }
 
   public addStudent(student: Student): Observable<Student> {
-    return this.http.post<Student>(`/api/students/add/`, student);
+    return this.http.post<Student>(`https://techmapback.onrender.com/api/students/add/`, student);
   }
 
   public updateStudent(student: Student): Observable<Student> {
-    return this.http.put<Student>(`/api/students/update/`, student)
+    return this.http.put<Student>(`https://techmapback.onrender.com/api/students/update/`, student)
   }
 
   deleteStudent(id: number) {
-    const url = `/api/students/${id}/`;
+    const url = `https://techmapback.onrender.com/api/students/${id}/`;
     return this.http.delete(url);
   }
 
