@@ -37,19 +37,21 @@
                 leaveActiveClass="slideup"
                 class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
               >
-                <span class="font-medium">FAVORITES</span>
+                <span class="font-medium">MAIN</span>
                 <i class="pi pi-chevron-down"></i>
               </div>
               <ul class="list-none p-0 m-0 overflow-hidden">
                 <li>
                   <a pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple" [routerLink]="['/map']">
-                    <i class="pi pi-home mr-2"></i>
+                    <span class="material-symbols-outlined mr-2">travel_explore</span>
                     <span class="font-medium">Map</span>
                   </a>
                 </li>
                 <li>
                   <a [routerLink]="['/manageData']" pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                    <i class="pi pi-bookmark mr-2"></i>
+                    <span class="material-symbols-outlined mr-2">
+database
+</span>
                     <span class="font-medium">ManageData</span>
                   </a>
                 </li>
@@ -64,7 +66,7 @@
                     class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
                   >
                     <i class="pi pi-chart-line mr-2"></i>
-                    <span class="font-medium">Reports</span>
+                    <span class="font-medium">Reports(TBD)</span>
                     <i class="pi pi-chevron-down ml-auto"></i>
                   </a>
                   <ul class="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out">
@@ -108,7 +110,7 @@
                 <li>
                   <a pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                     <i class="pi pi-cog mr-2"></i>
-                    <span class="font-medium">Settings</span>
+                    <span class="font-medium">Settings(TBD)</span>
                   </a>
                 </li>
               </ul>
@@ -162,3 +164,5 @@
     </ng-template>
   </p-sidebar>
 </div>
+
+
