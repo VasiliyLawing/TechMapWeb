@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 
 import {Company} from "../company";
 import {CompanyService} from "../company.service";
-import {ConfirmationService, MessageService, SelectItem} from "primeng/api";
-import {FormControl, FormGroup, NgForm} from "@angular/forms";
+import {ConfirmationService, MessageService} from "primeng/api";
+import {NgForm} from "@angular/forms";
 import {Field} from "../../field/field";
 import {FieldService} from "../../field/field.service";
 

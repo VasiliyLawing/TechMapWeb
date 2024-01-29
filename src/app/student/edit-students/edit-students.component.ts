@@ -3,11 +3,9 @@ import {Component, OnInit} from '@angular/core';
 import {Student} from "../student";
 import {StudentService} from "../student.service";
 import {ConfirmationService, MessageService} from "primeng/api";
-import {FormControl, FormGroup, NgForm} from "@angular/forms";
 import {Field} from "../../field/field";
 import {FieldService} from "../../field/field.service";
 import _default from "chart.js/dist/core/core.interaction";
-import dataset = _default.modes.dataset;
 
 @Component({
   selector: 'app-edit-students',

@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthRequestData, AuthService} from "../auth.service";
@@ -8,7 +8,6 @@ import {RippleModule} from "primeng/ripple";
 import {InputTextModule} from "primeng/inputtext";
 import {NgOptimizedImage} from "@angular/common";
 import {MessagesModule} from "primeng/messages";
-import {Message} from "primeng/api";
 
 @Component({
   standalone: true,

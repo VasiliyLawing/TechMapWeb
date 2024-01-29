@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { EditFieldsComponent } from './edit/edit-fields.component';
-import { FieldTableComponent } from './table/field-table.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {EditFieldsComponent} from './edit/edit-fields.component';
+import {FieldTableComponent} from './table/field-table.component';
 import {TableModule} from "primeng/table";
 import {CardModule} from "primeng/card";
 import {ButtonModule} from "primeng/button";
@@ -17,9 +17,6 @@ import {RippleModule} from "primeng/ripple";
 import {ToastModule} from "primeng/toast";
 import {ToolbarModule} from "primeng/toolbar";
 import {ConfirmationService} from "primeng/api";
-import {AppComponent} from "../app.component";
-import {AppModule} from "../app.module";
-
 
 
 @NgModule({

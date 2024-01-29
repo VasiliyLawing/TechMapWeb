@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {EditCompaniesComponent} from "./edit/edit-companies.component";
 import {CompanyTableComponent} from "./table/company-table.component";
 import {FormsModule} from "@angular/forms";
@@ -18,7 +18,6 @@ import {DialogModule} from "primeng/dialog";
 import {ListboxModule} from "primeng/listbox";
 import {DropdownModule} from "primeng/dropdown";
 import {MultiSelectModule} from "primeng/multiselect";
-
 
 
 @NgModule({

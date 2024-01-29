@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {StudentTableComponent} from "./table/student-table.component";
 import {EditStudentsComponent} from "./edit-students/edit-students.component";
 import {FormsModule} from "@angular/forms";
-import {MessageService, SharedModule} from "primeng/api";
+import {SharedModule} from "primeng/api";
 import {TableModule} from "primeng/table";
 import {CardModule} from "primeng/card";
 import {ButtonModule} from "primeng/button";
@@ -18,7 +18,6 @@ import {TooltipModule} from "primeng/tooltip";
 import {DialogModule} from "primeng/dialog";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {DropdownModule} from "primeng/dropdown";
-
 
 
 @NgModule({

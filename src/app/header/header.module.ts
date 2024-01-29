@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {HeaderComponent} from "./header.component";
-import {SplitButtonModule} from "primeng/splitbutton";
 import {SidebarModule} from "primeng/sidebar";
 import {StyleClassModule} from "primeng/styleclass";
 import {RippleModule} from "primeng/ripple";
@@ -11,7 +10,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {RouterLink} from "@angular/router";
 import {MenubarModule} from "primeng/menubar";
 import {InputTextModule} from "primeng/inputtext";
-
 
 
 @NgModule({

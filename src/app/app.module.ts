@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MapComponent } from './map/map.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {MapComponent} from './map/map.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import { ManageDataComponent } from './manage-data/manage-data.component';
+import {ManageDataComponent} from './manage-data/manage-data.component';
 import {FormsModule} from "@angular/forms";
 import {BasicAuthInterceptor} from "./auth/httpAuthInterceptor";
 import {HttpErrorInterceptor} from "./auth/http-error.interceptor";
@@ -25,10 +25,8 @@ import {SplitterModule} from "primeng/splitter";
 import {PanelModule} from "primeng/panel";
 import {TableModule} from "primeng/table";
 import {SkeletonModule} from "primeng/skeleton";
-import {CompanyListComponent} from "./map/company-list/company-list.component";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
-import { EligibleStudentsListComponent } from './map/eligible-students-list/eligible-students-list.component';
 import {MapModule} from "./map/map.module";
 import {ChartModule} from "primeng/chart";
 import {CardModule} from "primeng/card";

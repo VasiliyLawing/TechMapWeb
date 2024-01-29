@@ -1,5 +1,4 @@
 import {Marker} from "leaflet";
-import {FieldService} from "../field/field.service";
 import {Field} from "../field/field";
 
 export interface Student {
