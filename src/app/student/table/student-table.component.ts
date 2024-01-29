@@ -4,10 +4,10 @@ import {StudentService} from "../student.service";
 
 @Component({
   selector: 'app-student',
-  templateUrl: './student.component.html',
-  styleUrls: ['./student.component.scss'],
+  templateUrl: './student-table.component.html',
+  styleUrls: ['./student-table.component.scss'],
 })
-export class StudentComponent implements OnInit{
+export class StudentTableComponent implements OnInit{
   public students: Student[] = []
 
   constructor(private studentService: StudentService) {

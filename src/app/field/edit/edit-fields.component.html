@@ -1,0 +1,87 @@
+<app-header></app-header>
+
+
+<p-toast></p-toast>
+
+<div class="surface-card p-4 shadow-2 border-round center">
+
+    <p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+            <button (click)="openNew()" class="p-button-success mr-2" icon="pi pi-plus" label="New" pButton
+                    pRipple></button>
+        </ng-template>
+        <ng-template pTemplate="center">
+            <h3>Edit Fields</h3>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+            <p-fileUpload [maxFileSize]="1000000" accept="image/*" chooseLabel="Import" class="mr-2 inline-block" label="Import"
+                          mode="basic"></p-fileUpload>
+            <button class="p-button-help" icon="pi pi-upload" label="Export" pButton pRipple></button>
+        </ng-template>
+    </p-toolbar>
+
+    <p-table [tableStyle]="{'min-width': '20rem'}" [value]="fields" dataKey="id" editMode="row">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:20%">Name</th>
+                <th style="width:20%"></th>
+
+            </tr>
+        </ng-template>
+        <ng-template let-editing="editing" let-ri="rowIndex" let-field pTemplate="body">
+            <tr [pEditableRow]="field">
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input [(ngModel)]="field.name" pInputText required type="text">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{field.name}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+                <td>
+                    <div class="flex align-items-center justify-content-center gap-2">
+
+                        <button (click)="onRowEditInit(field)" *ngIf="!editing" class="p-button-rounded p-button-text" icon="pi pi-pencil" pButton pInitEditableRow
+                                pRipple type="button"></button>
+                        <button (click)="onRowEditSave(field)" *ngIf="editing" class="p-button-rounded p-button-text p-button-success mr-2" icon="pi pi-check" pButton pRipple
+                                pSaveEditableRow
+                                type="button"></button>
+                        <button (click)="onRowEditCancel(field, ri)" *ngIf="editing" class="p-button-rounded p-button-text p-button-danger" icon="pi pi-times" pButton pCancelEditableRow
+                                pRipple
+                                type="button"></button>
+                        <button (click)="deleteField(field)" class="p-button-rounded p-button-text" icon="pi pi-trash" pButton pRipple
+                                type="button"></button>
+
+                    </div>
+                </td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+<p-dialog [(visible)]="dialog" [draggable]="false" [modal]="true" [resizable]="false" [style]="{ width: '50vw' }"
+          header="New Field">
+    <form #addForm="ngForm" (ngSubmit)="addNewField(addForm)">
+        <div class="card flex justify-content-center">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+        <i class="pi pi-user"></i>
+      </span>
+                <input name="name" ngModel pInputText placeholder="Name"/>
+            </div>
+            <div>
+                <p-button (click)="closeDialog()" icon="pi pi-plus" iconPos="right" label="Add"
+                          type="submit"></p-button>
+            </div>
+        </div>
+    </form>
+
+</p-dialog>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+

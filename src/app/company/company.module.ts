@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {EditCompaniesComponent} from "./edit-companies/edit-companies.component";
-import {CompanyComponent} from "./table/company/company.component";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {EditCompaniesComponent} from "./edit/edit-companies.component";
+import {CompanyTableComponent} from "./table/company-table.component";
 import {FormsModule} from "@angular/forms";
 import {TableModule} from "primeng/table";
 import {CardModule} from "primeng/card";
@@ -15,13 +15,15 @@ import {FileUploadModule} from "primeng/fileupload";
 import {ToolbarModule} from "primeng/toolbar";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {DialogModule} from "primeng/dialog";
-
+import {ListboxModule} from "primeng/listbox";
+import {DropdownModule} from "primeng/dropdown";
+import {MultiSelectModule} from "primeng/multiselect";
 
 
 @NgModule({
-  declarations: [EditCompaniesComponent, CompanyComponent],
+  declarations: [EditCompaniesComponent, CompanyTableComponent],
   exports: [
-    CompanyComponent
+    CompanyTableComponent
   ],
     imports: [
         CommonModule,
@@ -37,7 +39,10 @@ import {DialogModule} from "primeng/dialog";
         FileUploadModule,
         ToolbarModule,
         ConfirmDialogModule,
-        DialogModule
+        DialogModule,
+        ListboxModule,
+        DropdownModule,
+        MultiSelectModule
     ]
 })
 export class CompanyModule { }

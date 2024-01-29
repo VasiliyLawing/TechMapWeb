@@ -19,7 +19,15 @@
       <td>{{ company.name }}</td>
       <td>{{ company.latitude }}</td>
       <td>{{ company.longitude }}</td>
-      <td>{{ company.field }}</td>
+      <td>
+<!--        {{ company.fields[0].name }}-->
+        <table>
+          <tr *ngFor="let field of company.fields">
+            <td>{{field.name}}</td>
+<!--            <td>{{field.id}}</td>-->
+          </tr>
+        </table>
+      </td>
     </tr>
   </ng-template>
 </p-table>

@@ -2,30 +2,33 @@ import {Component, OnInit} from '@angular/core';
 
 import {Company} from "../company";
 import {CompanyService} from "../company.service";
-import {ConfirmationService, MessageService, SelectItem} from "primeng/api";
-import {FormControl, FormGroup, NgForm} from "@angular/forms";
+import {ConfirmationService, MessageService} from "primeng/api";
+import {NgForm} from "@angular/forms";
+import {Field} from "../../field/field";
+import {FieldService} from "../../field/field.service";
 
 @Component({
-  selector: 'app-edit-companies',
+  selector: 'app-edit',
   templateUrl: './edit-companies.component.html',
   styleUrls: ['./edit-companies.component.scss'],
   providers: [MessageService, ConfirmationService]
 })
 export class EditCompaniesComponent implements OnInit{
   dialog: boolean = false;
-
+  selectedFields!: Field[]
   companies!: Company[];
 
   company!: Company;
   clonedProducts: { [s: string]: Company } = {};
+  fields!: Field[]
+  // selectedFields!: Field[]
 
+  selectAll = false
 
-
-  addCompany = new FormGroup({
-    name: new FormControl(''),
-    longitude: new FormControl(''),
-    latitude: new FormControl('')
-  });
+  onChange(event: any) {
+    const { originalEvent, value } = event
+    if(value) this.selectAll = value.length === this.fields.length;
+  }
 
   closeDialog() {
     this.dialog = false
@@ -33,7 +36,7 @@ export class EditCompaniesComponent implements OnInit{
 
   addNewCompany(addForm: NgForm) {
 
-    console.log(this.addCompany.value.name)
+    addForm.value.fields = this.selectedFields
     this.companyService.addCompany(addForm.value).subscribe(
         () => {
 
@@ -48,7 +51,10 @@ export class EditCompaniesComponent implements OnInit{
     this.dialog = true
   }
 
-  constructor(private companyService: CompanyService, private messageService: MessageService, private confirmationService: ConfirmationService) {}
+  constructor(private companyService: CompanyService,
+              private messageService: MessageService,
+              private confirmationService: ConfirmationService,
+              private fieldService: FieldService) {}
 
 
   onRowEditInit(company: Company) {
@@ -58,7 +64,9 @@ export class EditCompaniesComponent implements OnInit{
   onRowEditSave(company: Company) {
     this.companyService.updateCompany(company).subscribe(() => {
       this.getCompanies()
-    });
+    }, error => {
+      console.log(error);
+    })
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Company is updated' });
 
   }
@@ -72,6 +80,9 @@ export class EditCompaniesComponent implements OnInit{
 
   ngOnInit() {
     this.getCompanies()
+    this.fieldService.findAll().subscribe(data => {
+      this.fields = data
+    })
   }
 
   getCompanies() {

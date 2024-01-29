@@ -1,10 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Company} from "../../company/company";
 import {MessageService} from "primeng/api";
-import {TableModule} from "primeng/table";
 import {ToastService} from "../../toast.service";
-import {ToastModule} from "primeng/toast";
-import {InputTextModule} from "primeng/inputtext";
 import {ManageMap} from "../manageMap";
 
 @Component({

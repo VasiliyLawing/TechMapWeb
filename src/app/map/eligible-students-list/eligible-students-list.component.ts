@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {Company} from "../../company/company";
 import {Student} from "../../student/student";
 
 @Component({

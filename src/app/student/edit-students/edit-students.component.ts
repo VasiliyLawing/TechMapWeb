@@ -3,7 +3,9 @@ import {Component, OnInit} from '@angular/core';
 import {Student} from "../student";
 import {StudentService} from "../student.service";
 import {ConfirmationService, MessageService} from "primeng/api";
-import {FormControl, FormGroup, NgForm} from "@angular/forms";
+import {Field} from "../../field/field";
+import {FieldService} from "../../field/field.service";
+import _default from "chart.js/dist/core/core.interaction";
 
 @Component({
   selector: 'app-edit-students',
@@ -18,17 +20,18 @@ export class EditStudentsComponent implements OnInit{
   student!: Student;
   clonedProducts: { [s: string]: Student } = {};
 
-  addStudent = new FormGroup({
-    name: new FormControl(''),
-    longitude: new FormControl(''),
-    latitude: new FormControl('')
-  });
+  fields!: Field[]
+  selectedField!: Field
+
 
   closeDialog() {
     this.dialog = false
   }
 
-  constructor(private studentService: StudentService, private messageService: MessageService, private confirmationService: ConfirmationService) {}
+  constructor(private studentService: StudentService,
+              private messageService: MessageService,
+              private confirmationService: ConfirmationService,
+              private fieldService: FieldService) {}
 
 
   onRowEditInit(student: Student) {
@@ -58,6 +61,10 @@ export class EditStudentsComponent implements OnInit{
 
   ngOnInit() {
     this.getStudents()
+
+    this.fieldService.findAll().subscribe(data => {
+      this.fields = data
+    })
   }
 
   getStudents() {
@@ -69,9 +76,9 @@ export class EditStudentsComponent implements OnInit{
 
 
 
-  addNewStudent(addForm: NgForm) {
+  addNewStudent(addForm: any) {
 
-    console.log(this.addStudent.value.name)
+    addForm.value.field = this.selectedField;
     this.studentService.addStudent(addForm.value).subscribe(
         () => {
 
