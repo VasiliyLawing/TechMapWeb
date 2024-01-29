@@ -10,7 +10,14 @@ export class EligibleStudentsListComponent {
   @Input("eligibleStudents") eligibleStudents: Student[] = []
 
   first = 0;
+  cols = [ 
+    { field: "id", header: "Id" }, 
+    { field: "name", header: "name" }, 
+    { field: "latitude", header: "latitude" } ,
+    { field: "longitude", header: "longitude" }, 
+    { field: "field", header: "Field" }
 
+]; 
   rows = 5;
 
   next() {

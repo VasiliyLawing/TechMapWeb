@@ -1,5 +1,5 @@
     <p-card header="Eligible Students">
-        <p-table [value]="eligibleStudents"
+        <p-table #dt [value]="eligibleStudents"
                  styleClass="p-datatable-striped"
                  [tableStyle]="{ 'min-width': '50rem' }"
                  [paginator]="true"
@@ -8,7 +8,13 @@
                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                  (onPage)="pageChange($event)"
                  [rowsPerPageOptions]="[5, 10, 15]"
+                 [exportHeader]="'customExportHeader'"
         >
+            <ng-template pTemplate="caption">
+                <button type="button" pButton pRipple icon="pi pi-file" (click)=" dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+
+            </ng-template>
+
             <ng-template pTemplate="header">
                 <tr>
                     <th>Name</th>
