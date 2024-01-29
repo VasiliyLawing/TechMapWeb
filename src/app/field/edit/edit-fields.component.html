@@ -21,7 +21,22 @@
         </ng-template>
     </p-toolbar>
 
-    <p-table [tableStyle]="{'min-width': '20rem'}" [value]="fields" dataKey="id" editMode="row">
+    <p-table #dt2 [tableStyle]="{'min-width': '20rem'}" 
+    [value]="fields" dataKey="id" editMode="row"
+    [filterDelay]="0"
+    [globalFilterFields]="['name', 'field']">
+
+    <ng-template pTemplate="caption">
+
+        <div class="flex">
+        <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Field Search" />`
+  
+        </span>
+    </div>
+    </ng-template>
+      
         <ng-template pTemplate="header">
             <tr>
                 <th style="width:20%">Name</th>
