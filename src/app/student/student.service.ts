@@ -8,8 +8,6 @@ import {Observable} from "rxjs";
 })
 export class StudentService {
 
-  //private urlApi = 'http://localhost:8080'
-
   constructor(private http: HttpClient) {
   }
 
