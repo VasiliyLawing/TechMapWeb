@@ -7,7 +7,8 @@
     styleClass="p-datatable-striped" 
     [tableStyle]="{ 'min-width': '50rem' }"
     [filterDelay]="0"
-    [globalFilterFields]="['name', 'field']">
+    [globalFilterFields]="['name', 'field']"
+    [resizableColumns]="true" columnResizeMode="expand">
     <ng-template pTemplate="caption">
         <div class="flex">
         <span class="p-input-icon-left ml-auto">

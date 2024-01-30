@@ -12,6 +12,7 @@
                  [rowsPerPageOptions]="[5, 10, 15]"
                  [exportHeader]="'customExportHeader'"
                  [exportFilename]="selectedCompany.name"
+                 [resizableColumns]="true" columnResizeMode="expand"
         >
             <ng-template pTemplate="caption">
                 <button type="button" pButton pRipple icon="pi pi-file" (click)=" dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
@@ -21,12 +22,6 @@
             </ng-template>
 
             <ng-template pTemplate="header" let-columns>
-                <!-- <tr>
-                    <th>Name</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
-                    <th>Field</th>
-                </tr> -->
                 <tr>
                     <th *ngFor="let col of columns">
                         {{ col.header }}
@@ -47,12 +42,5 @@
                     </td>
                 </tr>
             </ng-template>
-
-<!--            <ng-template pTemplate="paginatorleft">-->
-<!--                <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>-->
-<!--            </ng-template>-->
-<!--            <ng-template pTemplate="paginatorright">-->
-<!--                <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>-->
-<!--            </ng-template>-->
         </p-table>
     </p-card>

@@ -18,12 +18,7 @@ export class EligibleStudentsListComponent {
     { field: "latitude", header: "latitude" } ,
     { field: "longitude", header: "longitude" }, 
     { field: "field.name", header: "Field" }]
-    manualCols = [ 
-      { field: "name", header: "name" }, 
-      { field: "latitude", header: "latitude" } ,
-      { field: "longitude", header: "longitude" }, 
-      { field: "field", header: "Field" }]
-
+    
     exportColumns = this.cols.map(col => ({title: col.header, dataKey: col.field}));
 
 
