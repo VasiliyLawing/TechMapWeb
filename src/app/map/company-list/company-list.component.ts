@@ -19,6 +19,13 @@ export class CompanyListComponent {
 
 
   onRowSelect(event: any) {
+    let selectedCompanies = this.mapService.getSelectedCompanies(this.companies)
+    if (selectedCompanies[0] !== null) {
+      selectedCompanies.forEach(company =>{
+        this.mapService.unselectCompany(this.companies, company.id)
+      })
+    }
+
     this.selectedTempCompany = this.selectedCompany
     this.mapService.selectCompany(this.companies, this.selectedCompany.id)
     this.messageService.add({ severity: 'info', summary: 'Company Selected', detail: event.data.name });
