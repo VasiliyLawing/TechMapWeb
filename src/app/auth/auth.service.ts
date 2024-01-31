@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   public requestAuth(requestData: AuthRequestData): Observable<User> {
-    const url = `https://techmapback.onrender.com/api/api/auth/login/`;
+    const url = `https://techmapback.onrender.com/api/auth/login/`;
 
     return this.http.post<UserJson>(url, requestData).pipe(map(userJson => {
       const user = User.parseFromJson(userJson);
