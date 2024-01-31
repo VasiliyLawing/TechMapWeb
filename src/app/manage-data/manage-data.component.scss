@@ -1,24 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  border: 2px dashed rgba(114, 186, 94, 0.35);
-  height: 400px;
-  background: rgba(114, 186, 94, 0.05);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.companies {
-  position: sticky;
-  top: 0;
+app-header, app-company, app-student, app-field-table {
+  margin-bottom: 20px;
 }
 
-.students {
-  position: sticky;
-  top: 4rem;
+.footer {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
 }
 
-.fields {
-  position: sticky;
-  bottom: 1rem;
-  align-self: flex-end;
+@media screen and (max-width: 767px) {
+  app-header, app-company, app-student, app-field-table {
+    width: 100%;
+  }
 }
+

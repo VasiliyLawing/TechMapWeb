@@ -11,6 +11,8 @@ import {KeyComponent} from './key/key.component';
 import {ControlsComponent} from './controls/controls.component';
 import {ChartModule} from "primeng/chart";
 import {MoreInfoComponent} from './more-info/more-info.component';
+import {RippleModule} from "primeng/ripple";
+import {TooltipModule} from "primeng/tooltip";
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import {MoreInfoComponent} from './more-info/more-info.component';
         InputTextModule,
         ButtonModule,
         CardModule,
-        ChartModule
+        ChartModule,
+        RippleModule,
+        TooltipModule
     ]
 })
 export class MapModule { }
