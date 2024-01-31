@@ -8,25 +8,23 @@ import {Observable} from "rxjs";
 })
 export class StudentService {
 
-  //private urlApi = 'http://localhost:8080'
-
   constructor(private http: HttpClient) {
   }
 
   public findAll(): Observable<Student[]> {
-    return this.http.get<Student[]>(`/api/students/`);
+    return this.http.get<Student[]>(`api/students/`);
   }
 
   public addStudent(student: Student): Observable<Student> {
-    return this.http.post<Student>(`/api/students/add/`, student);
+    return this.http.post<Student>(`api/students/add/`, student);
   }
 
   public updateStudent(student: Student): Observable<Student> {
-    return this.http.put<Student>(`/api/students/update/`, student)
+    return this.http.put<Student>(`api/students/update/`, student)
   }
 
   deleteStudent(id: number) {
-    const url = `/api/students/${id}/`;
+    const url = `https://techmapback.onrender.com/api/students/${id}/`;
     return this.http.delete(url);
   }
 

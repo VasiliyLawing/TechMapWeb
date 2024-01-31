@@ -1,8 +1,24 @@
 .container {
-  margin: 5% auto auto;
-  flex-wrap: wrap;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: flex-start;
+  border: 2px dashed rgba(114, 186, 94, 0.35);
+  height: 400px;
+  background: rgba(114, 186, 94, 0.05);
 }
 
+.companies {
+  position: sticky;
+  top: 0;
+}
+
+.students {
+  position: sticky;
+  top: 4rem;
+}
+
+.fields {
+  position: sticky;
+  bottom: 1rem;
+  align-self: flex-end;
+}
