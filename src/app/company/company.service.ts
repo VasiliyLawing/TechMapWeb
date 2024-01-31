@@ -14,7 +14,7 @@ export class CompanyService {
   }
 
   public findAll(): Observable<Company[]> {
-    return this.http.get<Company[]>(`https://techmapback.onrender.com/api/api/companies/`);
+    return this.http.get<Company[]>(`https://techmapback.onrender.com/api/companies/`);
   }
 
   public addCompany(company: Company): Observable<Company> {
@@ -22,10 +22,10 @@ export class CompanyService {
   }
 
   public updateCompany(company: Company): Observable<Company> {
-    return this.http.put<Company>(`https://techmapback.onrender.com/api/api/companies/update/`, company)
+    return this.http.put<Company>(`https://techmapback.onrender.com/api/companies/update/`, company)
   }
   deleteCompany(id: number): Observable<any> {
-    const url = `https://techmapback.onrender.com/api/api/companies/${id}/`;
+    const url = `https://techmapback.onrender.comapi/companies/${id}/`;
     return this.http.delete(url);
   }
 

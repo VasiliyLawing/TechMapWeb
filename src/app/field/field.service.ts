@@ -10,17 +10,17 @@ export class FieldService {
   constructor(private http: HttpClient) { }
 
   findAll() {
-    return this.http.get<Field[]>(`https://techmapback.onrender.com/api/api/fields/`);
+    return this.http.get<Field[]>(`https://techmapback.onrender.com/api/fields/`);
   }
   update(field: Field) {
-    return this.http.put<Field>(`https://techmapback.onrender.com/api/api/fields/update/`, field)
+    return this.http.put<Field>(`https://techmapback.onrender.com/api/fields/update/`, field)
   }
   add(field: Field) {
-    return this.http.post<Field>(`https://techmapback.onrender.com/api/api/fields/add/`, field);
+    return this.http.post<Field>(`https://techmapback.onrender.com/api/fields/add/`, field);
 
   }
   remove(id: number) {
-    return this.http.delete(`https://techmapback.onrender.com/api/api/fields/${id}/`);
+    return this.http.delete(`https://techmapback.onrender.comapi/fields/${id}/`);
 
   }
 
