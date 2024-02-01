@@ -32,6 +32,7 @@ import {ChartModule} from "primeng/chart";
 import {CardModule} from "primeng/card";
 import {FieldModule} from "./field/field.module";
 import { SchoolComponent } from './school/school.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 export const httpInterceptorProviders = [
@@ -44,6 +45,7 @@ export const httpInterceptorProviders = [
     MapComponent,
     ManageDataComponent,
     SchoolComponent,
+    SettingsComponent,
   ],
     imports: [
         BrowserModule,

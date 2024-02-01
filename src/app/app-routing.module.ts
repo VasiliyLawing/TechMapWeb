@@ -9,11 +9,13 @@ import {AuthGuard} from "./auth/AuthGuard";
 import {LoginFormComponent} from "./auth/login-form/login-form.component";
 import {EditFieldsComponent} from "./field/edit/edit-fields.component";
 import {SchoolComponent} from "./school/school.component";
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginFormComponent},
     { path: 'map',                 component: MapComponent },
     {path: 'school', component: SchoolComponent},
+    {path: 'settings', component: SettingsComponent},
   {path: '', canActivate: [AuthGuard],
     children:
       [
