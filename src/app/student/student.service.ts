@@ -12,6 +12,7 @@ export class StudentService {
   }
 
   public findAll(): Observable<Student[]> {
+
     return this.http.get<Student[]>(`https://techmapback.onrender.com/api/students/`);
   }
 

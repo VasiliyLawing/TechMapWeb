@@ -8,10 +8,12 @@ import {EditStudentsComponent} from "./student/edit-students/edit-students.compo
 import {AuthGuard} from "./auth/AuthGuard";
 import {LoginFormComponent} from "./auth/login-form/login-form.component";
 import {EditFieldsComponent} from "./field/edit/edit-fields.component";
+import {SchoolComponent} from "./school/school.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginFormComponent},
     { path: 'map',                 component: MapComponent },
+    {path: 'school', component: SchoolComponent},
   {path: '', canActivate: [AuthGuard],
     children:
       [

@@ -1,9 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container {
-  margin: 5% auto auto;
-  flex-wrap: wrap;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+app-header, app-company, app-student, app-field-table {
+  margin-bottom: 20px;
+}
+
+.footer {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  app-header, app-company, app-student, app-field-table {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=manage-data.component.css.map */

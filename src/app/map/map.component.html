@@ -2,30 +2,22 @@
 
 
 
-<div id="map" class="surface-card p-4 shadow-2 border-round w-full lg:w-6 center"></div>
-
-<div class="companyList">
-<app-company-list [companies]="companies"></app-company-list>
-</div>
-
-<div class="eligibleStudentsList" *ngIf="mapManager.getSelectedCompanies(companies)[0] !== undefined">
-    <app-eligible-students-list [selectedCompany]="mapManager.getSelectedCompanies(companies)[0]" [eligibleStudents]="mapManager.returnEligibleStudents(companies, students)"></app-eligible-students-list>
-</div>
-
-<div class="key">
-    <app-key></app-key>
-</div>
-
-<div class="controls">
-    <app-controls></app-controls>
-
-<!--    <p-card>-->
-<!--        <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>-->
-<!--    </p-card>-->
-
-
-</div>
-
-<div class="moreInfo" *ngIf="mapManager.getSelectedCompanies(companies).length > 0">
-    <app-more-info [company]="mapManager.getSelectedCompanies(companies)[0]"></app-more-info>
-</div>
+<p-splitter [style]="{ height: '100vh', width: '100%' }" styleClass="mb-5" layout="horizontal">
+    <ng-template pTemplate>
+        <p-splitter [style]="{ height: '100%', width: '50%' }" styleClass="mb-5" layout="vertical">
+            <ng-template pTemplate>
+                <div id="map"></div>
+            </ng-template>
+            <ng-template pTemplate>
+                <div class="eligibleStudentsList" style="width: 100%" *ngIf="mapManager.getSelectedCompanies(companies)[0] !== undefined">
+                    <app-eligible-students-list [selectedCompany]="mapManager.getSelectedCompanies(companies)[0]" [eligibleStudents]="mapManager.returnEligibleStudents(companies, students)"></app-eligible-students-list>
+                </div>
+            </ng-template>
+        </p-splitter>
+    </ng-template>
+    <ng-template pTemplate>
+        <div class="company-list" style="width: 100%;">
+            <app-company-list [companies]="companies"></app-company-list>
+        </div>
+    </ng-template>
+</p-splitter>

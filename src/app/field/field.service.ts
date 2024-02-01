@@ -10,6 +10,7 @@ export class FieldService {
   constructor(private http: HttpClient) { }
 
   findAll() {
+
     return this.http.get<Field[]>(`https://techmapback.onrender.com/api/fields/`);
   }
   update(field: Field) {

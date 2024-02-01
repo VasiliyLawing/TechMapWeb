@@ -1,41 +1,35 @@
 <app-header></app-header>
 <p-toast></p-toast>
 
-<div class="surface-card p-4 shadow-2 border-round center">
+
+<div class="center-container">
+<div class="container">
   <p-toolbar styleClass="mb-4 gap-2">
     <ng-template pTemplate="left">
       <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
-      <!--                <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>-->
     </ng-template>
     <ng-template pTemplate="center">
       <h3>Edit Companies</h3>
     </ng-template>
-
     <ng-template pTemplate="right">
       <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
       <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
     </ng-template>
   </p-toolbar>
 
-  <p-table #dt2 [scrollable]="true" scrollHeight="400px" 
-  [value]="companies" dataKey="id" editMode="row" 
-  [tableStyle]="{'min-width': '80rem'}"
-  [filterDelay]="0"
-  [globalFilterFields]="['name', 'field']"
-  >
-    
+  <p-table #dt2 [scrollable]="true" scrollHeight="400px"
+           [value]="companies" dataKey="id" editMode="row"
+           [tableStyle]="{'min-width': '80vw'}"
+           [filterDelay]="0"
+           [globalFilterFields]="['name', 'field']">
     <ng-template pTemplate="caption">
-
       <div class="flex">
-      <span class="p-input-icon-left ml-auto">
+        <span class="p-input-icon-left ml-auto">
           <i class="pi pi-search"></i>
-          <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Company Search" />`
-
-      </span>
-  </div>
-  </ng-template>
-    
-    
+          <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Company Search" />
+        </span>
+      </div>
+    </ng-template>
     <ng-template pTemplate="header">
       <tr>
         <th style="width:20%">Name</th>
@@ -80,14 +74,11 @@
         <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-
               <p-multiSelect [options]="fields"
                              [(ngModel)]="company.fields"
                              optionLabel="name"
                              appendTo="body"
-                             placeholder="fields"
-              ></p-multiSelect>
-
+                             placeholder="fields"></p-multiSelect>
             </ng-template>
             <ng-template pTemplate="output">
               <div *ngFor="let field of company.fields">
@@ -96,14 +87,12 @@
             </ng-template>
           </p-cellEditor>
         </td>
-
         <td>
           <div class="flex align-items-center justify-content-center gap-2">
             <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(company)" class="p-button-rounded p-button-text"></button>
             <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(company)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
             <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(company, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
             <button pButton pRipple type="button" icon="pi pi-trash" (click)="deleteCompany(company)" class="p-button-rounded p-button-text"></button>
-
           </div>
         </td>
       </tr>
@@ -111,46 +100,41 @@
   </p-table>
 </div>
 
-
-<p-dialog [(visible)]="dialog" [draggable]="false" [modal]="true" [resizable]="false" [style]="{ width: '50vw' }"
-          header="New Student">
+<p-dialog [(visible)]="dialog" [draggable]="false" [modal]="true" [resizable]="false" [style]="{ width: '90vw', 'max-width': '500px' }" header="New Student">
   <form #addForm="ngForm" (ngSubmit)="addNewCompany(addForm)">
     <div class="card flex justify-content-center">
       <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-        <i class="pi pi-user"></i>
-      </span>
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-user"></i>
+        </span>
         <input name="name" ngModel pInputText placeholder="Name"/>
       </div>
       <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                    <i class="pi pi-map-marker"></i>
-                </span>
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-map-marker"></i>
+        </span>
         <input name="latitude" ngModel pInputText placeholder="Latitude"/>
       </div>
       <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                    <i class="pi pi-map-marker"></i>
-                </span>
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-map-marker"></i>
+        </span>
         <input name="longitude" ngModel pInputText placeholder="Longitude"/>
       </div>
-
       <span class="p-inputgroup-addon">
-                <i class="pi pi-briefcase"></i>
-            </span>
-       <p-multiSelect [options]="fields"
-                      name="selectedField"
+        <i class="pi pi-briefcase"></i>
+      </span>
+      <p-multiSelect [options]="fields"
+                     name="selectedField"
                      [(ngModel)]="selectedFields"
                      optionLabel="name"
                      appendTo="body"
-                     placeholder="fields"
-      ></p-multiSelect>
+                     placeholder="fields"></p-multiSelect>
       <div>
-        <p-button (click)="closeDialog()" icon="pi pi-plus" iconPos="right" label="Add"
-                  type="submit"></p-button>
+        <p-button (click)="closeDialog()" icon="pi pi-plus" iconPos="right" label="Add" type="submit"></p-button>
       </div>
     </div>
   </form>
-
 </p-dialog>
-<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<p-confirmDialog [style]="{ width: '90vw', 'max-width': '500px' }"></p-confirmDialog>
+</div>
