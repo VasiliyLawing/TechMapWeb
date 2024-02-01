@@ -24,5 +24,21 @@ app-header, app-company, app-student, app-field-table {
   app-header, app-company, app-student, app-field-table {
     width: 100%;
   }
+
 }
 
+.companies {
+  position: sticky;
+  top: 0;
+}
+
+.students {
+  position: sticky;
+  top: 4rem;
+}
+
+.fields {
+  position: sticky;
+  bottom: 1rem;
+  align-self: flex-end;
+}
