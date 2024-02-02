@@ -3,7 +3,7 @@
 <p-toast></p-toast>
 
 
-<div class="center-container">
+<div class="center-container surface-card p-4 shadow-2 border-round w-full">
 <div class="container">
   <p-toolbar styleClass="mb-4 gap-2">
     <ng-template pTemplate="left">
@@ -20,9 +20,12 @@
 
   <p-table #dt2 [scrollable]="true" scrollHeight="400px"
            [value]="companies" dataKey="id" editMode="row"
-           [tableStyle]="{'min-width': '80vw'}"
+           [tableStyle]="{'min-width': '50rem'}"
            [filterDelay]="0"
-           [globalFilterFields]="['name', 'field']">
+           [globalFilterFields]="['name', 'field']"
+           columnResizeMode="expand"
+          
+           >
     <ng-template pTemplate="caption">
       <div class="flex">
         <span class="p-input-icon-left ml-auto">

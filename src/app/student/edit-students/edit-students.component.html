@@ -1,31 +1,28 @@
-<!-- © 2024 Vasiliy Lawing -->
 <app-header></app-header>
 <p-toast></p-toast>
 
-<div class="surface-card p-4 shadow-2 border-round center">
-
-    <p-toolbar styleClass="mb-4 gap-2">
-        <ng-template pTemplate="left">
-            <button (click)="openNew()" class="p-button-success mr-2" icon="pi pi-plus" label="New" pButton
-                    pRipple></button>
-            <!--                <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>-->
-        </ng-template>
-        <ng-template pTemplate="center">
-            <h3>Edit Students</h3>
-        </ng-template>
-
-        <ng-template pTemplate="right">
-            <p-fileUpload [maxFileSize]="1000000" accept="image/*" chooseLabel="Import" class="mr-2 inline-block" label="Import"
-                          mode="basic"></p-fileUpload>
-            <button class="p-button-help" icon="pi pi-upload" label="Export" pButton pRipple></button>
-        </ng-template>
-    </p-toolbar>
+<div class="center-container surface-card p-4 shadow-2 border-round w-full">
+    <div class="container">
+        <p-toolbar styleClass="mb-4 gap-2">
+          <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+          </ng-template>
+          <ng-template pTemplate="center">
+            <h3>Edit Companies</h3>
+          </ng-template>
+          <ng-template pTemplate="right">
+            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+          </ng-template>
+        </p-toolbar>
 
     <p-table #dt2 [scrollable]="true" scrollHeight="400px"
-     [tableStyle]="{'min-width': '80rem'}" [value]="students" 
-     dataKey="id" editMode="row"
-     [filterDelay]="0"
-     [globalFilterFields]="['name', 'field']">
+    [value]="students" dataKey="id" editMode="row"
+    [tableStyle]="{'min-width': '50rem'}"
+    [filterDelay]="0"
+    [globalFilterFields]="['name', 'field']"
+    columnResizeMode="expand"
+   >
 
         <ng-template pTemplate="caption">
 
@@ -113,6 +110,7 @@
             </tr>
         </ng-template>
     </p-table>
+    </div>
 </div>
 
 

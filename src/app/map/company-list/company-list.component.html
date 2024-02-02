@@ -14,10 +14,15 @@
         </ng-template>
 
         <ng-template pTemplate="caption">
-            <span class="p-input-icon-left ml-auto">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Company Search" />`
-            </span>
+            <div class="">
+                <span class="p-input-icon-left ml-auto">
+            
+            
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Field Search" />
+            
+                </span>
+                </div>
         </ng-template>
 
         <ng-template pTemplate="body" let-company>

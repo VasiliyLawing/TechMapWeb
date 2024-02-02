@@ -11,12 +11,12 @@
     [globalFilterFields]="['name', 'field']"
     [resizableColumns]="true" columnResizeMode="expand">
     <ng-template pTemplate="caption">
-        <div class="flex">
+        <div class="">
         <span class="p-input-icon-left ml-auto">
     
     
             <i class="pi pi-search"></i>
-            <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Field Search" />`
+            <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Field Search" />
     
         </span>
         </div>
