@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {Component} from "@angular/core";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";

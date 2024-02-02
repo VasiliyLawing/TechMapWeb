@@ -1,4 +1,5 @@
-// toast.service.ts
+
+// © 2024 Vasiliy Lawing
 import {Injectable} from '@angular/core';
 import {MessageService} from 'primeng/api';
 

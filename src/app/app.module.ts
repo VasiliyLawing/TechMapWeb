@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
@@ -33,6 +34,7 @@ import {CardModule} from "primeng/card";
 import {FieldModule} from "./field/field.module";
 import { SchoolComponent } from './school/school.component';
 import { SettingsComponent } from './settings/settings.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 export const httpInterceptorProviders = [
@@ -46,6 +48,7 @@ export const httpInterceptorProviders = [
     ManageDataComponent,
     SchoolComponent,
     SettingsComponent,
+    FooterComponent,
   ],
     imports: [
         BrowserModule,

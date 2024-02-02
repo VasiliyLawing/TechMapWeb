@@ -1,3 +1,5 @@
+// © 2024 Vasiliy Lawing
+
 import {AfterViewInit, Component} from '@angular/core';
 import {StudentService} from '../student/student.service';
 import {CompanyService} from '../company/company.service';
@@ -67,7 +69,7 @@ export class MapComponent implements AfterViewInit {
       finalize(() => {
         if (this.map) {
           // this.mapManager.setLayers(this.map);
-          this.mapManager.manageCompanyMarkers(this.map, this.companies);
+          this.mapManager.manageCompanyMarkers(this.companies);
         } else {
           console.error('Map is not initialized.');
         }

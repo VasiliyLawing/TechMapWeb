@@ -1,9 +1,9 @@
+// © 2024 Vasiliy Lawing
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Sidebar} from "primeng/sidebar";
 import {AuthService} from "../auth/auth.service";
 import { MenuItem } from 'primeng/api';
 import { ThemeService } from '../theme.service';
-import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-header',

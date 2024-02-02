@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {Component, OnInit} from '@angular/core';
 import {FieldService} from "../field.service";
 import {Field} from "../field";
