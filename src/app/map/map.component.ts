@@ -60,17 +60,17 @@ export class MapComponent implements AfterViewInit {
 
   loadData() {
     forkJoin([
-      this.studentService.findAll(),
+      // this.studentService.findAll(),
       this.companyService.findAll(),
       this.schoolService.findAll()
 
     ]).pipe(
-      tap(([studentData, companyData, schoolData]) => {
-        this.students = studentData;
+      tap(([ companyData, schoolData]) => { // studentData
+        // this.students = studentData;
         this.companies = companyData;
         this.schools = schoolData
 
-        this.mapManager.setStudentMarkers(studentData)
+        // this.mapManager.setStudentMarkers(studentData)
         this.mapManager.setCompanyMarkers(companyData)
         this.mapManager.setSchoolMarkers(schoolData)
       }),
