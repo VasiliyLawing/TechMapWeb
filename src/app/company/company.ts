@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {Circle, Marker} from "leaflet";
 import {Field} from "../field/field";
 

@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {StudentTableComponent} from "./table/student-table.component";

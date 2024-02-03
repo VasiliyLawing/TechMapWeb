@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {EditFieldsComponent} from './edit/edit-fields.component';

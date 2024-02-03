@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 export enum Role {
   guest = 0,
   user = 1,

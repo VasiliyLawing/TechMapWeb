@@ -30,7 +30,27 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/themes/theme-bootstrap4-light-blue.scss",
+                "bundleName": "bootstrap4-light-blue",
+                "inject": false
+              },
+              {
+                "input": "src/themes/theme-bootstrap4-dark-purple.scss",
+                "bundleName": "bootstrap4-dark-purple",
+                "inject": false
+              },
+              {
+                "input": "src/themes/theme-mdc-dark-indigo.scss",
+                "bundleName": "mdc-dark-indigo",
+                "inject": false
+              },
+              {
+                "input": "src/themes/theme-lara-light-blues.scss",
+                "bundleName": "lara-light-blue",
+                "inject": false
+              }
             ],
             "scripts": []
           },
@@ -100,5 +120,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "d9fbe264-e5da-462e-acc7-9b782ba966e0"
   }
 }

@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {inject, Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
