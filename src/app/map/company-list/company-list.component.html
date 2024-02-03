@@ -19,7 +19,7 @@
             
             
                     <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Field Search" />
+                    <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Company Search" />
             
                 </span>
                 </div>
@@ -31,7 +31,15 @@
             </tr>
         </ng-template>
     </p-table>
-
+<p-divider></p-divider>
+<div *ngIf="selectedCompany">
+    <h1>Selected Company</h1>
+    <h2>Name: {{selectedCompany.name}}</h2>
+    <h3>Fields</h3>
+    <div *ngFor="let field of selectedCompany.fields">
+        <li>{{field.name}}</li>
+    </div>
+</div>
 
 
 

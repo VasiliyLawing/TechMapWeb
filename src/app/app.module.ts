@@ -42,6 +42,8 @@ import {DialogModule} from "primeng/dialog";
 import {DropdownModule} from "primeng/dropdown";
 import {FileUploadModule} from "primeng/fileupload";
 import {ToolbarModule} from "primeng/toolbar";
+import { ProfileComponent } from './profile/profile.component';
+import {MultiSelectModule} from "primeng/multiselect";
 
 
 export const httpInterceptorProviders = [
@@ -57,6 +59,7 @@ export const httpInterceptorProviders = [
     FooterComponent,
     TableSchoolsComponent,
     EditSchoolsComponent,
+    ProfileComponent,
   ],
     imports: [
         BrowserModule,
@@ -85,7 +88,8 @@ export const httpInterceptorProviders = [
         DialogModule,
         DropdownModule,
         FileUploadModule,
-        ToolbarModule
+        ToolbarModule,
+        MultiSelectModule
     ],
   providers: [ httpInterceptorProviders, PermissionService, AuthService, StudentService, CompanyService, MessageService ],
   bootstrap: [AppComponent]

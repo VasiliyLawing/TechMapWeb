@@ -1,4 +1,4 @@
 export const environment = {
-    production: false,
+    production: true,
     restApiUrl: 'https://techmapback.onrender.com/api'
 };

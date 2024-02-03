@@ -13,6 +13,8 @@ import {MoreInfoComponent} from './more-info/more-info.component';
 import {RippleModule} from "primeng/ripple";
 import {TooltipModule} from "primeng/tooltip";
 import { EligibleSchoolsListComponent } from './eligible-schools-list/eligible-schools-list.component';
+import {OverlayPanelModule} from "primeng/overlaypanel";
+import {DividerModule} from "primeng/divider";
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { EligibleSchoolsListComponent } from './eligible-schools-list/eligible-s
         CardModule,
         ChartModule,
         RippleModule,
-        TooltipModule
+        TooltipModule,
+        OverlayPanelModule,
+        DividerModule
     ]
 })
 export class MapModule { }

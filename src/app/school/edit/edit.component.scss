@@ -39,3 +39,21 @@
   width: 90vw;
   max-width: 500px;
 }
+
+.school-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.p-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.p-dialog-footer .p-button {
+  margin-left: 10px;
+}
+
+
+

@@ -43,6 +43,8 @@ export class EditSchoolsComponent implements OnInit{
         }, error => {
           console.log(error);
         })
+    this.dialog = false
+
   }
 
   openNew() {

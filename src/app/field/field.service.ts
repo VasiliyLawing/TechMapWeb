@@ -2,7 +2,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Field} from "./field";
-import {environment} from "../../environments/environment.firebase";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,6 @@ export class FieldService {
   constructor(private http: HttpClient) { }
 
   findAll() {
-
     return this.http.get<Field[]>(`${this.urlApi}/fields/`);
   }
   update(field: Field) {

@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Field} from "../field";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {FieldService} from "../field.service";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-field-edit',
@@ -36,15 +37,20 @@ export class EditFieldsComponent implements OnInit{
   onRowEditSave(field: Field) {
     this.fieldService.update(field).subscribe(() => {
       this.getFields()
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Product is updated' });
+      this.messageService.add({ severity: 'success', summary: 'Updated Field', detail: `${field.name}` });
 
     });
+    this.dialog = false
+
 
   }
 
   onRowEditCancel(field: Field, index: number) {
     this.fields[index] = this.clonedProducts[field.id.toString() as string];
     delete this.clonedProducts[field.id.toString() as string];
+    this.messageService.add({ severity: 'error', summary: 'Canceled Update', detail: `${field.name}` });
+
+    this.dialog = false
   }
 
 
@@ -62,7 +68,7 @@ export class EditFieldsComponent implements OnInit{
 
 
 
-  addNewField(addForm: any) {
+  addNewField(addForm: NgForm) {
 
     this.fieldService.add(addForm.value).subscribe(
         () => {
@@ -72,6 +78,9 @@ export class EditFieldsComponent implements OnInit{
         }, error => {
           console.log(error);
         })
+    this.dialog = false
+    this.messageService.add({ severity: 'success', summary: 'Field Added', detail: `${addForm.value.name}`});
+
   }
 
 
@@ -89,7 +98,7 @@ export class EditFieldsComponent implements OnInit{
               this.getFields()
             }
         )
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Field Deleted', detail: `${field.name}`});
       }
     });
   }
