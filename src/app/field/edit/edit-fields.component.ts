@@ -15,7 +15,7 @@ export class EditFieldsComponent implements OnInit{
 
   fields!: Field[];
   field!: Field
-  clonedProducts: { [s: string]: Field } = {};
+  clonedFields: { [s: string]: Field } = {};
 
   closeDialog() {
     this.dialog = false
@@ -27,7 +27,7 @@ export class EditFieldsComponent implements OnInit{
 
 
   onRowEditInit(field: Field) {
-     this.clonedProducts[field.id.toString() as string] = { ...field };
+     this.clonedFields[field.id.toString() as string] = { ...field };
   }
   openNew() {
     this.dialog = true
@@ -46,8 +46,8 @@ export class EditFieldsComponent implements OnInit{
   }
 
   onRowEditCancel(field: Field, index: number) {
-    this.fields[index] = this.clonedProducts[field.id.toString() as string];
-    delete this.clonedProducts[field.id.toString() as string];
+    this.fields[index] = this.clonedFields[field.id.toString() as string];
+    delete this.clonedFields[field.id.toString() as string];
     this.messageService.add({ severity: 'error', summary: 'Canceled Update', detail: `${field.name}` });
 
     this.dialog = false

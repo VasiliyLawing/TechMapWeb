@@ -18,8 +18,6 @@ export class EditSchoolsComponent implements OnInit{
   school!: School;
   clonedSchools: { [s: string]: School } = {};
 
-  selectAll = false
-
 
   constructor(private schoolService: SchoolService,
               private messageService: MessageService,
@@ -44,6 +42,7 @@ export class EditSchoolsComponent implements OnInit{
           console.log(error);
         })
     this.dialog = false
+    this.messageService.add({ severity: 'success', summary: 'School Created', detail: `${addForm.value.name}` });
 
   }
 
@@ -63,13 +62,15 @@ export class EditSchoolsComponent implements OnInit{
     }, error => {
       console.log(error);
     })
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Company is updated' });
+    this.messageService.add({ severity: 'success', summary: 'School Updated', detail: `${school.name}` });
 
   }
 
   onRowEditCancel(school: School, index: number) {
     this.schools[index] = this.clonedSchools[school.id.toString() as string];
     delete this.clonedSchools[school.id.toString() as string];
+    this.messageService.add({ severity: 'error', summary: 'School Update Canceled', detail: `${school.name}` });
+
   }
 
   getSchools() {
@@ -95,7 +96,7 @@ export class EditSchoolsComponent implements OnInit{
             }
         )
 
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Company Deleted', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'School deleted', detail: `${school.name}`});
       }
     });
   }

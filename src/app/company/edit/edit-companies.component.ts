@@ -20,7 +20,7 @@ export class EditCompaniesComponent implements OnInit{
   companies!: Company[];
 
   company!: Company;
-  clonedProducts: { [s: string]: Company } = {};
+  clonedCompanies: { [s: string]: Company } = {};
   fields!: Field[]
 
   selectAll = false
@@ -60,7 +60,7 @@ export class EditCompaniesComponent implements OnInit{
 
 
   onRowEditInit(company: Company) {
-    this.clonedProducts[company.id.toString() as string] = { ...company };
+    this.clonedCompanies[company.id.toString() as string] = { ...company };
   }
 
   onRowEditSave(company: Company) {
@@ -74,8 +74,8 @@ export class EditCompaniesComponent implements OnInit{
   }
 
   onRowEditCancel(company: Company, index: number) {
-    this.companies[index] = this.clonedProducts[company.id.toString() as string];
-    delete this.clonedProducts[company.id.toString() as string];
+    this.companies[index] = this.clonedCompanies[company.id.toString() as string];
+    delete this.clonedCompanies[company.id.toString() as string];
     this.messageService.add({ severity: 'error', summary: 'Company Update Canceled', detail: `${company.name}` });
 
   }
