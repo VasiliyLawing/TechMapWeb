@@ -26,10 +26,10 @@ export class ManageMap {
     popupAnchor: [-3/3, -19/3]
   });
   private schoolIcon = L.icon({
-    iconUrl: 'assets/user.png',
-    iconSize: [38/3, 38/3],
-    iconAnchor: [22/3, 37/3],
-    popupAnchor: [-3/3, -19/3]
+    iconUrl: 'assets/school.png',
+    iconSize: [38/2, 38/2],
+    iconAnchor: [22/2, 37/2],
+    popupAnchor: [-3/2, -19/2]
   });
   private map?: L.Map;
 
