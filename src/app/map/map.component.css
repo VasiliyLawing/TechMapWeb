@@ -7,6 +7,7 @@ body {
 }
 
 #map {
+  z-index: 1;
   grid-area: map;
   height: 100%;
   width: 100%;

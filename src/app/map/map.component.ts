@@ -11,6 +11,8 @@ import {Student} from '../student/student';
 import {Company} from '../company/company';
 import {MessageService} from "primeng/api";
 import {ToastService} from "../toast.service";
+import {School} from "../school/school";
+import {SchoolService} from "../school/school.service";
 
 @Component({
   selector: 'app-map',
@@ -23,6 +25,7 @@ export class MapComponent implements AfterViewInit {
 
   public students: Student[] = [];
   public companies: Company[] = [];
+  public schools: School[] = []
   private map?: L.Map;
   basicData: any;
 
@@ -32,6 +35,7 @@ export class MapComponent implements AfterViewInit {
     private studentService: StudentService,
     private companyService: CompanyService,
     private toastService: ToastService,
+    private schoolService: SchoolService,
     manageMap: ManageMap
   ) {
     this.mapManager = manageMap;
@@ -57,22 +61,24 @@ export class MapComponent implements AfterViewInit {
   loadData() {
     forkJoin([
       this.studentService.findAll(),
-      this.companyService.findAll()
+      this.companyService.findAll(),
+      this.schoolService.findAll()
+
     ]).pipe(
-      tap(([studentData, companyData]) => {
+      tap(([studentData, companyData, schoolData]) => {
         this.students = studentData;
         this.companies = companyData;
+        this.schools = schoolData
 
-        this.mapManager.setStudentMarkers(studentData);
-        this.mapManager.setCompanyMarkers(companyData);
+        this.mapManager.setStudentMarkers(studentData)
+        this.mapManager.setCompanyMarkers(companyData)
+        this.mapManager.setSchoolMarkers(schoolData)
       }),
       finalize(() => {
-        if (this.map) {
-          // this.mapManager.setLayers(this.map);
+        if (this.map)
           this.mapManager.manageCompanyMarkers(this.companies);
-        } else {
+        else
           console.error('Map is not initialized.');
-        }
       })
     ).subscribe(
       () => {
@@ -86,77 +92,6 @@ export class MapComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.initMap();
     this.loadData();
-
-
-
-
-
-
-
-
-
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
-    this.basicData = {
-      labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-      datasets: [
-        {
-          label: 'Sales',
-          data: [540, 325, 702, 620],
-          backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)'],
-          borderColor: ['rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)'],
-          borderWidth: 1
-        }
-      ]
-    };
-
-    this.basicOptions = {
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor
-          }
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            color: textColorSecondary
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
-        },
-        x: {
-          ticks: {
-            color: textColorSecondary
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
-        }
-      }
-    };
-
-
-
-
-    }
-
-
-
-
-
-
-
-
-
-
+  }
 
 }

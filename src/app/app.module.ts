@@ -32,9 +32,16 @@ import {MapModule} from "./map/map.module";
 import {ChartModule} from "primeng/chart";
 import {CardModule} from "primeng/card";
 import {FieldModule} from "./field/field.module";
-import { SchoolComponent } from './school/school.component';
 import { SettingsComponent } from './settings/settings.component';
 import { FooterComponent } from './footer/footer.component';
+import { TableSchoolsComponent } from './school/table/table.component';
+import { EditSchoolsComponent } from './school/edit/edit.component';
+import {InputTextModule} from "primeng/inputtext";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {DialogModule} from "primeng/dialog";
+import {DropdownModule} from "primeng/dropdown";
+import {FileUploadModule} from "primeng/fileupload";
+import {ToolbarModule} from "primeng/toolbar";
 
 
 export const httpInterceptorProviders = [
@@ -46,9 +53,10 @@ export const httpInterceptorProviders = [
     AppComponent,
     MapComponent,
     ManageDataComponent,
-    SchoolComponent,
     SettingsComponent,
     FooterComponent,
+    TableSchoolsComponent,
+    EditSchoolsComponent,
   ],
     imports: [
         BrowserModule,
@@ -71,7 +79,13 @@ export const httpInterceptorProviders = [
         MapModule,
         ChartModule,
         CardModule,
-        FieldModule
+        FieldModule,
+        InputTextModule,
+        ConfirmDialogModule,
+        DialogModule,
+        DropdownModule,
+        FileUploadModule,
+        ToolbarModule
     ],
   providers: [ httpInterceptorProviders, PermissionService, AuthService, StudentService, CompanyService, MessageService ],
   bootstrap: [AppComponent]

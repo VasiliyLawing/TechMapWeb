@@ -12,14 +12,16 @@ import {ChartModule} from "primeng/chart";
 import {MoreInfoComponent} from './more-info/more-info.component';
 import {RippleModule} from "primeng/ripple";
 import {TooltipModule} from "primeng/tooltip";
+import { EligibleSchoolsListComponent } from './eligible-schools-list/eligible-schools-list.component';
 
 
 @NgModule({
-  declarations: [EligibleStudentsListComponent, CompanyListComponent, MoreInfoComponent],
+  declarations: [EligibleStudentsListComponent, CompanyListComponent, MoreInfoComponent, EligibleSchoolsListComponent],
     exports: [
         CompanyListComponent,
         EligibleStudentsListComponent,
-        MoreInfoComponent
+        MoreInfoComponent,
+        EligibleSchoolsListComponent
     ],
     imports: [
         CommonModule,
