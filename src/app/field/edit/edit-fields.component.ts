@@ -51,10 +51,6 @@ export class EditFieldsComponent implements OnInit{
 
   ngOnInit() {
     this.getFields()
-
-    this.fieldService.findAll().subscribe(data => {
-      this.fields = data
-    })
   }
 
   getFields() {
