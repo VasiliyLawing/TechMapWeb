@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {Component, Input} from '@angular/core';
 import {Student} from "../../student/student";
 import * as FileSaver from 'file-saver';

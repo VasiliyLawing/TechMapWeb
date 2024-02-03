@@ -1,6 +1,8 @@
+// © 2024 Vasiliy Lawing
+
 import {Injectable} from '@angular/core';
 import * as L from 'leaflet';
-import {Circle, LatLng, LayerGroup, Marker} from 'leaflet';
+import {Circle, LatLng} from 'leaflet';
 import {Student} from '../student/student';
 import {Company} from '../company/company';
 
@@ -10,9 +12,6 @@ import {Company} from '../company/company';
 })
 export class ManageMap {
 
-  private static careerMarkers: Map<string, Array<Marker>> = new Map();
-  public radius: number = 8046.72;
-  public mile = 0.0144927536231884
   private companyIcon = L.icon({
     iconUrl: 'assets/factory.png',
     iconSize: [38, 38],
@@ -25,18 +24,18 @@ export class ManageMap {
     iconAnchor: [22/3, 37/3],
     popupAnchor: [-3/3, -19/3]
   });
-  private layerControl = L.control.layers();
-  private layers: Map<string, LayerGroup> = new Map();
   private map?: L.Map;
 
   public initMap(map: L.Map): void {
     this.map = map;
   }
   addCircles(company: Company) {
+    let fiveMileRadius: number = 8046.72;
+
     company.circles = [
-      this.createCircle(company.marker!.getLatLng(), this.radius, '5 Miles'),
-      this.createCircle(company.marker!.getLatLng(), this.radius / 2, '2.5 Miles', 'yellow'),
-      this.createCircle(company.marker!.getLatLng(), this.radius / 5, '1 Mile', 'red')
+      this.createCircle(company.marker!.getLatLng(), fiveMileRadius, '5 Miles'),
+      this.createCircle(company.marker!.getLatLng(), fiveMileRadius * 2, '10 Miles', 'yellow'),
+      this.createCircle(company.marker!.getLatLng(), fiveMileRadius * 3, '15 Miles', 'red')
     ];
     company.selected = true;
   }
@@ -54,51 +53,20 @@ export class ManageMap {
       if (this.map)
         marker.addTo(this.map)
       student.marker = marker
-      //
-      // if (!ManageMap.careerMarkers.has(student.field)) {
-      //   ManageMap.careerMarkers.set(student.field, [marker]);
-      // } else {
-      //   ManageMap.careerMarkers.get(student.field)?.push(marker);
-      // }
     });
-  }
+  } // TODO: Set School Markers
 
   public setCompanyMarkers(companies: Company[]): void {
     companies.forEach(company => {
       const marker = L.marker([company.latitude, company.longitude], {icon: this.companyIcon});
-
-
       if (this.map)
         marker.addTo(this.map)
-      // if (!ManageMap.careerMarkers.has(company.field)) {
-      //   ManageMap.careerMarkers.set(company.field, [marker]);
-      // } else {
-      //   ManageMap.careerMarkers.get(company.field)?.push(marker);
-      // }
       company.marker = marker;
     });
   }
 
-  public setLayers(map: L.Map): void {
-    Array.from(ManageMap.careerMarkers.entries()).forEach(([name, markers]) => {
-      let layerExists = false
 
-      this.layers.forEach((_value, key) => {
-        if (name==key) {
-          layerExists = true
-        }
-      })
-      if (!layerExists) {
-        const layerGroup = new L.LayerGroup(markers);
-        this.layers.set(name, layerGroup);
-        this.layerControl.addOverlay(layerGroup, name);
-      }
-    });
-
-    this.layerControl.addTo(map);
-  }
-
-  public manageCompanyMarkers(map: L.Map, companies: Company[]): void {
+  public manageCompanyMarkers(companies: Company[]): void {
     companies.forEach(company => {
       company.marker?.on('click', () => {
         if (company.selected) {
@@ -147,6 +115,7 @@ export class ManageMap {
 
   public returnEligibleStudents(companies: Company[], students: Student[]) {
     let eligibleStudents: Student[] = []
+    let mile = 0.0144927536231884
 
     this.getSelectedCompanies(companies).forEach(company => {
 
@@ -157,7 +126,7 @@ export class ManageMap {
             let studentLocation = new LatLng(student.latitude, student.longitude)
             let companyLocation = new LatLng(company.latitude, company.longitude)
 
-            if (this.calculateDistance(studentLocation, companyLocation) < this.mile * 5) {
+            if (this.calculateDistance(studentLocation, companyLocation) < mile * 15) {
               eligibleStudents.push(student)
             }
 
@@ -167,10 +136,10 @@ export class ManageMap {
       })
     })
     return eligibleStudents
-  }
+  } // TODO: Return Eligible Schools
 
   private createCircle(latlng: L.LatLngExpression, radius: number, popupText: string, fillColor: string = 'blue'): Circle {
-    return L.circle(latlng, {radius}).addTo(this.map!).bindPopup(`${popupText}`).openPopup().setStyle({fillColor});
+    return L.circle(latlng, {radius}).addTo(this.map!).bindPopup(`${popupText}`).setStyle({fillColor});
   }
 
   private calculateDistance(posOne: LatLng, posTwo: LatLng) {

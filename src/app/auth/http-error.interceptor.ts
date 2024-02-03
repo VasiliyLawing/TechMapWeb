@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {catchError, retry} from 'rxjs/operators';

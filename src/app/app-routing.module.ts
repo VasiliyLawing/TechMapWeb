@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MapComponent} from "./map/map.component";
@@ -9,11 +10,13 @@ import {AuthGuard} from "./auth/AuthGuard";
 import {LoginFormComponent} from "./auth/login-form/login-form.component";
 import {EditFieldsComponent} from "./field/edit/edit-fields.component";
 import {SchoolComponent} from "./school/school.component";
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginFormComponent},
     { path: 'map',                 component: MapComponent },
     {path: 'school', component: SchoolComponent},
+    {path: 'settings', component: SettingsComponent},
   {path: '', canActivate: [AuthGuard],
     children:
       [

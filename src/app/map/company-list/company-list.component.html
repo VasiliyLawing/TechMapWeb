@@ -1,3 +1,4 @@
+<!-- © 2024 Vasiliy Lawing -->
 <p-toast></p-toast>
 
     <p-table #dt2 [value]="companies" dataKey="id" selectionMode="single" [(selection)]="selectedCompany" [scrollable]="true"
@@ -13,13 +14,15 @@
         </ng-template>
 
         <ng-template pTemplate="caption">
-            <div class="flex">
-            <span class="p-input-icon-left ml-auto">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Company Search" />`
-
-            </span>
-            </div>
+            <div class="">
+                <span class="p-input-icon-left ml-auto">
+            
+            
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Field Search" />
+            
+                </span>
+                </div>
         </ng-template>
 
         <ng-template pTemplate="body" let-company>

@@ -14,9 +14,9 @@ export class SchoolComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.schoolService.findAll().subscribe(data => {
-      this.schools = data
-    })
+    // this.schoolService.findAll().subscribe(data => {
+    //   this.schools = data
+    // })
   }
 
 }

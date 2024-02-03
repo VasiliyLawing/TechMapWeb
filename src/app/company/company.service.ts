@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Company} from "./company";
@@ -14,18 +15,18 @@ export class CompanyService {
   }
 
   public findAll(): Observable<Company[]> {
-    return this.http.get<Company[]>(`api/companies/`);
+    return this.http.get<Company[]>(`https://techmapback.onrender.com/api/companies/`);
   }
 
   public addCompany(company: Company): Observable<Company> {
-    return this.http.post<Company>(`api/companies/add/`, company);
+    return this.http.post<Company>(`https://techmapback.onrender.com/api/companies/add/`, company);
   }
 
   public updateCompany(company: Company): Observable<Company> {
-    return this.http.put<Company>(`api/companies/update/`, company)
+    return this.http.put<Company>(`https://techmapback.onrender.com/api/companies/update/`, company)
   }
   deleteCompany(id: number): Observable<any> {
-    const url = `api/companies/${id}/`;
+    const url = `https://techmapback.onrender.com/api/companies/${id}/`;
     return this.http.delete(url);
   }
 

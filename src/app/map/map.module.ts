@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {EligibleStudentsListComponent} from "./eligible-students-list/eligible-students-list.component";
@@ -7,8 +8,6 @@ import {TableModule} from "primeng/table";
 import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
 import {CardModule} from "primeng/card";
-import {KeyComponent} from './key/key.component';
-import {ControlsComponent} from './controls/controls.component';
 import {ChartModule} from "primeng/chart";
 import {MoreInfoComponent} from './more-info/more-info.component';
 import {RippleModule} from "primeng/ripple";
@@ -16,12 +15,10 @@ import {TooltipModule} from "primeng/tooltip";
 
 
 @NgModule({
-  declarations: [EligibleStudentsListComponent, CompanyListComponent, KeyComponent, ControlsComponent, MoreInfoComponent],
+  declarations: [EligibleStudentsListComponent, CompanyListComponent, MoreInfoComponent],
     exports: [
         CompanyListComponent,
         EligibleStudentsListComponent,
-        KeyComponent,
-        ControlsComponent,
         MoreInfoComponent
     ],
     imports: [

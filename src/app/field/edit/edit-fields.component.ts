@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {Component, OnInit} from '@angular/core';
 import {Field} from "../field";
 import {ConfirmationService, MessageService} from "primeng/api";
