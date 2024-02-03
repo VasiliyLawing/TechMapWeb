@@ -13,7 +13,7 @@
             <ng-template pTemplate>
                 <div style="width: 100%" *ngIf="mapManager.getSelectedCompanies(companies)[0] !== undefined">
 <!--                    <app-eligible-students-list [selectedCompany]="mapManager.getSelectedCompanies(companies)[0]" [eligibleStudents]="mapManager.returnEligibleStudents(companies, students)"></app-eligible-students-list>-->
-                    <app-eligible-schools-list [selectedCompany]="mapManager.getSelectedCompanies(companies)[0]" [eligibleSchools]="schools"></app-eligible-schools-list>
+                    <app-eligible-schools-list [selectedCompany]="mapManager.getSelectedCompanies(companies)[0]" [eligibleSchools]="mapManager.returnEligibleSchools(companies, schools)"></app-eligible-schools-list>
                 </div>
             </ng-template>
         </p-splitter>
