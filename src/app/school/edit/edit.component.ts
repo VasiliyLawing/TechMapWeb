@@ -4,24 +4,30 @@ import {Field} from "../../field/field";
 import {NgForm} from "@angular/forms";
 import {SchoolService} from "../school.service";
 import {ConfirmationService, MessageService} from "primeng/api";
+import { Papa } from 'ngx-papaparse';
 
 @Component({
   selector: 'app-edit-students',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
+
+
 export class EditSchoolsComponent implements OnInit{
 
   dialog: boolean = false;
   schools!: School[];
+  uploadedData: any[] = [];
+  uploadedSchools: string[] = []
 
   school!: School;
   clonedSchools: { [s: string]: School } = {};
-
+  firstParsedStudent!: string
 
   constructor(private schoolService: SchoolService,
               private messageService: MessageService,
-              private confirmationService: ConfirmationService) {}
+              private confirmationService: ConfirmationService,
+              private papa: Papa) {}
 
   ngOnInit() {
     this.getSchools()
@@ -29,6 +35,50 @@ export class EditSchoolsComponent implements OnInit{
 
   closeDialog() {
     this.dialog = false
+  }
+
+  onUpload(event: any) {
+    let input = event.files;
+    let reader: FileReader = new FileReader();
+    reader.readAsText(input[0]);
+    reader.onload = (e) => {
+      if (reader.result?.toString === undefined) return;
+      let csv: string = reader.result?.toString();
+
+      this.papa.parse(csv,{
+        complete: (result) => {
+
+          this.uploadedSchools = result.data
+        }
+
+    });
+
+    this.uploadedSchools.slice(1).forEach((csvSchool) => {
+      let splitSchool = csvSchool.toString().split(',')
+      let newSchool = this.school
+      newSchool.name = splitSchool[0]
+      newSchool.latitude = +splitSchool[1]
+      newSchool.longitude = +splitSchool[2]
+
+      alert(newSchool)
+      this.schoolService.add(newSchool).subscribe(
+        () => {
+
+          this.getSchools()
+
+        }, error => {
+          console.log(error);
+        })
+    
+
+      
+    })
+
+
+
+    }
+
+
   }
 
   addNewSchool(addForm: NgForm) {

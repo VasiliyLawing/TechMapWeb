@@ -11,7 +11,9 @@
                 <h3>Edit Schools</h3>
             </ng-template>
             <ng-template pTemplate="right">
-                <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                <p-fileUpload  [customUpload]="true"  [maxFileSize]="1000000" (uploadHandler)="onUpload($event)"  chooseLabel="Browse"></p-fileUpload>
+
+                <!-- <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload> -->
                 <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
             </ng-template>
         </p-toolbar>
