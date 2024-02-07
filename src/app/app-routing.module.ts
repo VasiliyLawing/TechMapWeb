@@ -9,26 +9,30 @@ import {EditStudentsComponent} from "./student/edit-students/edit-students.compo
 import {AuthGuard} from "./auth/AuthGuard";
 import {LoginFormComponent} from "./auth/login-form/login-form.component";
 import {EditFieldsComponent} from "./field/edit/edit-fields.component";
-import {SchoolComponent} from "./school/school.component";
-import { SettingsComponent } from './settings/settings.component';
+import {SettingsComponent} from './settings/settings.component';
+import {EditSchoolsComponent} from "./school/edit/edit.component";
 
 const routes: Routes = [
-  {path: 'login', component: LoginFormComponent},
-    { path: 'map',                 component: MapComponent },
-    {path: 'school', component: SchoolComponent},
-    {path: 'settings', component: SettingsComponent},
-  {path: '', canActivate: [AuthGuard],
-    children:
-      [
-        { path: 'manageData',          component: ManageDataComponent },
-        { path: 'edit-students',       component: EditStudentsComponent },
-        { path: 'edit-companies',      component: EditCompaniesComponent },
-        {path: 'edit-fields',          component: EditFieldsComponent}
-      ]}
+    {path: 'login', component: LoginFormComponent},
+
+    {
+        path: '', canActivate: [AuthGuard],
+        children:
+            [
+                {path: 'map', component: MapComponent},
+                {path: 'settings', component: SettingsComponent},
+                {path: 'manageData', component: ManageDataComponent},
+                {path: 'edit-students', component: EditStudentsComponent},
+                {path: 'edit-companies', component: EditCompaniesComponent},
+                {path: 'edit-fields', component: EditFieldsComponent},
+                {path: 'edit-schools', component: EditSchoolsComponent}
+            ]
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

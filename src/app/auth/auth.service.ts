@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, map, Observable} from "rxjs";
 import {User, UserJson} from "./user";
+import {environment} from "../../environments/environment"; // Change for firebase to environment.firebase not most efficient
 
 
 export interface AuthRequestData {
@@ -14,6 +15,8 @@ export interface AuthRequestData {
 export class AuthService {
   private userSubject: BehaviorSubject<User|null>;
   private readonly user: Observable<User|null>;
+
+  private urlApi = environment.restApiUrl
 
   constructor(private http: HttpClient) {
     this.userSubject = new BehaviorSubject<User|null>(null);
@@ -30,7 +33,7 @@ export class AuthService {
 
   public requestAuth(requestData: AuthRequestData): Observable<User> {
 
-    const url = `https://techmapback.onrender.com/api/auth/login/`;
+    const url = `${this.urlApi}/auth/login/`;
 
     return this.http.post<UserJson>(url, requestData).pipe(map(userJson => {
       const user = User.parseFromJson(userJson);

@@ -2,27 +2,29 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Field} from "./field";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FieldService {
 
+  private urlApi = environment.restApiUrl
+
   constructor(private http: HttpClient) { }
 
   findAll() {
-
-    return this.http.get<Field[]>(`https://techmapback.onrender.com/api/fields/`);
+    return this.http.get<Field[]>(`${this.urlApi}/fields/`);
   }
   update(field: Field) {
-    return this.http.put<Field>(`https://techmapback.onrender.com/api/fields/update/`, field)
+    return this.http.put<Field>(`${this.urlApi}/fields/update/`, field)
   }
   add(field: Field) {
-    return this.http.post<Field>(`https://techmapback.onrender.com/api/fields/add/`, field);
+    return this.http.post<Field>(`${this.urlApi}/fields/add/`, field);
 
   }
   remove(id: number) {
-    return this.http.delete(`https://techmapback.onrender.com/api/fields/${id}/`);
+    return this.http.delete(`${this.urlApi}/fields/${id}/`);
 
   }
 

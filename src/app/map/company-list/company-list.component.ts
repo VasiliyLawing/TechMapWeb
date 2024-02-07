@@ -4,6 +4,7 @@ import {Company} from "../../company/company";
 import {MessageService} from "primeng/api";
 import {ToastService} from "../../toast.service";
 import {ManageMap} from "../manageMap";
+import {OverlayPanel} from "primeng/overlaypanel";
 
 @Component({
   selector: 'app-company-list',

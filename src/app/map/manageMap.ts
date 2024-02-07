@@ -5,6 +5,7 @@ import * as L from 'leaflet';
 import {Circle, LatLng} from 'leaflet';
 import {Student} from '../student/student';
 import {Company} from '../company/company';
+import {School} from "../school/school";
 
 
 @Injectable({
@@ -23,6 +24,12 @@ export class ManageMap {
     iconSize: [38/3, 38/3],
     iconAnchor: [22/3, 37/3],
     popupAnchor: [-3/3, -19/3]
+  });
+  private schoolIcon = L.icon({
+    iconUrl: 'assets/school.png',
+    iconSize: [38/2, 38/2],
+    iconAnchor: [22/2, 37/2],
+    popupAnchor: [-3/2, -19/2]
   });
   private map?: L.Map;
 
@@ -54,7 +61,19 @@ export class ManageMap {
         marker.addTo(this.map)
       student.marker = marker
     });
-  } // TODO: Set School Markers
+  }
+
+  public setSchoolMarkers(schools: School[] | undefined): void {
+    schools?.forEach(school => {
+      const marker = L.marker([school.latitude, school.longitude], {icon: this.schoolIcon}).bindPopup(
+          `<h1>${school.name}</h1><h4>Longitude: ${school.longitude}</h4><h4>Latitude: ${school.latitude}</h4>`
+      );
+      if (this.map)
+        marker.addTo(this.map)
+      school.marker = marker
+    });
+  }
+
 
   public setCompanyMarkers(companies: Company[]): void {
     companies.forEach(company => {
@@ -136,7 +155,26 @@ export class ManageMap {
       })
     })
     return eligibleStudents
-  } // TODO: Return Eligible Schools
+  }
+
+
+  public returnEligibleSchools(companies: Company[], schools: School[]) {
+    let eligibleSchools: School[] = []
+    let mile = 0.0144927536231884
+
+    this.getSelectedCompanies(companies).forEach(company => {
+
+      schools.forEach(school => {
+            let studentLocation = new LatLng(school.latitude, school.longitude)
+            let companyLocation = new LatLng(company.latitude, company.longitude)
+
+            if (this.calculateDistance(studentLocation, companyLocation) < mile * 15) {
+              eligibleSchools.push(school)
+            }
+        })
+    })
+    return eligibleSchools
+  }
 
   private createCircle(latlng: L.LatLngExpression, radius: number, popupText: string, fillColor: string = 'blue'): Circle {
     return L.circle(latlng, {radius}).addTo(this.map!).bindPopup(`${popupText}`).setStyle({fillColor});

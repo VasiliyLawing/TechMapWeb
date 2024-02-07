@@ -1,4 +1,3 @@
-/* © 2024 Vasiliy Lawing */
 body {
   margin: 0;
   padding: 0;
@@ -25,6 +24,21 @@ app-header, app-company, app-student, app-field-table {
   app-header, app-company, app-student, app-field-table {
     width: 100%;
   }
+}
+.companies {
+  position: sticky;
+  top: 0;
+}
+
+.students {
+  position: sticky;
+  top: 4rem;
+}
+
+.fields {
+  position: sticky;
+  bottom: 1rem;
+  align-self: flex-end;
 }
 
 /*# sourceMappingURL=manage-data.component.css.map */
