@@ -6,19 +6,22 @@
         <p-toolbar styleClass="mb-4 gap-2">
             <ng-template pTemplate="left">
                 <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                <button pButton pRipple label="Clear All" icon="pi pi-trash" class="p-button-danger mr-2" (click)="deleteAll()"></button>
+
             </ng-template>
             <ng-template pTemplate="center">
                 <h3>Edit Schools</h3>
             </ng-template>
             <ng-template pTemplate="right">
-                <p-fileUpload  [customUpload]="true"  [maxFileSize]="1000000" (uploadHandler)="onUpload($event)"  chooseLabel="Browse"></p-fileUpload>
-
+                <button pButton pRipple label="Import" icon="pi pi-upload" class="p-button-primary mr-2" (click)="openImportDialog()"></button>
                 <!-- <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload> -->
-                <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+                <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help mr-2" (click)="dt2.exportCSV()"></button>
             </ng-template>
         </p-toolbar>
 
-        <p-table #dt2 [scrollable]="true" scrollHeight="400px"
+        <p-table #dt2 
+                 [columns]="cols"
+                 [scrollable]="true" scrollHeight="400px"
                  [value]="schools" dataKey="id" editMode="row"
                  [tableStyle]="{'min-width': '50rem'}"
                  [filterDelay]="0"
@@ -133,4 +136,10 @@
         </div>
     </form>
 </p-dialog>
+<p-dialog [(visible)]="importDialog" [draggable]="true" [modal]="true" [resizable]="true" [style]="{ 'max-width': '500px' }" header="New School">
+    <p-fileUpload  [customUpload]="true"  [maxFileSize]="1000000" (uploadHandler)="onUpload($event)"  chooseLabel="Browse"></p-fileUpload>
+
+</p-dialog>
+
+
 <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

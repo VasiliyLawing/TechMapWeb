@@ -7,3 +7,9 @@ export interface School {
     longitude: number,
     marker: Marker
 }
+
+export interface NewSchool {
+    name: string,
+    latitude: number,
+    longitude: number,
+}

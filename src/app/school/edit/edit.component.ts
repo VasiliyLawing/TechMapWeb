@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {School} from "../school";
+import {NewSchool, School} from "../school";
 import {Field} from "../../field/field";
 import {NgForm} from "@angular/forms";
 import {SchoolService} from "../school.service";
@@ -19,10 +19,15 @@ export class EditSchoolsComponent implements OnInit{
   schools!: School[];
   uploadedData: any[] = [];
   uploadedSchools: string[] = []
-
+  importDialog = false
   school!: School;
   clonedSchools: { [s: string]: School } = {};
   firstParsedStudent!: string
+
+  cols = [
+    { field: "name", header: "name" },
+    { field: "latitude", header: "latitude" } ,
+    { field: "longitude", header: "longitude" }]
 
   constructor(private schoolService: SchoolService,
               private messageService: MessageService,
@@ -37,6 +42,22 @@ export class EditSchoolsComponent implements OnInit{
     this.dialog = false
   }
 
+  deleteAll() {
+    this.schools.forEach((school) => {
+        this.schoolService.delete(school.id).subscribe(
+        () => {
+          this.getSchools()
+        }
+        )
+    })
+    this.messageService.add({ severity: 'error', summary: 'Schools Cleared' });
+
+
+  }
+  openImportDialog() {
+    this.importDialog = true;
+  }
+
   onUpload(event: any) {
     let input = event.files;
     let reader: FileReader = new FileReader();
@@ -47,7 +68,6 @@ export class EditSchoolsComponent implements OnInit{
 
       this.papa.parse(csv,{
         complete: (result) => {
-
           this.uploadedSchools = result.data
         }
 
@@ -55,12 +75,12 @@ export class EditSchoolsComponent implements OnInit{
 
     this.uploadedSchools.slice(1).forEach((csvSchool) => {
       let splitSchool = csvSchool.toString().split(',')
-      let newSchool = this.school
-      newSchool.name = splitSchool[0]
-      newSchool.latitude = +splitSchool[1]
-      newSchool.longitude = +splitSchool[2]
+      let newSchool: NewSchool = {
+        name: splitSchool[0],
+        latitude: +splitSchool[1], 
+        longitude: +splitSchool[2]
+      }
 
-      alert(newSchool)
       this.schoolService.add(newSchool).subscribe(
         () => {
 
