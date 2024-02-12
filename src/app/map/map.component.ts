@@ -58,7 +58,6 @@ export class MapComponent implements AfterViewInit {
 
 
     const resizeObserver = new ResizeObserver(() => {
-      // alert("Test")
       this.map?.invalidateSize();
     });
     if (mapDiv) 

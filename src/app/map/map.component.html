@@ -4,9 +4,9 @@
 
 
 
-<p-splitter [style]="{ height: '100vh' }" styleClass="mb-5" layout="horizontal">
+<p-splitter [style]="{ height: '100vh' }" styleClass="mb-5" layout="horizontal" [panelSizes]="[74, 21]">
     <ng-template pTemplate>
-        <p-splitter [style]="{ height: '100%' }" styleClass="mb-5" layout="vertical">
+        <p-splitter [style]="{ height: '100%' }" styleClass="mb-5" layout="vertical" [panelSizes]="[99, 1]">
             <ng-template pTemplate>
                 <div id="map"></div>
             </ng-template>
