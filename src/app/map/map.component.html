@@ -4,11 +4,11 @@
 
 
 
-<p-splitter [style]="{ height: '100vh', width: '100%' }" styleClass="mb-5" layout="horizontal">
+<p-splitter [style]="{ height: '100vh' }" styleClass="mb-5" layout="horizontal">
     <ng-template pTemplate>
-        <p-splitter [style]="{ height: '100%', width: '50%' }" styleClass="mb-5" layout="vertical">
+        <p-splitter [style]="{ height: '100%' }" styleClass="mb-5" layout="vertical">
             <ng-template pTemplate>
-                <div id="map" class="col flex align-items-center justify-content-center"></div>
+                <div id="map"></div>
             </ng-template>
             <ng-template pTemplate>
                 <div style="width: 100%" *ngIf="mapManager.getSelectedCompanies(companies)[0] !== undefined">

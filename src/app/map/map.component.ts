@@ -14,6 +14,8 @@ import {ToastService} from "../toast.service";
 import {School} from "../school/school";
 import {SchoolService} from "../school/school.service";
 
+
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -41,10 +43,13 @@ export class MapComponent implements AfterViewInit {
     this.mapManager = manageMap;
   }
 
-
+  updateMap() {
+  
+  }
 
   initMap() {
     this.map = L.map('map').setView([42.392574068021005, -87.97722454804106], 10);
+    const mapDiv = document.getElementById("map");
 
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
@@ -52,6 +57,12 @@ export class MapComponent implements AfterViewInit {
     }).addTo(this.map!);
 
 
+    const resizeObserver = new ResizeObserver(() => {
+      // alert("Test")
+      this.map?.invalidateSize();
+    });
+    if (mapDiv) 
+    resizeObserver.observe(mapDiv);
 
     this.mapManager.initMap(this.map)
   }
