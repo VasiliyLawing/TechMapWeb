@@ -8,7 +8,7 @@
     <ng-template pTemplate>
         <p-splitter [style]="{ height: '100%', width: '50%' }" styleClass="mb-5" layout="vertical">
             <ng-template pTemplate>
-                <div id="map"></div>
+                <div id="map" class="col flex align-items-center justify-content-center"></div>
             </ng-template>
             <ng-template pTemplate>
                 <div style="width: 100%" *ngIf="mapManager.getSelectedCompanies(companies)[0] !== undefined">

@@ -51,6 +51,8 @@ export class MapComponent implements AfterViewInit {
       attribution: '&copy; OSM Mapnik <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(this.map!);
 
+
+
     this.mapManager.initMap(this.map)
   }
 

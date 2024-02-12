@@ -105,6 +105,12 @@ export class ManageMap {
 
         company.selected = true
 
+        let fiveMiles = 0.0144927536231884 * 5
+
+        this.map?.fitBounds([
+          [company.latitude - fiveMiles, company.longitude - fiveMiles],
+          [company.latitude + fiveMiles, company.longitude + fiveMiles]
+      ]);
         this.addCircles(company)
       }
     })
