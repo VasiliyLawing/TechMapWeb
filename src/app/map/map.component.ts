@@ -13,6 +13,7 @@ import {MessageService} from "primeng/api";
 import {ToastService} from "../toast.service";
 import {School} from "../school/school";
 import {SchoolService} from "../school/school.service";
+import { DialogService } from '../dialog.service';
 
 
 
@@ -30,7 +31,7 @@ export class MapComponent implements AfterViewInit {
   public schools: School[] = []
   private map?: L.Map;
   basicData: any;
-
+  manageData = false;
   basicOptions: any;
 
   constructor(
@@ -38,9 +39,11 @@ export class MapComponent implements AfterViewInit {
     private companyService: CompanyService,
     private toastService: ToastService,
     private schoolService: SchoolService,
-    manageMap: ManageMap
+    manageMap: ManageMap,
+    public dialogService: DialogService
   ) {
     this.mapManager = manageMap;
+    this.manageData = dialogService.manageData
   }
 
   updateMap() {

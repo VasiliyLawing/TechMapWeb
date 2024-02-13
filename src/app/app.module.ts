@@ -44,6 +44,7 @@ import {FileUploadModule} from "primeng/fileupload";
 import {ToolbarModule} from "primeng/toolbar";
 import { ProfileComponent } from './profile/profile.component';
 import {MultiSelectModule} from "primeng/multiselect";
+import { AccordionModule } from 'primeng/accordion';
 
 
 export const httpInterceptorProviders = [
@@ -62,6 +63,7 @@ export const httpInterceptorProviders = [
     ProfileComponent,
   ],
     imports: [
+        AccordionModule,
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,

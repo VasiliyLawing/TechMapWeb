@@ -4,6 +4,7 @@ import {Sidebar} from "primeng/sidebar";
 import {AuthService} from "../auth/auth.service";
 import { MenuItem } from 'primeng/api';
 import { ThemeService } from '../theme.service';
+import { DialogService } from '../dialog.service';
 
 @Component({
   selector: 'app-header',
@@ -48,14 +49,23 @@ export class HeaderComponent implements OnInit {
                     command: () => this.swapTheme('bootstrap4-light-blue'),
                   }
               ]
-          },]
+          },
+          {
+            label: 'Manage Data',
+            icon: 'pi pi-fw pi-moon',
+            command: () => this.dialogService.toggleManageData(),
+          },
+        
+        ]
       }
 
       swapTheme(theme: string) {
         this.themeService.switchTheme(theme)
       }
 
-  constructor(private userService: AuthService, private themeService: ThemeService) {}
+  constructor(
+    private dialogService: DialogService,
+    private userService: AuthService, private themeService: ThemeService) {}
 
   loggedInUsername = this.userService.userValue?.username
   closeCallback(e: Event): void {

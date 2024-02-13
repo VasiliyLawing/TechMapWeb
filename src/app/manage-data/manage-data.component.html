@@ -1,15 +1,18 @@
 <!-- © 2024 Vasiliy Lawing -->
-<app-header></app-header>
+<div class="card flex justify-content-center">
 
+<p-accordion [activeIndex]="0" [multiple]="true">
+    <p-accordionTab header="Schools">
+        <app-table-schools></app-table-schools>
 
-<div class="container">
-    <app-table-schools></app-table-schools>
+    </p-accordionTab>
+    <p-accordionTab header="Companies">
+        <app-company></app-company>
 
-    <app-company></app-company>
-<!--    <app-student></app-student>-->
-    <app-field-table></app-field-table>
+    </p-accordionTab>
+    <p-accordionTab header="Fields">
+        <app-field-table></app-field-table>
 
+    </p-accordionTab>
+</p-accordion>
 </div>
-
-
-
