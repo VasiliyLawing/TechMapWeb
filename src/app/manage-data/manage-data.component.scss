@@ -1,45 +1,15 @@
-// © 2024 Vasiliy Lawing
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-app-header, app-company, app-student, app-field-table {
-  margin-bottom: 20px;
-}
-
-.footer {
-  background-color: #f0f0f0;
-  padding: 10px;
-  text-align: center;
-}
-
-@media screen and (max-width: 767px) {
-  app-header, app-company, app-student, app-field-table {
-    width: 100%;
+:host ::ng-deep {
+  .p-accordion-tab:not(.p-accordion-tab-active) {
+    .p-toggleable-content {
+      height: 0;
+      overflow: hidden;
+    }
   }
 
-}
-
-.companies {
-  position: sticky;
-  top: 0;
-}
-
-.students {
-  position: sticky;
-  top: 4rem;
-}
-
-.fields {
-  position: sticky;
-  bottom: 1rem;
-  align-self: flex-end;
+  .p-accordion-tab.p-accordion-tab-active {
+    .p-toggleable-content {
+      height: auto !important;
+      overflow: auto !important;
+    }
+  }
 }
