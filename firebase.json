@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/tech-web-map",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
