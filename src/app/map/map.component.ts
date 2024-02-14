@@ -54,9 +54,13 @@ export class MapComponent implements AfterViewInit {
     this.map = L.map('map').setView([42.392574068021005, -87.97722454804106], 10);
     const mapDiv = document.getElementById("map");
 
+    let attribution = this.map.attributionControl;
+
+    attribution.setPrefix('Tech Campus Map'); // Removes Ukraine Flag
+
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
-      attribution: '&copy; OSM Mapnik <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      attribution: '&copy; OSM Mapnik <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>' // Can remove if want to risk legal
     }).addTo(this.map!);
 
 
