@@ -1,31 +1,31 @@
+<!-- © 2024 Vasiliy Lawing -->
+
 <app-header></app-header>
 
 
 
-<div id="map" class="surface-card p-4 shadow-2 border-round w-full lg:w-6 center"></div>
+<p-splitter [style]="{ height: '100vh' }" styleClass="mb-5" layout="horizontal" [panelSizes]="[74, 21]">
+    <ng-template pTemplate>
+        <p-splitter [style]="{ height: '100%' }" styleClass="mb-5" layout="vertical" [panelSizes]="[99, 1]">
+            <ng-template pTemplate>
+                <div id="map"></div>
+            </ng-template>
+            <ng-template pTemplate>
+                <div style="width: 100%" *ngIf="mapManager.getSelectedCompanies(companies)[0] !== undefined">
+<!--                    <app-eligible-students-list [selectedCompany]="mapManager.getSelectedCompanies(companies)[0]" [eligibleStudents]="mapManager.returnEligibleStudents(companies, students)"></app-eligible-students-list>-->
+                    <app-eligible-schools-list [selectedCompany]="mapManager.getSelectedCompanies(companies)[0]" [eligibleSchools]="mapManager.returnEligibleSchools(companies, schools)"></app-eligible-schools-list>
+                </div>
+            </ng-template>
+        </p-splitter>
+    </ng-template>
+    <ng-template pTemplate>
+        <div class="company-list" style="width: 100%;">
+            <app-company-list [companies]="companies"></app-company-list>
+        </div>
+    </ng-template>
+</p-splitter>
 
-<div class="companyList">
-<app-company-list [companies]="companies"></app-company-list>
-</div>
+<p-dialog [(visible)]="this.dialogService.manageData" [draggable]="true" [resizable]="true" [style]="{}" header="ManageData">
+    <app-manage-data></app-manage-data>
 
-<div class="eligibleStudentsList">
-    <app-eligible-students-list [eligibleStudents]="mapManager.returnEligibleStudents(companies, students)"></app-eligible-students-list>
-</div>
-
-<div class="key">
-    <app-key></app-key>
-</div>
-
-<div class="controls">
-    <app-controls></app-controls>
-
-<!--    <p-card>-->
-<!--        <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>-->
-<!--    </p-card>-->
-
-
-</div>
-
-<div class="moreInfo" *ngIf="mapManager.getSelectedCompanies(companies).length > 0">
-    <app-more-info [company]="mapManager.getSelectedCompanies(companies)[0]"></app-more-info>
-</div>
+</p-dialog>

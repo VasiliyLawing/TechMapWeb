@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HeaderComponent} from "./header.component";
@@ -10,6 +11,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {RouterLink} from "@angular/router";
 import {MenubarModule} from "primeng/menubar";
 import {InputTextModule} from "primeng/inputtext";
+import { ManageDataComponent } from '../manage-data/manage-data.component';
 
 
 @NgModule({
@@ -27,7 +29,7 @@ import {InputTextModule} from "primeng/inputtext";
     BrowserAnimationsModule,
     RouterLink,
     MenubarModule,
-    InputTextModule
+    InputTextModule,
   ]
 })
 export class HeaderModule { }

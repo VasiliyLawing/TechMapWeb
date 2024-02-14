@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {Component} from "@angular/core";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
@@ -6,7 +7,7 @@ import {CheckboxModule} from "primeng/checkbox";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {InputTextModule} from "primeng/inputtext";
-import {NgOptimizedImage} from "@angular/common";
+import {NgIf, NgOptimizedImage} from "@angular/common";
 import {MessagesModule} from "primeng/messages";
 
 @Component({
@@ -20,12 +21,14 @@ import {MessagesModule} from "primeng/messages";
     RippleModule,
     InputTextModule,
     NgOptimizedImage,
-    MessagesModule
+    MessagesModule,
+    NgIf
   ],
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
 
+  passwordValid = true
 
   form = this.fb.nonNullable.group({
     username: ['',Validators.required],
@@ -47,11 +50,11 @@ export class LoginFormComponent {
     this.authService.requestAuth(requestData)
       .subscribe(
         data => {
-          console.log(data)
+          this.passwordValid = true
           this.router.navigateByUrl('/map').then();
         },
         error => {
-          console.log(error)
+          this.passwordValid = false
         }
       );
 

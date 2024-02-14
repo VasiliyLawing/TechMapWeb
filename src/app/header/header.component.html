@@ -1,17 +1,12 @@
+<!-- © 2024 Vasiliy Lawing -->
 <p-menubar [model]="items">
   <ng-template pTemplate="start">
     <a class="active" (click)="sidebarVisible = true">
     <img src="assets/menu.png" height="48" class="mr-2"  alt=""/>
     </a>
   </ng-template>
-  <ng-template pTemplate="end">
-    <input type="text" pInputText placeholder="Search" class="w-full" />
-  </ng-template>
+
 </p-menubar>
-
-
-
-
 
 
 <div class="card flex justify-content-center">
@@ -45,14 +40,6 @@
                   <a pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple" [routerLink]="['/map']">
                     <span class="material-symbols-outlined mr-2">travel_explore</span>
                     <span class="font-medium">Map</span>
-                  </a>
-                </li>
-                <li>
-                  <a [routerLink]="['/manageData']" pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                    <span class="material-symbols-outlined mr-2">
-database
-</span>
-                    <span class="font-medium">ManageData</span>
                   </a>
                 </li>
                 <li>
@@ -108,9 +95,9 @@ database
                   </ul>
                 </li>
                 <li>
-                  <a pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                  <a [routerLink]="['/settings']" pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                     <i class="pi pi-cog mr-2"></i>
-                    <span class="font-medium">Settings(TBD)</span>
+                    <span class="font-medium">Settings</span>
                   </a>
                 </li>
               </ul>
@@ -144,9 +131,9 @@ database
                   </a>
                 </li>
                 <li>
-                  <a pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                  <a [routerLink]="['/settings']" pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                     <i class="pi pi-cog mr-2"></i>
-                    <span class="font-medium">Settings(TBD)</span>
+                    <span class="font-medium">Settings</span>
                   </a>
                 </li>
               </ul>

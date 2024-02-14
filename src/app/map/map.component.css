@@ -1,45 +1,47 @@
-#map {
-  height: 60%;
-}
-
-.center {
+body {
   margin: 0;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0; /* Added background color for better visualization */
 }
 
-.companyList {
-  position: absolute;
-  top: 10%;
-  left: 76%;
+#map {
+  z-index: 1;
+  grid-area: map;
+  height: 100%;
+  width: 100%;
 }
 
-.eligibleStudentsList {
-  position: absolute;
-  top: 73%;
-  left: 50%;
-  transform: translateX(-50%);
+.sidebar {
+  grid-area: sidebar;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-.key {
-  position: absolute;
-  left: 5%;
-  top: 10%;
+.sidebar > div {
+  margin-bottom: 20px;
 }
 
-.controls {
-  position: absolute;
-  top: calc(40% + 30px);
-  left: 5%;
+.company-list {
+  margin-bottom: 20px;
 }
 
-.moreInfo {
-  position: absolute;
-  top: calc(10% + 600px); /* Adjust as necessary */
-  left: 76%; /* Adjust as necessary */
+.more-info {
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .dashboard {
+    grid-template-columns: 1fr; /* Adjust for smaller screens */
+    grid-template-rows: auto auto;
+    grid-template-areas: "map" "sidebar";
+  }
+  .sidebar {
+    margin-top: 20px; /* Adjust for spacing */
+  }
 }
 
 /*# sourceMappingURL=map.component.css.map */

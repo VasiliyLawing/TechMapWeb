@@ -1,8 +1,59 @@
-.center {
-  margin: 0;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+// © 2024 Vasiliy Lawing
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Set height to viewport height */
 }
+
+.container {
+  max-width: 100%;
+  padding: 0 20px;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+.p-dialog {
+  width: 90vw;
+  max-width: 500px;
+}
+.company-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.p-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.p-dialog-footer .p-button {
+  margin-left: 10px;
+}
+
+
+

@@ -1,8 +1,10 @@
+// © 2024 Vasiliy Lawing
 import {Component, Input} from '@angular/core';
 import {Company} from "../../company/company";
 import {MessageService} from "primeng/api";
 import {ToastService} from "../../toast.service";
 import {ManageMap} from "../manageMap";
+import {OverlayPanel} from "primeng/overlaypanel";
 
 @Component({
   selector: 'app-company-list',
@@ -19,6 +21,13 @@ export class CompanyListComponent {
 
 
   onRowSelect(event: any) {
+    let selectedCompanies = this.mapService.getSelectedCompanies(this.companies)
+    if (selectedCompanies[0] !== null) {
+      selectedCompanies.forEach(company =>{
+        this.mapService.unselectCompany(this.companies, company.id)
+      })
+    }
+
     this.selectedTempCompany = this.selectedCompany
     this.mapService.selectCompany(this.companies, this.selectedCompany.id)
     this.messageService.add({ severity: 'info', summary: 'Company Selected', detail: event.data.name });

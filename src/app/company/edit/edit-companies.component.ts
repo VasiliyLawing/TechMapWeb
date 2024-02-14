@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {Component, OnInit} from '@angular/core';
 
 import {Company} from "../company";
@@ -17,17 +18,34 @@ export class EditCompaniesComponent implements OnInit{
   dialog: boolean = false;
   selectedFields!: Field[]
   companies!: Company[];
+  importDialog = false
 
   company!: Company;
-  clonedProducts: { [s: string]: Company } = {};
+  clonedCompanies: { [s: string]: Company } = {};
   fields!: Field[]
-  // selectedFields!: Field[]
 
   selectAll = false
 
+  cols = [
+    { field: "name", header: "name" },
+    { field: "latitude", header: "latitude" } ,
+    { field: "longitude", header: "longitude" }]
   onChange(event: any) {
     const { originalEvent, value } = event
     if(value) this.selectAll = value.length === this.fields.length;
+  }
+
+  deleteAll() {
+    this.companies.forEach((company) => {
+        this.companyService.deleteCompany(company.id).subscribe(
+        () => {
+          this.getCompanies()
+        }
+        )
+    })
+    this.messageService.add({ severity: 'error', summary: 'Schools Cleared' });
+
+
   }
 
   closeDialog() {
@@ -45,6 +63,8 @@ export class EditCompaniesComponent implements OnInit{
         }, error => {
           console.log(error);
         })
+    this.messageService.add({ severity: 'success', summary: 'Company Created', detail: `${addForm.value.name}` });
+
   }
 
   openNew() {
@@ -58,7 +78,7 @@ export class EditCompaniesComponent implements OnInit{
 
 
   onRowEditInit(company: Company) {
-    this.clonedProducts[company.id.toString() as string] = { ...company };
+    this.clonedCompanies[company.id.toString() as string] = { ...company };
   }
 
   onRowEditSave(company: Company) {
@@ -67,13 +87,15 @@ export class EditCompaniesComponent implements OnInit{
     }, error => {
       console.log(error);
     })
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Company is updated' });
+    this.messageService.add({ severity: 'success', summary: 'Company Updated', detail: `${company.name}` });
 
   }
 
   onRowEditCancel(company: Company, index: number) {
-    this.companies[index] = this.clonedProducts[company.id.toString() as string];
-    delete this.clonedProducts[company.id.toString() as string];
+    this.companies[index] = this.clonedCompanies[company.id.toString() as string];
+    delete this.clonedCompanies[company.id.toString() as string];
+    this.messageService.add({ severity: 'error', summary: 'Company Update Canceled', detail: `${company.name}` });
+
   }
 
 
@@ -108,7 +130,7 @@ export class EditCompaniesComponent implements OnInit{
             }
         )
 
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Company Deleted', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Company Deleted', detail: `${company.name}` });
       }
     });
   }

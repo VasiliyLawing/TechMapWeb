@@ -1,3 +1,4 @@
+// © 2024 Vasiliy Lawing
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
@@ -31,6 +32,19 @@ import {MapModule} from "./map/map.module";
 import {ChartModule} from "primeng/chart";
 import {CardModule} from "primeng/card";
 import {FieldModule} from "./field/field.module";
+import { SettingsComponent } from './settings/settings.component';
+import { FooterComponent } from './footer/footer.component';
+import { TableSchoolsComponent } from './school/table/table.component';
+import { EditSchoolsComponent } from './school/edit/edit.component';
+import {InputTextModule} from "primeng/inputtext";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {DialogModule} from "primeng/dialog";
+import {DropdownModule} from "primeng/dropdown";
+import {FileUploadModule} from "primeng/fileupload";
+import {ToolbarModule} from "primeng/toolbar";
+import { ProfileComponent } from './profile/profile.component';
+import {MultiSelectModule} from "primeng/multiselect";
+import { AccordionModule } from 'primeng/accordion';
 
 
 export const httpInterceptorProviders = [
@@ -42,8 +56,14 @@ export const httpInterceptorProviders = [
     AppComponent,
     MapComponent,
     ManageDataComponent,
+    SettingsComponent,
+    FooterComponent,
+    TableSchoolsComponent,
+    EditSchoolsComponent,
+    ProfileComponent,
   ],
     imports: [
+        AccordionModule,
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
@@ -64,7 +84,14 @@ export const httpInterceptorProviders = [
         MapModule,
         ChartModule,
         CardModule,
-        FieldModule
+        FieldModule,
+        InputTextModule,
+        ConfirmDialogModule,
+        DialogModule,
+        DropdownModule,
+        FileUploadModule,
+        ToolbarModule,
+        MultiSelectModule
     ],
   providers: [ httpInterceptorProviders, PermissionService, AuthService, StudentService, CompanyService, MessageService ],
   bootstrap: [AppComponent]
