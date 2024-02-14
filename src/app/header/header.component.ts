@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
           },
           {
             label: 'Manage Data',
-            icon: 'pi pi-fw pi-moon',
+            icon: 'pi pi-spin pi-fw pi-cog',
             command: () => this.dialogService.toggleManageData(),
           },
         

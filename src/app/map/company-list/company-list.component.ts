@@ -30,12 +30,12 @@ export class CompanyListComponent {
 
     this.selectedTempCompany = this.selectedCompany
     this.mapService.selectCompany(this.companies, this.selectedCompany.id)
-    this.messageService.add({ severity: 'info', summary: 'Company Selected', detail: event.data.name });
+    this.messageService.add({key: 'tc', severity: 'info', summary: 'Company Selected', detail: event.data.name });
   }
 
   onRowUnselect(event: any) {
     this.mapService.unselectCompany(this.companies, this.selectedTempCompany.id)
-    this.messageService.add({ severity: 'info', summary: 'Company Unselected', detail: event.data.name });
+    this.messageService.add({key: 'tc', severity: 'info', summary: 'Company Unselected', detail: event.data.name });
   }
 
   protected readonly HTMLInputElement = HTMLInputElement;
