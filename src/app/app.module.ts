@@ -45,6 +45,7 @@ import {ToolbarModule} from "primeng/toolbar";
 import { ProfileComponent } from './profile/profile.component';
 import {MultiSelectModule} from "primeng/multiselect";
 import { AccordionModule } from 'primeng/accordion';
+import { PasswordModule } from 'primeng/password';
 
 
 export const httpInterceptorProviders = [
@@ -65,6 +66,7 @@ export const httpInterceptorProviders = [
     imports: [
         AccordionModule,
         BrowserModule,
+        PasswordModule,
         AppRoutingModule,
         HttpClientModule,
         PanelModule,

@@ -49,6 +49,22 @@ export class MapComponent implements AfterViewInit {
   updateMap() {
   
   }
+  findTheTarget() {
+    let e = this.map?.locate({setView: true, maxZoom: 16});
+
+    this.map?.on('locationfound', (e: any) => {
+      if (!this.map) return
+
+      var radius = e.accuracy;
+
+      L.marker(e.latlng).addTo(this.map)
+          .bindPopup("You are within " + radius + " meters from this point").openPopup();
+  
+      L.circle(e.latlng, radius).addTo(this.map);   
+     })
+  }
+
+
 
   initMap() {
     this.map = L.map('map').setView([42.392574068021005, -87.97722454804106], 10);
@@ -63,6 +79,7 @@ export class MapComponent implements AfterViewInit {
       attribution: '&copy; OSM Mapnik <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>' // Can remove if want to risk legal
     }).addTo(this.map!);
 
+    this.map.locate({setView: true, maxZoom: 16});
 
     const resizeObserver = new ResizeObserver(() => {
       this.map?.invalidateSize();
@@ -71,6 +88,10 @@ export class MapComponent implements AfterViewInit {
     resizeObserver.observe(mapDiv);
 
     this.mapManager.initMap(this.map)
+
+    this.findTheTarget()
+
+
   }
 
   handleShowToastEvent() {

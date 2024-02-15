@@ -77,7 +77,9 @@ export class ManageMap {
 
   public setCompanyMarkers(companies: Company[]): void {
     companies.forEach(company => {
-      const marker = L.marker([company.latitude, company.longitude], {icon: this.companyIcon});
+      const marker = L.marker([company.latitude, company.longitude], {icon: this.companyIcon}).bindPopup(
+        `<h1>${company.name}</h1><h4>Longitude: ${company.longitude}</h4><h4>Latitude: ${company.latitude}</h4>`
+    );;
       if (this.map)
         marker.addTo(this.map)
       company.marker = marker;
@@ -86,17 +88,17 @@ export class ManageMap {
 
 
   public manageCompanyMarkers(companies: Company[]): void {
-    companies.forEach(company => {
-      company.marker?.on('click', () => {
-        if (company.selected) {
-          this.removeCircles(company)
-          company.selected = false
-        } else {
-          this.addCircles(company)
-          company.selected = true
-        }
-      });
-    });
+    // companies.forEach(company => {
+    //   company.marker?.on('click', () => {
+    //     if (company.selected) {
+    //       this.removeCircles(company)
+    //       company.selected = false
+    //     } else {
+    //       this.addCircles(company)
+    //       company.selected = true
+    //     }
+    //   });
+    // });
   }
 
   public selectCompany(companies: Company[], selectedCompany: number) {
@@ -105,7 +107,7 @@ export class ManageMap {
 
         company.selected = true
 
-        let fiveMiles = 0.0144927536231884 * 5
+        let fiveMiles = 0.0144927536231884 * 15
 
         this.map?.fitBounds([
           [company.latitude - fiveMiles, company.longitude - fiveMiles],

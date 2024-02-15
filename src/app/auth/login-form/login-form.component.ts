@@ -9,6 +9,7 @@ import {RippleModule} from "primeng/ripple";
 import {InputTextModule} from "primeng/inputtext";
 import {NgIf, NgOptimizedImage} from "@angular/common";
 import {MessagesModule} from "primeng/messages";
+import { PasswordModule } from "primeng/password";
 
 @Component({
   standalone: true,
@@ -22,7 +23,8 @@ import {MessagesModule} from "primeng/messages";
     InputTextModule,
     NgOptimizedImage,
     MessagesModule,
-    NgIf
+    NgIf,
+    PasswordModule
   ],
   styleUrls: ['./login-form.component.scss']
 })

@@ -15,7 +15,9 @@ export class HeaderComponent implements OnInit {
   @ViewChild('sidebarRef') sidebarRef!: Sidebar;
 
   items!: MenuItem[];
-
+  loggedInUsername = this.userService.userValue?.username
+  loggedInUserRole = this.userService.userValue?.role
+  
   ngOnInit() {
       this.items = [
           {
@@ -67,7 +69,6 @@ export class HeaderComponent implements OnInit {
     private dialogService: DialogService,
     private userService: AuthService, private themeService: ThemeService) {}
 
-  loggedInUsername = this.userService.userValue?.username
   closeCallback(e: Event): void {
     this.sidebarRef.close(e);
   }
