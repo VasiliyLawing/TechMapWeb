@@ -49,20 +49,20 @@ export class MapComponent implements AfterViewInit {
   updateMap() {
   
   }
-  findTheTarget() {
-    let e = this.map?.locate({setView: true, maxZoom: 16});
+  // findTheTarget() {
+  //   let e = this.map?.locate({setView: true, maxZoom: 16});
 
-    this.map?.on('locationfound', (e: any) => {
-      if (!this.map) return
+  //   this.map?.on('locationfound', (e: any) => {
+  //     if (!this.map) return
 
-      var radius = e.accuracy;
+  //     var radius = e.accuracy;
 
-      L.marker(e.latlng).addTo(this.map)
-          .bindPopup("You are within " + radius + " meters from this point").openPopup();
+  //     L.marker(e.latlng).addTo(this.map)
+  //         .bindPopup("You are within " + radius + " meters from this point").openPopup();
   
-      L.circle(e.latlng, radius).addTo(this.map);   
-     })
-  }
+  //     L.circle(e.latlng, radius).addTo(this.map);   
+  //    })
+  // }
 
 
 
@@ -89,7 +89,7 @@ export class MapComponent implements AfterViewInit {
 
     this.mapManager.initMap(this.map)
 
-    this.findTheTarget()
+    // this.findTheTarget()
 
 
   }
