@@ -1,12 +1,14 @@
-<app-header></app-header>
-<p-toast></p-toast>
+<p-toast position="bottom-center">
+</p-toast>
+<p-confirmPopup></p-confirmPopup>
+
 
 <div class="center-container surface-card p-4 shadow-2 border-round w-full">
     <div class="container">
         <p-toolbar styleClass="mb-4 gap-2">
             <ng-template pTemplate="left">
                 <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
-                <button pButton pRipple label="Clear All" icon="pi pi-trash" class="p-button-danger mr-2" (click)="deleteAll()"></button>
+                <button pButton pRipple label="Clear All" icon="pi pi-trash" class="p-button-danger mr-2" (click)="confirm($event)"></button>
 
             </ng-template>
             <ng-template pTemplate="center">
@@ -142,4 +144,4 @@
 </p-dialog>
 
 
-<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<!-- <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog> -->

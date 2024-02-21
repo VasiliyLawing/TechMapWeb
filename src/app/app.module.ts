@@ -2,6 +2,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
+import { MenubarModule } from 'primeng/menubar';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MapComponent} from './map/map.component';
@@ -21,7 +22,6 @@ import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {StyleClassModule} from "primeng/styleclass";
 import {AvatarModule} from "primeng/avatar";
-import {HeaderModule} from "./header/header.module";
 import {SplitterModule} from "primeng/splitter";
 import {PanelModule} from "primeng/panel";
 import {TableModule} from "primeng/table";
@@ -46,6 +46,10 @@ import { ProfileComponent } from './profile/profile.component';
 import {MultiSelectModule} from "primeng/multiselect";
 import { AccordionModule } from 'primeng/accordion';
 import { PasswordModule } from 'primeng/password';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { HeaderComponent } from './header/header.component';
+import { DialogService } from './dialog.service';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 export const httpInterceptorProviders = [
@@ -62,6 +66,7 @@ export const httpInterceptorProviders = [
     TableSchoolsComponent,
     EditSchoolsComponent,
     ProfileComponent,
+    HeaderComponent
   ],
     imports: [
         AccordionModule,
@@ -73,12 +78,12 @@ export const httpInterceptorProviders = [
         StudentModule,
         CompanyModule,
         FormsModule,
+        ConfirmPopupModule,
         SidebarModule,
         ButtonModule,
         RippleModule,
         StyleClassModule,
         AvatarModule,
-        HeaderModule,
         SplitterModule,
         TableModule,
         SkeletonModule,
@@ -93,9 +98,12 @@ export const httpInterceptorProviders = [
         DropdownModule,
         FileUploadModule,
         ToolbarModule,
-        MultiSelectModule
+        MultiSelectModule,
+        MenubarModule,
+        BrowserAnimationsModule,
+
     ],
-  providers: [ httpInterceptorProviders, PermissionService, AuthService, StudentService, CompanyService, MessageService ],
+  providers: [ httpInterceptorProviders, PermissionService, AuthService, StudentService, CompanyService, MessageService, DialogService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

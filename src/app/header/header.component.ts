@@ -1,6 +1,6 @@
 // © 2024 Vasiliy Lawing
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Sidebar} from "primeng/sidebar";
+import {Sidebar, SidebarModule} from "primeng/sidebar";
 import {AuthService} from "../auth/auth.service";
 import { MenuItem } from 'primeng/api';
 import { ThemeService } from '../theme.service';
@@ -10,6 +10,7 @@ import { DialogService } from '../dialog.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  providers: []
 })
 export class HeaderComponent implements OnInit {
   @ViewChild('sidebarRef') sidebarRef!: Sidebar;
@@ -18,6 +19,14 @@ export class HeaderComponent implements OnInit {
   loggedInUsername = this.userService.userValue?.username
   loggedInUserRole = this.userService.userValue?.role
   
+  isUserLoggedIn() {
+    if (this.userService.userValue !== null) 
+      return true;
+    
+    return false;
+  }
+
+
   ngOnInit() {
       this.items = [
           {
@@ -66,8 +75,9 @@ export class HeaderComponent implements OnInit {
       }
 
   constructor(
-    private dialogService: DialogService,
-    private userService: AuthService, private themeService: ThemeService) {}
+    public dialogService: DialogService,
+    public userService: AuthService, 
+    private themeService: ThemeService) {}
 
   closeCallback(e: Event): void {
     this.sidebarRef.close(e);

@@ -8,7 +8,6 @@ import {TableModule} from "primeng/table";
 import {CardModule} from "primeng/card";
 import {ButtonModule} from "primeng/button";
 import {RouterLink} from "@angular/router";
-import {HeaderModule} from "../header/header.module";
 import {InputTextModule} from "primeng/inputtext";
 import {RippleModule} from "primeng/ripple";
 import {ToastModule} from "primeng/toast";
@@ -19,6 +18,7 @@ import {DialogModule} from "primeng/dialog";
 import {ListboxModule} from "primeng/listbox";
 import {DropdownModule} from "primeng/dropdown";
 import {MultiSelectModule} from "primeng/multiselect";
+import { HeaderComponent } from '../header/header.component';
 
 
 @NgModule({
@@ -33,7 +33,6 @@ import {MultiSelectModule} from "primeng/multiselect";
         CardModule,
         ButtonModule,
         RouterLink,
-        HeaderModule,
         InputTextModule,
         RippleModule,
         ToastModule,
@@ -43,7 +42,7 @@ import {MultiSelectModule} from "primeng/multiselect";
         DialogModule,
         ListboxModule,
         DropdownModule,
-        MultiSelectModule
+        MultiSelectModule,
     ]
 })
 export class CompanyModule { }

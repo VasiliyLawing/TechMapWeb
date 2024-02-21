@@ -41,3 +41,10 @@ p-menu-list {
   overflow:'visible'
 
 }
+
+:host ::ng-deep .p-menubar {
+  position: sticky;
+  position: -webkit-sticky; // Needed for Safari browsers.
+  z-index: 10000; // This prevents elements to be seen through the toolbar.
+  top: 0; // Required for "position: sticky" to take effect.
+}
