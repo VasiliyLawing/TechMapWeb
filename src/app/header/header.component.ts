@@ -5,6 +5,8 @@ import {AuthService} from "../auth/auth.service";
 import { MenuItem } from 'primeng/api';
 import { ThemeService } from '../theme.service';
 import { DialogService } from '../dialog.service';
+import { R3PartialDeclaration } from '@angular/compiler';
+import { Role } from '../auth/user';
 
 @Component({
   selector: 'app-header',
@@ -16,12 +18,15 @@ export class HeaderComponent implements OnInit {
   @ViewChild('sidebarRef') sidebarRef!: Sidebar;
 
   items!: MenuItem[];
-  loggedInUsername = this.userService.userValue?.username
-  loggedInUserRole = this.userService.userValue?.role
+  loggedInUsername !: string
+  loggedInUserRole !: Role
   
   isUserLoggedIn() {
-    if (this.userService.userValue !== null) 
+    if (this.userService.userValue !== null) {
+      this.loggedInUsername = this.userService.userValue.username
+      this.loggedInUserRole = this.userService.userValue.role
       return true;
+    }
     
     return false;
   }
@@ -68,6 +73,8 @@ export class HeaderComponent implements OnInit {
           },
         
         ]
+
+        alert("Initialized")
       }
 
       swapTheme(theme: string) {
