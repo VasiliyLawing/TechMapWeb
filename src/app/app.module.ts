@@ -50,8 +50,9 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { HeaderComponent } from './header/header.component';
 import { DialogService } from './dialog.service';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-
-
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { DataViewModule } from 'primeng/dataview';
 export const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
@@ -66,7 +67,8 @@ export const httpInterceptorProviders = [
     TableSchoolsComponent,
     EditSchoolsComponent,
     ProfileComponent,
-    HeaderComponent
+    HeaderComponent,
+    AdminPanelComponent
   ],
     imports: [
         AccordionModule,
@@ -79,6 +81,8 @@ export const httpInterceptorProviders = [
         CompanyModule,
         FormsModule,
         ConfirmPopupModule,
+        TabMenuModule,
+        DataViewModule,
         SidebarModule,
         ButtonModule,
         RippleModule,

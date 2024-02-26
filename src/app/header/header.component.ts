@@ -74,7 +74,6 @@ export class HeaderComponent implements OnInit {
         
         ]
 
-        alert("Initialized")
       }
 
       swapTheme(theme: string) {

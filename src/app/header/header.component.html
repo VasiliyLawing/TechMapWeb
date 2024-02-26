@@ -1,105 +1,107 @@
 <!-- © 2024 Vasiliy Lawing -->
-<p-menubar [model]="items">
-  <ng-template pTemplate="start">
-    <a class="active" (click)="sidebarVisible = !sidebarVisible">
-    <img src="assets/menu.png" height="48" class="mr-2"  alt=""/>
-    </a>
-  </ng-template>
+<div *ngIf="isUserLoggedIn()" class="bar">
 
-</p-menubar>
 
-<div *ngIf="isUserLoggedIn()">
-
-<div class="card flex justify-content-center">
-  <p-sidebar #sidebarRef [(visible)]="sidebarVisible">
-    <ng-template pTemplate="headless">
-      <div class="flex flex-column h-full">
-        <div class="flex align-items-center justify-content-between px-4 pt-3 flex-shrink-0">
-                <span class="inline-flex align-items-center gap-2">
-                    <span class="font-semibold text-2xl text-primary">TechMap</span>
-                </span>
-          <span>
-                </span>
-        </div>
-        <div class="overflow-y-auto">
-          <ul class="list-none p-3 m-0">
-            <li>
-              <div
-                pRipple
-                pStyleClass="@next"
-                enterClass="hidden"
-                enterActiveClass="slidedown"
-                leaveToClass="hidden"
-                leaveActiveClass="slideup"
-                class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
-              >
-                <span class="font-medium">MAIN</span>
-                <i class="pi pi-chevron-down"></i>
-              </div>
-              <ul class="list-none p-0 m-0 overflow-hidden">
-                <li>
-                  <a pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple" [routerLink]="['/map']">
-                    <span class="material-symbols-outlined mr-2">travel_explore</span>
-                    <span class="font-medium">Map</span>
-                  </a>
-                </li>
-
-                <li>
-                  <a [routerLink]="['/settings']" pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                    <i class="pi pi-cog mr-2"></i>
-                    <span class="font-medium">Settings</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="list-none p-3 m-0">
-            <li>
-              <div
-                pRipple
-                pStyleClass="@next"
-                enterClass="hidden"
-                enterActiveClass="slidedown"
-                leaveToClass="hidden"
-                leaveActiveClass="slideup"
-                class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
-              >
-                <span class="font-medium">EXTRA</span>
-                <i class="pi pi-chevron-down"></i>
-              </div>
-              <ul class="list-none p-0 m-0 overflow-hidden">
-                <li *ngIf="loggedInUserRole === 2">
-                  
-                  <a pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                    <i class="pi pi-folder mr-2"></i>
-                    <span class="font-medium">Admin-Panel</span>
-                  </a>
-                </li>
-                <li>
-                  <a [routerLink]="['/settings']" pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                    <i class="pi pi-cog mr-2"></i>
-                    <span class="font-medium">Settings</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <div class="mt-auto">
-          <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
-          <a pRipple class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-            <p-avatar icon="pi pi-user" styleClass="mr-2"  shape="circle"></p-avatar>
-            <span class="font-bold">{{ loggedInUsername }}</span>
-          </a>
-        </div>
-      </div>
+  <p-menubar [model]="items">
+    <ng-template pTemplate="start">
+      <a class="active" (click)="sidebarVisible = !sidebarVisible">
+      <img src="assets/menu.png" height="48" class="mr-2"  alt=""/>
+      </a>
     </ng-template>
-  </p-sidebar>
-</div>
+
+  </p-menubar>
 
 
-<p-dialog [(visible)]="this.dialogService.manageData" [draggable]="true" [resizable]="true" [style]="{}" header="ManageData">
-    <app-manage-data></app-manage-data>
+  <div class="card flex justify-content-center">
+    <p-sidebar #sidebarRef [(visible)]="sidebarVisible">
+      <ng-template pTemplate="headless">
+        <div class="flex flex-column h-full">
+          <div class="flex align-items-center justify-content-between px-4 pt-3 flex-shrink-0">
+                  <span class="inline-flex align-items-center gap-2">
+                      <span class="font-semibold text-2xl text-primary">TechMap</span>
+                  </span>
+            <span>
+                  </span>
+          </div>
+          <div class="overflow-y-auto">
+            <ul class="list-none p-3 m-0">
+              <li>
+                <div
+                  pRipple
+                  pStyleClass="@next"
+                  enterClass="hidden"
+                  enterActiveClass="slidedown"
+                  leaveToClass="hidden"
+                  leaveActiveClass="slideup"
+                  class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
+                >
+                  <span class="font-medium">MAIN</span>
+                  <i class="pi pi-chevron-down"></i>
+                </div>
+                <ul class="list-none p-0 m-0 overflow-hidden">
+                  <li>
+                    <a pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple" [routerLink]="['/map']">
+                      <span class="material-symbols-outlined mr-2">travel_explore</span>
+                      <span class="font-medium">Map</span>
+                    </a>
+                  </li>
 
-</p-dialog>
+                  <li>
+                    <a [routerLink]="['/settings']" pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                      <i class="pi pi-cog mr-2"></i>
+                      <span class="font-medium">Settings</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="list-none p-3 m-0">
+              <li>
+                <div
+                  pRipple
+                  pStyleClass="@next"
+                  enterClass="hidden"
+                  enterActiveClass="slidedown"
+                  leaveToClass="hidden"
+                  leaveActiveClass="slideup"
+                  class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
+                >
+                  <span class="font-medium">EXTRA</span>
+                  <i class="pi pi-chevron-down"></i>
+                </div>
+                <ul class="list-none p-0 m-0 overflow-hidden">
+                  <li *ngIf="loggedInUserRole === 2">
+
+                    <a [routerLink]="['/admin-panel']" pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                      <i class="pi pi-folder mr-2"></i>
+                      <span class="font-medium">Admin-Panel</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['/settings']" pRipple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                      <i class="pi pi-cog mr-2"></i>
+                      <span class="font-medium">Settings</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-auto">
+            <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
+            <a pRipple class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+              <p-avatar icon="pi pi-user" styleClass="mr-2"  shape="circle"></p-avatar>
+              <span class="font-bold">{{ loggedInUsername }}</span>
+            </a>
+          </div>
+        </div>
+      </ng-template>
+    </p-sidebar>
+  </div>
+
+
+  <p-dialog [(visible)]="this.dialogService.manageData" [draggable]="true" [resizable]="true" [style]="{}" header="ManageData">
+      <app-manage-data></app-manage-data>
+
+  </p-dialog>
 </div>

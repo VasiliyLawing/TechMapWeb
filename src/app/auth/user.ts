@@ -5,7 +5,7 @@ export enum Role {
   admin = 2
 }
 
-function parseRole(str: string): Role {
+export function parseRole(str: string): Role {
   if(str == "ADMIN")
     return Role.admin;
 

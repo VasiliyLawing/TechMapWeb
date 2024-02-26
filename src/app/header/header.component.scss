@@ -41,3 +41,9 @@ p-menuitem {
   z-index: 10000; 
   top: 0; // Required for "position: sticky" to take effect.
 }
+.bar {
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 10000; 
+  top: 0; // Required for "position: sticky" to take effect.
+}
