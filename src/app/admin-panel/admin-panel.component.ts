@@ -10,6 +10,12 @@ class TemporaryUser {
   username: string
   role: Role
 
+  changingPassword = false
+
+  toggleChangingPassword() {
+    this.changingPassword = !this.changingPassword
+  }
+
   constructor(username: string, role: Role) {
     this.username = username
     this.role = role
@@ -42,11 +48,24 @@ export class AdminPanelComponent implements OnInit {
   adminRole = Role.admin
   amountOfCompanies = 0
   amountOfSchools = 0
+  roles = Object.keys(Role).filter((v) => isNaN(Number(v)))
+  selectedRole: string  = ""
 
 
   toggleAddingUser() {
     this.addingUser = !this.addingUser
   }
+
+  getRoles(): string[] {
+    let roles: string[] = []
+    this.roles.forEach((key, index) => {
+        roles.push(key)
+    })
+
+    return roles
+
+  }
+
 
   users = [
     new TemporaryUser("Billy", Role.admin),
