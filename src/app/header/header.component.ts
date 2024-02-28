@@ -39,16 +39,10 @@ export class HeaderComponent implements OnInit {
               icon: 'pi pi-fw pi-file',
               items: [
                   {
-                      label: 'DarkPurple',
+                      label: 'Dark',
                       icon: 'pi pi-fw pi-moon',
                       command: () => this.swapTheme('bootstrap4-dark-purple'),
                       
-                  },
-                  {
-                      label: 'Dark',
-                      icon: 'pi pi-fw pi-hashtag',
-                      command: () => this.swapTheme('mdc-dark-indigo'),
-
                   },
                   {
                       separator: true
@@ -60,7 +54,7 @@ export class HeaderComponent implements OnInit {
 
                   },
                   {
-                    label: `Light`,
+                    label: `Light Grey`,
                     icon: 'pi pi-fw pi-hashtag',
                     command: () => this.swapTheme('bootstrap4-light-blue'),
                   }

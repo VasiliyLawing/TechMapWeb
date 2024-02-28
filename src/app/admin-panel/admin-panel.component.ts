@@ -5,6 +5,7 @@ import { MenuItem } from 'primeng/api';
 import { CompanyService } from '../company/company.service';
 import { SchoolService } from '../school/school.service';
 import { user } from 'firebase-functions/v1/auth';
+import { NgForm } from '@angular/forms';
 
 class TemporaryUser {
   username: string
@@ -67,14 +68,7 @@ export class AdminPanelComponent implements OnInit {
   }
 
 
-  users = [
-    new TemporaryUser("Billy", Role.admin),
-    new TemporaryUser("Robbert", Role.guest),
-    new TemporaryUser("Billy", Role.admin),
-    new TemporaryUser("Robbert", Role.guest),
-    new TemporaryUser("Billy", Role.admin),
-    new TemporaryUser("Robbert", Role.guest)
-  ]
+  users!: User[]
 
   constructor(public authService: AuthService, private schoolService: SchoolService,
               private companyService: CompanyService) {}
@@ -87,6 +81,19 @@ export class AdminPanelComponent implements OnInit {
         this.amountOfSchools = data.length
       })
 
-    
+      this.getUsers
+  }
+
+  getUsers() {
+    this.authService.getAll().subscribe((data) => {
+      this.users = data
+    })
+  }
+
+  registerUser(user: NgForm) {
+    user.value.role = this.selectedRole
+    this.authService.register(user.value).subscribe(() => {
+        this.getUsers()
+    })
   }
 }

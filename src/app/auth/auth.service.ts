@@ -2,13 +2,19 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, map, Observable} from "rxjs";
-import {User, UserJson} from "./user";
+import {Role, User, UserJson} from "./user";
 import {environment} from "../../environments/environment.firebase"; // Change for firebase to environment.firebase not most efficient
 
 
 export interface AuthRequestData {
   username: string;
   password: string;
+}
+
+export interface AuthRegisterData {
+  username: string;
+  password: string;
+  role: Role;
 }
 
 @Injectable()
@@ -31,6 +37,13 @@ export class AuthService {
     return this.userSubject.value;
   }
 
+  public register(registerData: AuthRegisterData): Observable<User> {
+
+    const url = `${this.urlApi}/auth/login/`;
+
+    return this.http.post<User>(url, registerData)
+  }
+
   public requestAuth(requestData: AuthRequestData): Observable<User> {
 
     const url = `${this.urlApi}/auth/login/`;
@@ -42,4 +55,9 @@ export class AuthService {
     }));
 
   }
+
+  public getAll(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.urlApi}/auth/getAll`)
+  }
+
 }
