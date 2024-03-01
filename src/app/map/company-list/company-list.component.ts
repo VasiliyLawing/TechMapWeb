@@ -15,8 +15,11 @@ import {OverlayPanel} from "primeng/overlaypanel";
 export class CompanyListComponent {
   @Input("companies") companies: Company[] = []
   selectedCompany!: Company;
+  // selectedCompanyName = this.selectedCompany.name || "NO COMPANIES SELECTED"
   private selectedTempCompany!: Company;
-
+  isCompanySelected = false;
+  dialogName = "Empty"
+  
   constructor(private messageService: MessageService, private toastService: ToastService, private mapService: ManageMap) {}
 
 
@@ -27,15 +30,22 @@ export class CompanyListComponent {
         this.mapService.unselectCompany(this.companies, company.id)
       })
     }
-
+    this.dialogName = this.selectedCompany.name
     this.selectedTempCompany = this.selectedCompany
+    
     this.mapService.selectCompany(this.companies, this.selectedCompany.id)
-    this.messageService.add({ severity: 'info', summary: 'Company Selected', detail: event.data.name });
+    
+    this.messageService.clear();
+    this.messageService.add({key: 'tc', severity: 'info', summary: 'Company Selected', detail: event.data.name });
+    this.isCompanySelected = true;
   }
 
   onRowUnselect(event: any) {
     this.mapService.unselectCompany(this.companies, this.selectedTempCompany.id)
-    this.messageService.add({ severity: 'info', summary: 'Company Unselected', detail: event.data.name });
+    this.messageService.clear();
+    this.messageService.add({key: 'tc', severity: 'info', summary: 'Company Unselected', detail: event.data.name });
+    this.isCompanySelected = false;
+
   }
 
   protected readonly HTMLInputElement = HTMLInputElement;

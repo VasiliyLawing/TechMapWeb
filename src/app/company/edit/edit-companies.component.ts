@@ -18,6 +18,7 @@ export class EditCompaniesComponent implements OnInit{
   dialog: boolean = false;
   selectedFields!: Field[]
   companies!: Company[];
+  importDialog = false
 
   company!: Company;
   clonedCompanies: { [s: string]: Company } = {};
@@ -25,9 +26,26 @@ export class EditCompaniesComponent implements OnInit{
 
   selectAll = false
 
+  cols = [
+    { field: "name", header: "name" },
+    { field: "latitude", header: "latitude" } ,
+    { field: "longitude", header: "longitude" }]
   onChange(event: any) {
     const { originalEvent, value } = event
     if(value) this.selectAll = value.length === this.fields.length;
+  }
+
+  deleteAll() {
+    this.companies.forEach((company) => {
+        this.companyService.deleteCompany(company.id).subscribe(
+        () => {
+          this.getCompanies()
+        }
+        )
+    })
+    this.messageService.add({ severity: 'error', summary: 'Schools Cleared' });
+
+
   }
 
   closeDialog() {

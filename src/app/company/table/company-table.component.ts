@@ -17,6 +17,7 @@ export class CompanyTableComponent implements OnInit {
   ngOnInit(): void {
     this.companyService.findAll().subscribe(data => {
       this.companies = data;
+      console.log(this.companies)
     });
   }
 

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {School} from "./school";
-import {environment} from "../../environments/environment";
+import {NewSchool, School} from "./school";
+import {environment} from "../../environments/environment.firebase";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class SchoolService {
     return this.http.get<School[]>(`${this.urlApi}/schools/`);
   }
 
-  public add(school: School): Observable<School> {
+  public add(school: School | NewSchool): Observable<School> {
     return this.http.post<School>(`${this.urlApi}/schools/add/`, school);
   }
 

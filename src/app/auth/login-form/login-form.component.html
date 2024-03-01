@@ -1,14 +1,13 @@
 
 <!-- © 2024 Vasiliy Lawing -->
-<div class="surface-card p-4 shadow-2 border-round w-full lg:w-6 center" [formGroup]="form">
+<div class="surface-card p-4 shadow-2 border-round w-full lg:w-3 center" [formGroup]="form">
   <div class="text-center mb-5">
-    <img src="assets/svg/logo-no-background.svg" alt="Image" height="50" class="mb-3" width="78">
-    <div class="text-900 text-3xl font-medium mb-3">Welcome</div>
+    <img src="assets/svg/logo-no-background.svg" height="118.75" width="187.5" alt="Image" class="mb-3" >
   </div>
 
   <div>
     <label class="block text-900 font-medium mb-2">Username</label>
-    <input type="text" placeholder="Username" pInputText class="w-full mb-3" name="username" formControlName="username">
+    <input type="text" placeholder="Username" pInputText class="w-full mb-3"  name="username" formControlName="username">
 
     <label class="block text-900 font-medium mb-2">Password</label>
     <input type="password" placeholder="Password" pInputText class="w-full mb-3" name="password" formControlName="password">
@@ -22,6 +21,3 @@
   </div>
 </div>
 
-<ng-template pTemplate="footer">
-  <p>© 2024 Vasiliy Lawing</p>
-</ng-template>

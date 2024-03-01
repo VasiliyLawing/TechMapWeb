@@ -1,0 +1,155 @@
+
+<div *ngIf="authService.userValue?.role === adminRole">
+    <div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
+
+    <div class="outside">
+
+        <div class="grid">
+            <div class="col-12 md:col-6 lg:col-3">
+                <div class="surface-card shadow-2 p-3 border-round">
+                    <div class="flex justify-content-between mb-3">
+                        <div>
+                            <span class="block text-500 font-medium mb-3">Users</span>
+                            <div class="text-900 font-medium text-xl">{{users.length}}</div>
+                        </div> 
+                        <!-- ggg -->
+                        <div class="flex align-items-center justify-content-center bg-blue-100 border-round" style="width:2.5rem;height:2.5rem">
+                            <i class="pi pi-user text-blue-500 text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+                <div class="surface-card shadow-2 p-3 border-round">
+                    <div class="flex justify-content-between mb-3">
+                        <div>
+                            <span class="block text-500 font-medium mb-3">Companies</span>
+                            <div class="text-900 font-medium text-xl">{{ amountOfCompanies }}</div>
+                        </div>
+                        <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
+                            <i class="pi pi-briefcase text-orange-500 text-xl"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3">
+                <div class="surface-card shadow-2 p-3 border-round">
+                    <div class="flex justify-content-between mb-3">
+                        <div>
+                            <span class="block text-500 font-medium mb-3">Schools</span>
+                            <div class="text-900 font-medium text-xl">{{ amountOfSchools }}</div>
+                        </div>
+                        <div class="flex align-items-center justify-content-center bg-cyan-100 border-round" style="width:2.5rem;height:2.5rem">
+                            <i class="pi pi-building text-cyan-500 text-xl"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- <div class="col-12 md:col-6 lg:col-3">
+                <div class="surface-card shadow-2 p-3 border-round">
+                    <div class="flex justify-content-between mb-3">
+                        <div>
+                            <span class="block text-500 font-medium mb-3">Comments</span>
+                            <div class="text-900 font-medium text-xl">152 Unread</div>
+                        </div>
+                        <div class="flex align-items-center justify-content-center bg-purple-100 border-round" style="width:2.5rem;height:2.5rem">
+                            <i class="pi pi-comment text-purple-500 text-xl"></i>
+                        </div>
+                    </div>
+                    <span class="text-green-500 font-medium">85 </span>
+                    <span class="text-500">responded</span>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    </div>
+<div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
+
+    
+<div class="outside">
+
+    <div class="surface-card shadow-2 p-3 border-round">
+        <div class="text-4xl font-medium text-900 mb-3">
+            Users
+        </div>
+
+        <div class="font-medium text-500 mb-3">
+            <p-button icon="pi pi-plus" label="Add User" (onClick)="toggleAddingUser()" [rounded]="true" [text]="true" severity="success "></p-button>
+
+        </div>
+
+
+
+
+            <p-dataView #dv [value]="users" [rows]="3" [paginator]="true">
+                <ng-template let-user pTemplate="listItem">
+                    <div class="col-12">
+                        <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
+                            <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+                                <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                                    <div class="text-2xl font-bold text-900">{{ user.username }}</div>
+                                    <div class="flex align-items-center gap-3">
+                                        <span class="flex align-items-center gap-2">
+                                            <i class="pi pi-tag"></i>
+                                            <span class="font-semibold">{{ user.roleString() }}</span>
+
+                                        </span>
+                                        <div *ngIf="user.changingPassword">
+                                        <p-password appendTo="body" id="password" [toggleMask]="true"></p-password>
+                                        <p-button (click)="user.toggleChangingPassword()" label="Change Password" [text]="true" severity="warning"></p-button>
+
+                                        </div>
+                                        <div *ngIf="!user.changingPassword">
+                                            <p-button (click)="user.toggleChangingPassword()" label="Change Password" [text]="true" severity="warning"></p-button>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                                    <p-button label="Remove" icon="pi pi-trash" iconPos="right" severity="danger"></p-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
+        
+        </div> 
+        </div>   
+    </div>
+    </div>
+
+<p-dialog [(visible)]="addingUser"header="Add User" [resizable]="false">
+    <ng-form class="form">
+    <div>
+        <span class="p-float-label">
+            <input pInputText id="username"/>
+            <label for="username">Username</label>
+        </span>
+    </div>
+    <div>
+        <!-- [options]="cities" [(ngModel)]="selectedCity" -->
+        <p-dropdown [style]="['width: 100%']" [options]="getRoles()" [(ngModel)]="selectedRole" appendTo="body" [showClear]="true" placeholder="Select a Role"></p-dropdown>
+    </div>
+    <div>
+        <span class="p-float-label">
+            <!-- [(ngModel)]="value" -->
+            <p-password appendTo="body" id="password" [toggleMask]="true"></p-password>
+            <label for="password">Password</label>
+        </span>
+    </div>
+        <p-button label="Submit" [text]="true" severity="success"></p-button>
+
+    <div>
+
+    </div>
+</ng-form>
+    
+
+</p-dialog>

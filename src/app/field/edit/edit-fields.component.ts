@@ -16,7 +16,8 @@ export class EditFieldsComponent implements OnInit{
   fields!: Field[];
   field!: Field
   clonedFields: { [s: string]: Field } = {};
-
+  cols = [
+    { field: "name", header: "name" }]
   closeDialog() {
     this.dialog = false
   }

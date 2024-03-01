@@ -1,12 +1,7 @@
 <!-- © 2024 Vasiliy Lawing -->
-
-<app-header></app-header>
-
-
-
-<p-splitter [style]="{ height: '100vh', width: '100%' }" styleClass="mb-5" layout="horizontal">
+<p-splitter [style]="{ height: '100vh' }" styleClass="mb-5" layout="horizontal" [panelSizes]="[74, 21]">
     <ng-template pTemplate>
-        <p-splitter [style]="{ height: '100%', width: '50%' }" styleClass="mb-5" layout="vertical">
+        <p-splitter [style]="{ height: '100%' }" styleClass="mb-5" layout="vertical" [panelSizes]="[99, 1]">
             <ng-template pTemplate>
                 <div id="map"></div>
             </ng-template>
@@ -24,3 +19,8 @@
         </div>
     </ng-template>
 </p-splitter>
+
+<!-- <p-dialog [(visible)]="this.dialogService.manageData" [draggable]="true" [resizable]="true" [style]="{}" header="ManageData">
+    <app-manage-data></app-manage-data>
+
+</p-dialog> -->
