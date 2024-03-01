@@ -1,7 +1,9 @@
 
 <div *ngIf="authService.userValue?.role === adminRole">
-
     <div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
+
+    <div class="outside">
+
         <div class="grid">
             <div class="col-12 md:col-6 lg:col-3">
                 <div class="surface-card shadow-2 p-3 border-round">
@@ -62,11 +64,13 @@
             </div> -->
         </div>
     </div>
+    </div>
+<div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
 
     
+<div class="outside">
 
-
-    <p-card>
+    <div class="surface-card shadow-2 p-3 border-round">
         <div class="text-3xl font-medium text-900 mb-3">
             Users
         </div>
@@ -94,11 +98,12 @@
                                         </span>
                                         <div *ngIf="user.changingPassword">
                                         <p-password appendTo="body" id="password" [toggleMask]="true"></p-password>
-                                        <p-button (click)="user.toggleChangingPassword()" label="Change Password" icon="pi pi-user-edit" iconPos="right" severity="help" [text]="true" [raised]="true" [plain]="true" size="small"></p-button>
+                                        <p-button (click)="user.toggleChangingPassword()" label="Change Password" [text]="true" severity="warning"></p-button>
 
                                         </div>
                                         <div *ngIf="!user.changingPassword">
-                                            <p-button (click)="user.toggleChangingPassword()" label="Change Password" icon="pi pi-user-edit" iconPos="right" severity="help" [text]="true" [raised]="true" [plain]="true" size="small"></p-button>
+                                            <p-button (click)="user.toggleChangingPassword()" label="Change Password" [text]="true" severity="warning"></p-button>
+
 
                                         </div>
 
@@ -115,9 +120,10 @@
                 </ng-template>
             </p-dataView>
         
-        </p-card> 
+        </div> 
         </div>   
-
+    </div>
+    </div>
 
 <p-dialog [(visible)]="addingUser"header="Add User" [resizable]="false">
     <ng-form class="form">

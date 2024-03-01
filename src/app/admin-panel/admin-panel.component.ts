@@ -67,8 +67,15 @@ export class AdminPanelComponent implements OnInit {
 
   }
 
-
-  users!: User[]
+  users = [
+    new TemporaryUser("Billy", Role.admin),
+    new TemporaryUser("Robbert", Role.guest),
+    new TemporaryUser("Billy", Role.admin),
+    new TemporaryUser("Robbert", Role.guest),
+    new TemporaryUser("Billy", Role.admin),
+    new TemporaryUser("Robbert", Role.guest)
+  ]
+  // users!: User[]
 
   constructor(public authService: AuthService, private schoolService: SchoolService,
               private companyService: CompanyService) {}
@@ -81,12 +88,12 @@ export class AdminPanelComponent implements OnInit {
         this.amountOfSchools = data.length
       })
 
-      this.getUsers
+      // this.getUsers
   }
 
   getUsers() {
     this.authService.getAll().subscribe((data) => {
-      this.users = data
+      // this.users = data
     })
   }
 
