@@ -109,7 +109,8 @@ export class ManageMap {
 
         let fiveMiles = 0.0144927536231884 * 15
 
-        this.map?.fitBounds([
+
+        this.map?.flyToBounds([
           [company.latitude - fiveMiles, company.longitude - fiveMiles],
           [company.latitude + fiveMiles, company.longitude + fiveMiles]
       ]);
