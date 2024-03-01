@@ -27,9 +27,9 @@ export class ManageMap {
   });
   private schoolIcon = L.icon({
     iconUrl: 'assets/school.png',
-    iconSize: [38/2, 38/2],
-    iconAnchor: [22/2, 37/2],
-    popupAnchor: [-3/2, -19/2]
+  iconSize: [38*.8, 38*.8],
+    iconAnchor: [22*.8, 37*.8],
+    popupAnchor: [-3*.8, -19*.8]
   });
   private map?: L.Map;
 
