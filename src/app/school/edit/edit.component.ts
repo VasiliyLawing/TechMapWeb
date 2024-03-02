@@ -5,6 +5,8 @@ import {NgForm} from "@angular/forms";
 import {SchoolService} from "../school.service";
 import {ConfirmationService, MessageService} from "primeng/api";
 import { Papa } from 'ngx-papaparse';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+
 
 @Component({
   selector: 'app-edit-students',
@@ -23,6 +25,7 @@ export class EditSchoolsComponent implements OnInit{
   school!: School;
   clonedSchools: { [s: string]: School } = {};
   firstParsedStudent!: string
+  visible: boolean = false;
 
   cols = [
     { field: "name", header: "name" },
@@ -38,22 +41,43 @@ export class EditSchoolsComponent implements OnInit{
     this.getSchools()
   }
 
+  confirm(event: Event) {
+    this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: 'Are you sure that you want to proceed?',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have deleted everything' });
+            this.deleteAll()
+          },
+        reject: () => {
+            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+        }
+    });
+}
+
+
   closeDialog() {
     this.dialog = false
   }
 
-  deleteAll() {
-    this.schools.forEach((school) => {
-        this.schoolService.delete(school.id).subscribe(
-        () => {
-          this.getSchools()
-        }
-        )
-    })
-    this.messageService.add({ severity: 'error', summary: 'Schools Cleared' });
+
+onReject() {
+    this.messageService.clear();
+    this.visible = false;
+}
+
+deleteAll() {
+  this.schools.forEach((school) => {
+    this.schoolService.delete(school.id).subscribe(
+    () => {
+      this.getSchools()
+    }
+    )
+})
 
 
-  }
+}
   openImportDialog() {
     this.importDialog = true;
   }

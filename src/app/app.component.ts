@@ -13,7 +13,7 @@ export class AppComponent {
 
   constructor(public authService: AuthService) {
   }
-
+  isUserLoggedIn = this.authService.getUser
 
 
 }

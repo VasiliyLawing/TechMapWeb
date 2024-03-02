@@ -10,6 +10,7 @@ import {LoginFormComponent} from "./auth/login-form/login-form.component";
 import {EditFieldsComponent} from "./field/edit/edit-fields.component";
 import {SettingsComponent} from './settings/settings.component';
 import {EditSchoolsComponent} from "./school/edit/edit.component";
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 const routes: Routes = [
     {path: 'login', component: LoginFormComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
                 {path: 'edit-students', component: EditStudentsComponent},
                 {path: 'edit-companies', component: EditCompaniesComponent},
                 {path: 'edit-fields', component: EditFieldsComponent},
-                {path: 'edit-schools', component: EditSchoolsComponent}
+                {path: 'edit-schools', component: EditSchoolsComponent},
+                {path: 'admin-panel', component: AdminPanelComponent}
             ]
     }
 ];

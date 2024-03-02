@@ -15,6 +15,7 @@ import {TooltipModule} from "primeng/tooltip";
 import { EligibleSchoolsListComponent } from './eligible-schools-list/eligible-schools-list.component';
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {DividerModule} from "primeng/divider";
+import { DialogModule } from 'primeng/dialog';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {DividerModule} from "primeng/divider";
         RippleModule,
         TooltipModule,
         OverlayPanelModule,
-        DividerModule
+        DividerModule,
+        DialogModule
     ]
 })
 export class MapModule { }

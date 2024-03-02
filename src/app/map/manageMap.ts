@@ -27,9 +27,9 @@ export class ManageMap {
   });
   private schoolIcon = L.icon({
     iconUrl: 'assets/school.png',
-    iconSize: [38/2, 38/2],
-    iconAnchor: [22/2, 37/2],
-    popupAnchor: [-3/2, -19/2]
+  iconSize: [38*.8, 38*.8],
+    iconAnchor: [22*.8, 37*.8],
+    popupAnchor: [-3*.8, -19*.8]
   });
   private map?: L.Map;
 
@@ -77,7 +77,9 @@ export class ManageMap {
 
   public setCompanyMarkers(companies: Company[]): void {
     companies.forEach(company => {
-      const marker = L.marker([company.latitude, company.longitude], {icon: this.companyIcon});
+      const marker = L.marker([company.latitude, company.longitude], {icon: this.companyIcon}).bindPopup(
+        `<h1>${company.name}</h1><h4>Longitude: ${company.longitude}</h4><h4>Latitude: ${company.latitude}</h4>`
+    );;
       if (this.map)
         marker.addTo(this.map)
       company.marker = marker;
@@ -86,17 +88,17 @@ export class ManageMap {
 
 
   public manageCompanyMarkers(companies: Company[]): void {
-    companies.forEach(company => {
-      company.marker?.on('click', () => {
-        if (company.selected) {
-          this.removeCircles(company)
-          company.selected = false
-        } else {
-          this.addCircles(company)
-          company.selected = true
-        }
-      });
-    });
+    // companies.forEach(company => {
+    //   company.marker?.on('click', () => {
+    //     if (company.selected) {
+    //       this.removeCircles(company)
+    //       company.selected = false
+    //     } else {
+    //       this.addCircles(company)
+    //       company.selected = true
+    //     }
+    //   });
+    // });
   }
 
   public selectCompany(companies: Company[], selectedCompany: number) {
@@ -105,9 +107,10 @@ export class ManageMap {
 
         company.selected = true
 
-        let fiveMiles = 0.0144927536231884 * 5
+        let fiveMiles = 0.0144927536231884 * 15
 
-        this.map?.fitBounds([
+
+        this.map?.flyToBounds([
           [company.latitude - fiveMiles, company.longitude - fiveMiles],
           [company.latitude + fiveMiles, company.longitude + fiveMiles]
       ]);

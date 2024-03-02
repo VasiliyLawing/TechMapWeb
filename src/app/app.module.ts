@@ -2,6 +2,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
+import { MenubarModule } from 'primeng/menubar';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MapComponent} from './map/map.component';
@@ -21,7 +22,6 @@ import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {StyleClassModule} from "primeng/styleclass";
 import {AvatarModule} from "primeng/avatar";
-import {HeaderModule} from "./header/header.module";
 import {SplitterModule} from "primeng/splitter";
 import {PanelModule} from "primeng/panel";
 import {TableModule} from "primeng/table";
@@ -45,8 +45,14 @@ import {ToolbarModule} from "primeng/toolbar";
 import { ProfileComponent } from './profile/profile.component';
 import {MultiSelectModule} from "primeng/multiselect";
 import { AccordionModule } from 'primeng/accordion';
-
-
+import { PasswordModule } from 'primeng/password';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { HeaderComponent } from './header/header.component';
+import { DialogService } from './dialog.service';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { DataViewModule } from 'primeng/dataview';
 export const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
@@ -61,22 +67,27 @@ export const httpInterceptorProviders = [
     TableSchoolsComponent,
     EditSchoolsComponent,
     ProfileComponent,
+    HeaderComponent,
+    AdminPanelComponent
   ],
     imports: [
         AccordionModule,
         BrowserModule,
+        PasswordModule,
         AppRoutingModule,
         HttpClientModule,
         PanelModule,
         StudentModule,
         CompanyModule,
         FormsModule,
+        ConfirmPopupModule,
+        TabMenuModule,
+        DataViewModule,
         SidebarModule,
         ButtonModule,
         RippleModule,
         StyleClassModule,
         AvatarModule,
-        HeaderModule,
         SplitterModule,
         TableModule,
         SkeletonModule,
@@ -91,9 +102,12 @@ export const httpInterceptorProviders = [
         DropdownModule,
         FileUploadModule,
         ToolbarModule,
-        MultiSelectModule
+        MultiSelectModule,
+        MenubarModule,
+        BrowserAnimationsModule,
+
     ],
-  providers: [ httpInterceptorProviders, PermissionService, AuthService, StudentService, CompanyService, MessageService ],
+  providers: [ httpInterceptorProviders, PermissionService, AuthService, StudentService, CompanyService, MessageService, DialogService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
