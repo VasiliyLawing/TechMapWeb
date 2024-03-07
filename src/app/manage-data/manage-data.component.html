@@ -1,6 +1,6 @@
 <!-- © 2024 Vasiliy Lawing -->
 
-<p-accordion [activeIndex]="[]" [multiple]="true">
+<p-accordion (onOpen)="update()" [activeIndex]="[]" [multiple]="true">
     <p-accordionTab header="Schools">
         <app-table-schools></app-table-schools>
 

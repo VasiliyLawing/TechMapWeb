@@ -1,6 +1,7 @@
 // © 2024 Vasiliy Lawing
 import {Component} from '@angular/core';
 import { DialogService } from '../dialog.service';
+import { UpdateDataService } from '../update-data.service';
 
 @Component({
   selector: 'app-manage-data',
@@ -10,7 +11,7 @@ import { DialogService } from '../dialog.service';
 export class ManageDataComponent {
 
   activeIndex: number[] = []
-  constructor (private dialogManager: DialogService) {
+  constructor (private dialogManager: DialogService, private dataService: UpdateDataService) {
 
   }
   activeIndexController(): number[] {
@@ -19,6 +20,10 @@ export class ManageDataComponent {
     }
 
     return this.activeIndex
+  }
+
+  update() {
+    this.dataService.update()
   }
 
 
