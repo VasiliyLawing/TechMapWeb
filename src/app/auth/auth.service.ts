@@ -36,17 +36,21 @@ export class AuthService {
   public get userValue(): User|null {
     return this.userSubject.value;
   }
+  public deleteUser(user: User) {
+    return this.http.post(`${this.urlApi}/admin/auth/delete/`, user.username)
+
+  }
 
   public register(registerData: AuthRegisterData): Observable<User> {
 
-    const url = `${this.urlApi}/auth/login/`;
+    const url = `${this.urlApi}/admin/auth/register/`;
 
     return this.http.post<User>(url, registerData)
   }
 
   public requestAuth(requestData: AuthRequestData): Observable<User> {
 
-    const url = `${this.urlApi}/auth/login/`;
+    const url = `${this.urlApi}/public/auth/login/`;
 
     return this.http.post<UserJson>(url, requestData).pipe(map(userJson => {
       const user = User.parseFromJson(userJson);
@@ -55,9 +59,12 @@ export class AuthService {
     }));
 
   }
+  public changePassword(registerData: AuthRegisterData): Observable<User> {
+    return this.http.post<User>(`${this.urlApi}/admin/auth/changePassword/`, registerData)
+  }
 
   public getAll(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.urlApi}/auth/getAll`)
+    return this.http.get<User[]>(`${this.urlApi}/admin/auth/getAll/`)
   }
 
 }

@@ -16,18 +16,18 @@ export class CompanyService {
   }
 
   public findAll(): Observable<Company[]> {
-    return this.http.get<Company[]>(`${this.urlApi}/companies/`);
+    return this.http.get<Company[]>(`${this.urlApi}/public/companies/`);
   }
 
   public addCompany(company: Company): Observable<Company> {
-    return this.http.post<Company>(`${this.urlApi}/companies/add/`, company);
+    return this.http.post<Company>(`${this.urlApi}/user/companies/add/`, company);
   }
 
   public updateCompany(company: Company): Observable<Company> {
-    return this.http.put<Company>(`${this.urlApi}/companies/update/`, company)
+    return this.http.put<Company>(`${this.urlApi}/user/companies/update/`, company)
   }
   deleteCompany(id: number): Observable<any> {
-    const url = `${this.urlApi}/companies/${id}/`;
+    const url = `${this.urlApi}/user/companies/${id}/`;
     return this.http.delete(url);
   }
 

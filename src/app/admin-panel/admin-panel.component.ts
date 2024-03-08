@@ -6,35 +6,9 @@ import { CompanyService } from '../company/company.service';
 import { SchoolService } from '../school/school.service';
 import { user } from 'firebase-functions/v1/auth';
 import { NgForm } from '@angular/forms';
+import {Browser} from "leaflet";
+import win = Browser.win;
 
-class TemporaryUser {
-  username: string
-  role: Role
-
-  changingPassword = false
-
-  toggleChangingPassword() {
-    this.changingPassword = !this.changingPassword
-  }
-
-  constructor(username: string, role: Role) {
-    this.username = username
-    this.role = role
-    
-  }
-  roleString() {
-    if (this.role === Role.admin) { //TODO: Replace with switch case?
-      return "ADMIN"
-    } else if (this.role === Role.guest) {
-      return "GUEST"
-    } else if (this.role === Role.user) {
-      return "USER"
-    }
-
-    return "NO ROLE"
-  }
-
-}
 
 
 
@@ -46,12 +20,33 @@ class TemporaryUser {
 
 export class AdminPanelComponent implements OnInit {
   addingUser = false
-  adminRole = Role.admin
+  adminRole = Role.ADMIN
   amountOfCompanies = 0
   amountOfSchools = 0
   roles = Object.keys(Role).filter((v) => isNaN(Number(v)))
-  selectedRole: string  = ""
 
+  newUserPassword!: string
+
+
+  deleteUser(user: User) {
+    this.authService.deleteUser(user).subscribe(() => {
+      this.getUsers()
+      if (user.username === this.authService.userValue?.username)
+        window.location.reload()
+    })
+  }
+
+  changePassword(form: NgForm) {
+
+    this.authService.changePassword(form.value).subscribe(() => {
+      this.getUsers()
+
+      if (form.value.username === this.authService.userValue?.username) {
+        window.location.reload()
+      }
+
+    })
+  }
 
   toggleAddingUser() {
     this.addingUser = !this.addingUser
@@ -67,15 +62,15 @@ export class AdminPanelComponent implements OnInit {
 
   }
 
-  users = [
-    new TemporaryUser("Billy", Role.admin),
-    new TemporaryUser("Robbert", Role.guest),
-    new TemporaryUser("Billy", Role.admin),
-    new TemporaryUser("Robbert", Role.guest),
-    new TemporaryUser("Billy", Role.admin),
-    new TemporaryUser("Robbert", Role.guest)
-  ]
-  // users!: User[]
+  // users = [
+  //   new TemporaryUser("Billy", Role.admin),
+  //   new TemporaryUser("Robbert", Role.guest),
+  //   new TemporaryUser("Billy", Role.admin),
+  //   new TemporaryUser("Robbert", Role.guest),
+  //   new TemporaryUser("Billy", Role.admin),
+  //   new TemporaryUser("Robbert", Role.guest)
+  // ]
+  users!: User[]
 
   constructor(public authService: AuthService, private schoolService: SchoolService,
               private companyService: CompanyService) {}
@@ -88,19 +83,29 @@ export class AdminPanelComponent implements OnInit {
         this.amountOfSchools = data.length
       })
 
-      // this.getUsers
+
+    this.authService.getAll().subscribe((data) => {
+      console.log(data)
+      this.users = data
+    })
+
   }
 
   getUsers() {
     this.authService.getAll().subscribe((data) => {
-      // this.users = data
+      this.users = data
     })
   }
 
   registerUser(user: NgForm) {
-    user.value.role = this.selectedRole
+    // user.value.role = this.selectedRole
+
+
+    console.log(user.value)
     this.authService.register(user.value).subscribe(() => {
         this.getUsers()
+        this.addingUser = false
     })
+
   }
 }

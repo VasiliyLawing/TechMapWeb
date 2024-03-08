@@ -16,19 +16,19 @@ export class StudentService {
 
   public findAll(): Observable<Student[]> {
 
-    return this.http.get<Student[]>(`${this.urlApi}/students/`);
+    return this.http.get<Student[]>(`${this.urlApi}/public/students/`);
   }
 
   public addStudent(student: Student): Observable<Student> {
-    return this.http.post<Student>(`${this.urlApi}/students/add/`, student);
+    return this.http.post<Student>(`${this.urlApi}/user/students/add/`, student);
   }
 
   public updateStudent(student: Student): Observable<Student> {
-    return this.http.put<Student>(`${this.urlApi}/students/update/`, student)
+    return this.http.put<Student>(`${this.urlApi}/user/students/update/`, student)
   }
 
   deleteStudent(id: number) {
-    const url = `${this.urlApi}/students/${id}/`;
+    const url = `${this.urlApi}/user/students/${id}/`;
     return this.http.delete(url);
   }
 

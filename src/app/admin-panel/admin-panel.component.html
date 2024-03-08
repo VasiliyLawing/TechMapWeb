@@ -10,7 +10,7 @@
                     <div class="flex justify-content-between mb-3">
                         <div>
                             <span class="block text-500 font-medium mb-3">Users</span>
-                            <div class="text-900 font-medium text-xl">{{users.length}}</div>
+                            <div *ngIf="users" class="text-900 font-medium text-xl">{{users.length}}</div>
                         </div> 
                         <!-- ggg -->
                         <div class="flex align-items-center justify-content-center bg-blue-100 border-round" style="width:2.5rem;height:2.5rem">
@@ -93,26 +93,27 @@
                                     <div class="flex align-items-center gap-3">
                                         <span class="flex align-items-center gap-2">
                                             <i class="pi pi-tag"></i>
-                                            <span class="font-semibold">{{ user.roleString() }}</span>
+                                            <span class="font-semibold">{{ user.role }}</span>
 
                                         </span>
-                                        <div *ngIf="user.changingPassword">
-                                        <p-password appendTo="body" id="password" [toggleMask]="true"></p-password>
-                                        <p-button (click)="user.toggleChangingPassword()" label="Change Password" [text]="true" severity="warning"></p-button>
+<!--                                        <div *ngIf="user.changingPassword">-->
+<!--                                            <form #form="ngForm">-->
 
-                                        </div>
-                                        <div *ngIf="!user.changingPassword">
-                                            <p-button (click)="user.toggleChangingPassword()" label="Change Password" [text]="true" severity="warning"></p-button>
+<!--                                            <p-password appendTo="body" id="password" [toggleMask]="true"></p-password>-->
+<!--                                            <p-button (click)="changePassword(form)" label="Change Password" [text]="true" severity="warning"></p-button>-->
+<!--                                            </form>-->
+<!--                                        </div>-->
+<!--                                        <div *ngIf="!user.changingPassword">-->
+<!--                                            <p-button (click)="user.changingPassword = true" label="Change Password" [text]="true" severity="warning"></p-button>-->
 
-
-                                        </div>
+<!--                                        </div>-->
 
                                     </div>
                                 </div>
 
 
                                 <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                                    <p-button label="Remove" icon="pi pi-trash" iconPos="right" severity="danger"></p-button>
+                                    <p-button (onClick)="deleteUser(user)" label="Remove" icon="pi pi-trash" iconPos="right" severity="danger"></p-button>
                                 </div>
                             </div>
                         </div>
@@ -125,31 +126,31 @@
     </div>
     </div>
 
-<p-dialog [(visible)]="addingUser"header="Add User" [resizable]="false">
-    <ng-form class="form">
+<p-dialog [(visible)]="addingUser" header="Add User" [resizable]="false">
+    <form #form="ngForm" class="form" (ngSubmit)="registerUser(form)">
     <div>
         <span class="p-float-label">
-            <input pInputText id="username"/>
+            <input pInputText ngModel name="username" id="username"/>
             <label for="username">Username</label>
         </span>
     </div>
     <div>
         <!-- [options]="cities" [(ngModel)]="selectedCity" -->
-        <p-dropdown [style]="['width: 100%']" [options]="getRoles()" [(ngModel)]="selectedRole" appendTo="body" [showClear]="true" placeholder="Select a Role"></p-dropdown>
+        <p-dropdown [style]="['width: 100%']" [options]="getRoles()" ngModel name="role" appendTo="body" [showClear]="true" placeholder="Select a Role"></p-dropdown>
     </div>
     <div>
         <span class="p-float-label">
             <!-- [(ngModel)]="value" -->
-            <p-password appendTo="body" id="password" [toggleMask]="true"></p-password>
-            <label for="password">Password</label>
+            <p-password [(ngModel)]="newUserPassword" name="password" appendTo="body" [toggleMask]="true"></p-password>
+            <label>Password</label>
         </span>
     </div>
-        <p-button label="Submit" [text]="true" severity="success"></p-button>
+        <button type="submit" class="p-button p-button-success">Submit</button>
 
     <div>
 
     </div>
-</ng-form>
+</form>
     
 
 </p-dialog>
