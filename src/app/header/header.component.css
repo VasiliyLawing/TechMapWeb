@@ -30,12 +30,18 @@ p-menuitem {
   overflow: "visible";
 }
 
-p-menubar {
-  z-index: 2;
+:host ::ng-deep .p-menubar {
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 10000;
+  top: 0;
 }
 
-p-menu-list {
-  overflow: "visible";
+.bar {
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 10000;
+  top: 0;
 }
 
 /*# sourceMappingURL=header.component.css.map */

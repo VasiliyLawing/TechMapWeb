@@ -14,17 +14,16 @@ export class FieldService {
   constructor(private http: HttpClient) { }
 
   findAll() {
-    return this.http.get<Field[]>(`${this.urlApi}/fields/`);
+    return this.http.get<Field[]>(`${this.urlApi}/public/fields/`);
   }
   update(field: Field) {
-    return this.http.put<Field>(`${this.urlApi}/fields/update/`, field)
+    return this.http.put<Field>(`${this.urlApi}/user/fields/update/`, field)
   }
   add(field: Field) {
-    return this.http.post<Field>(`${this.urlApi}/fields/add/`, field);
-
+    return this.http.post<Field>(`${this.urlApi}/user/fields/add/`, field);
   }
   remove(id: number) {
-    return this.http.delete(`${this.urlApi}/fields/${id}/`);
+    return this.http.delete(`${this.urlApi}/user/fields/${id}/`);
 
   }
 

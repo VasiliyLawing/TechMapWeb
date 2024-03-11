@@ -14,18 +14,18 @@ export class SchoolService {
   constructor(private http: HttpClient) { }
 
   public findAll(): Observable<School[]> {
-    return this.http.get<School[]>(`${this.urlApi}/schools/`);
+    return this.http.get<School[]>(`${this.urlApi}/public/schools/`);
   }
 
   public add(school: School | NewSchool): Observable<School> {
-    return this.http.post<School>(`${this.urlApi}/schools/add/`, school);
+    return this.http.post<School>(`${this.urlApi}/user/schools/add/`, school);
   }
 
   public update(school: School): Observable<School> {
-    return this.http.put<School>(`${this.urlApi}/schools/update/`, school)
+    return this.http.put<School>(`${this.urlApi}/user/schools/update/`, school)
   }
   delete(id: number): Observable<any> {
-    const url = `${this.urlApi}/schools/${id}/`;
+    const url = `${this.urlApi}/user/schools/${id}/`;
     return this.http.delete(url);
   }
 }

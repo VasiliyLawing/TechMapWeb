@@ -6,6 +6,7 @@ import {SchoolService} from "../school.service";
 import {ConfirmationService, MessageService} from "primeng/api";
 import { Papa } from 'ngx-papaparse';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { UpdateDataService } from 'src/app/update-data.service';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class EditSchoolsComponent implements OnInit{
   constructor(private schoolService: SchoolService,
               private messageService: MessageService,
               private confirmationService: ConfirmationService,
-              private papa: Papa) {}
+              private papa: Papa, private dataService: UpdateDataService) {}
 
   ngOnInit() {
     this.getSchools()

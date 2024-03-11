@@ -14,12 +14,12 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 const routes: Routes = [
     {path: 'login', component: LoginFormComponent},
+    {path: 'map', component: MapComponent},
 
     {
         path: '', canActivate: [AuthGuard],
         children:
             [
-                {path: 'map', component: MapComponent},
                 {path: 'settings', component: SettingsComponent},
                 {path: 'edit-students', component: EditStudentsComponent},
                 {path: 'edit-companies', component: EditCompaniesComponent},
