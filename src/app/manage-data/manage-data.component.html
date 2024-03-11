@@ -1,4 +1,7 @@
 <!-- © 2024 Vasiliy Lawing -->
+<p-button icon="pi pi-refresh" label="Reload" [text]="true" severity="danger" (click)="update()"></p-button>
+
+
 <div class="card flex justify-content-center">
 
 <p-accordion (onOpen)="update()" [activeIndex]="[]" [multiple]="true">
