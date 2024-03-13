@@ -113,8 +113,16 @@ export class ManageMap {
         this.map?.flyToBounds([
           [company.latitude - fiveMiles, company.longitude - fiveMiles],
           [company.latitude + fiveMiles, company.longitude + fiveMiles]
+      
       ]);
-        this.addCircles(company)
+      
+      
+      this.map?.once('zoomend', () => {
+          this.addCircles(company)
+          // alert("...")
+      });
+
+
       }
     })
   }
